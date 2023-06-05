@@ -1,87 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"> -->
-    <link rel="stylesheet" href="./style/pantalla_principal.css">
-    <script src="https://kit.fontawesome.com/553a1bb38c.js" crossorigin="anonymous"></script>
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style/pantalla_principal.css">
+  <title>Document</title>
 </head>
+<body>
 
-<body id="body">
-
-    <header>
-        <div class="icon__menu">
-            <i class="fa-solid fa-bars" id="btn_open"></i>
-        </div>
+    <header class="header">
+        <img src="./img/logo.png" alt="">
+        <h2>San Antonio</h2>
     </header>
 
-    <main>
-        <div class="menu__side" id="menu_side">
-            <div class="name__page">
-                <h4>Rol</h4>
-            </div>
+  <div class="overlay"></div>
 
-            <div class="options__menu">
+  <main>
+    <button class="burger" onclick="toggleMenu()">
+      <i class="fa-solid fa-bars"></i>
+      <i class="fa-solid fa-close"></i>
+    </button>
+  
+    <aside>
+      <a href="#">Inicio</a>
+      <a href="#">Solicitud de turno</a>
+      <a href="#">Lista de turnos</a>
+      <a href="#">Historia Clínica</a>
+      <a href="#">Historial de turnos</a>
+    </aside>
+  </main>
+  <script src="./js/pantalla_principal.js"></script>
 
-                <a href="#">
-                    <div class="option">
-                        <i class="fa-sharp fa-solid fa-house" title="Inicio"></i>
-                        <h4>Inicio</h4>
-                    </div>
-                </a>
-
-                <a href="#">
-                    <div class="option">
-                        <i class="fa-sharp fa-solid fa-users" title="Usuarios"></i>
-                        <h4>Turnos</h4>
-                    </div>
-                </a>
-
-                <a href="#">
-                    <div class="option">
-                        <i class="fa-sharp fa-solid fa-cart-shopping" title="Productos y Servicios"></i>
-                        <h4></h4>
-                    </div>
-                </a>
-
-                <a href="Servicios_Reali.php">
-                    <div class="option">
-                        <i class="fa-sharp fa-solid fa-wrench" title="Servicios Realizados"></i>
-                        <h4>Servicios Realizados</h4>
-                    </div>
-                </a>
-
-                <a href="Ventas_Reali.php">
-                    <div class="option">
-                        <i class="fa-sharp fa-solid fa-truck-ramp-box" title="Ventas Realizadas"></i>
-                        <h4>Ventas realizadas</h4>
-                    </div>
-                </a>
-
-                <a href="Nueva_Venta.php">
-                    <div class="option">
-                        <i class="fa-sharp fa-solid fa-bag-shopping" title="Nueva Venta"></i>
-                        <h4>Nueva Venta</h4>
-                    </div>
-                </a>
-
-                <a href="#">
-                    <div class="option">
-                        <i class="fa-solid fa-code-merge" title="Extras"></i>
-                        <h4>Extras</h4>
-                    </div>
-                </a>
-
-            </div>
-        </div>
-    </main>
-
-    <script src="./js/pantalla_principal.js"></script>
+  <script src="https://kit.fontawesome.com/553a1bb38c.js" crossorigin="anonymous"></script>
 </body>
-
 </html>
