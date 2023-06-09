@@ -1,8 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-const conexion = require("../conection/db");
-
 //Inicio
 
 router.get("/", (req, res)=>{
@@ -21,12 +19,22 @@ router.get("/registrarse/index", (req, res)=>{
     res.render("registrarse/index");
 });
 
+//Autentificacion
+
+const autentificacion = require('../controllers/autentificacion');
+router.post('/autentificacion', autentificacion.autentificacion);
+
 
 //Pacientes
 
 const crud = require('../controllers/crud');
 router.post('/savePaciente', crud.savePaciente);
 
+
+//Doctores
+
+const funciones_doctores = require('../controllers/funciones_doctores');
+router.get('/doctores_pantalla_principal', funciones_doctores.pantalla_principal);
 
 
 

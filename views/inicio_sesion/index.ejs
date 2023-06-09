@@ -80,7 +80,7 @@
               
               </div>
               <div class="col-md-10 mx-auto col-lg-5">
-                <form class="p-4 p-md-3 border rounded-3 bg-white" action="../doctores/pantalla_principal.html">
+                <form class="p-4 p-md-3 border rounded-3 bg-white" action="/autentificacion" method="post">
                   <div class="m-3 text-center fw-bold d-flex justify-content-center align-items-center border-bottom">
                     <img src="../../resources/img/inicio_sesion/logo.png" alt="" width="100px">
                     <p>Inicio de Sesión</p> 
@@ -90,19 +90,22 @@
 
                   <div class="form-floating mb-3">
                     <input
-                      type="email"
+                      type="text"
                       class="form-control border-primary"
                       id="floatingInput"
-                      placeholder="name@example.com"
+                      placeholder="juan123"
+                      name="nombre_usuario"
                     />
-                    <label for="floatingInput">Email</label>
+                    <label for="floatingInput">Nombre de Usuario</label>
                   </div>
+
                   <div class="form-floating mb-3">
                     <input
                       type="password"
                       class="form-control border-primary"
                       id="floatingPassword"
                       placeholder="Password"
+                      name="password"
                     />
                     <label for="floatingPassword">Contraseña</label>
                   </div>
@@ -168,5 +171,6 @@
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
       crossorigin="anonymous"
     ></script>
+
   </body>
 </html>
