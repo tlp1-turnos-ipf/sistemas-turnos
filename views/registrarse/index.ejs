@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registrarse</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../../resources/styles/inicio_sesion.css" />
+  </head>
+  <body>
+    <header class="container-fluid">
+      <nav
+        class="navbar navbar-expand-lg bg-body-tertiary rounded"
+        aria-label="Thirteenth navbar example"
+      >
+        <div class="container-fluid text-center">
+          <a class="navbar-brand col-lg-4 me-0 h1 text-center" href="/"
+            ><img
+              src="../../resources/img/inicio_sesion/logo.png"
+              alt=""
+              width="40px"
+            />San Antonio</a
+          >
+          <button
+            class="navbar-toggler collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarsExample11"
+            aria-controls="navbarsExample11"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="navbar-collapse d-lg-flex collapse" id="navbarsExample11">
+            <ul class="navbar-nav col-lg-6 justify-content-lg-center">
+              <li class="nav-item justify-content-center">
+                <p class="">0810-222-333</p>
+                <p class="">Lunes a Domingos - 7:00hs a 19:00hs</p>
+              </li>
+            </ul>
+            <div class="d-lg-flex col-lg-4 justify-content-lg-end">
+              <button class="btn btn-primary m-1">Ayuda</button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="container-fluid fondo">
+        <div class="fondo2">
+          <div class="container col-xxl-10 col-xxl-8 px-4 py-5">
+            <div class="row g-lg-5 py-5">
+              <div class="col-lg-5 text-center text-lg-start">
+                <h1 class="display-4 fw-bold lh-1 mb- text-light">
+                  San Antonio
+                </h1>
+                <p class="col-lg-10 fs-5 text-light">
+                  Si aún no ha iniciado sesión, haga clic en el botón de abajo
+                </p>
+
+                <a href="/inicio_sesion">
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-lg px-4 text-light mb-3"
+                  >
+                    Iniciar Sesión
+                  </button>
+                </a>
+              </div>
+              <div class="col-md-10 mx-auto col-lg-7">
+                <form
+                  class="p-1 p-md-4 border rounded-3 bg-white"
+                  action="/savePaciente"
+                  method="POST"
+                >
+                  <div
+                    class="m-3 text-center fw-bold d-flex justify-content-center align-items-center border-bottom"
+                  >
+                    <img
+                      src="../../resources/img/inicio_sesion/logo.png"
+                      alt=""
+                      width="100x"
+                    />
+                    <p>Registrarse</p>
+                  </div>
+
+                  <p>Registrarse - Ingresa tus datos</p>
+
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      class="form-control border-primary"
+                      id="nombre"
+                      placeholder="juan"
+                      name="nombre"
+                    />
+                    <label for="nombre">Nombres</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      class="form-control border-primary"
+                      id="apellido"
+                      placeholder="Perez"
+                      name="apellido"
+                    />
+                    <label for="apellido">Apellidos</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="date"
+                      class="form-control border-primary"
+                      id="fecha"
+                      placeholder="00/00/0000"
+                      name="fecha_nac"
+                    />
+                    <label for="fecha">Fecha de Nacimiento</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="number"
+                      class="form-control border-primary"
+                      id="dni"
+                      placeholder=""
+                      name="dni"
+                    />
+                    <label for="dni">DNI</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      class="form-control border-primary"
+                      id="direccion"
+                      placeholder="mz 71 cs 30"
+                      name="direccion"
+                    />
+                    <label for="direccion">Dirección</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="email"
+                      class="form-control border-primary"
+                      id="email"
+                      placeholder="example@gmail.com"
+                      name="email"
+                    />
+                    <label for="email">Email</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="number"
+                      class="form-control border-primary"
+                      id="telefono"
+                      placeholder="3704332211"
+                      name="telefono"
+                    />
+                    <label for="telefono">Telefófono</label>
+                  </div>
+                  <div class="form-floating">
+                    <select
+                      name="sexo"
+                      id="sexo"
+                      class="form-select border-primary"
+                      aria-label="Sexos"
+                    >
+                      <option value="">Sexo</option>
+                      <option value="1">Masculino</option>
+                      <option value="2">Femenino</option>
+                    </select>
+                  </div>
+
+                  <div class="radio m-3">
+                    <label for="radio">¿Posee alguna Discapacidad?</label>
+                    <br />
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="discapacidad"
+                        id="discapacidad1"
+                        value="1"
+                      />
+                      <label class="form-check-label" for="discapacidad1">
+                        Si
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="discapacidad"
+                        id="discapacidad2"
+                        value="2"
+                        checked
+                      />
+                      <label class="form-check-label" for="discapacidad2">
+                        No
+                      </label>
+                    </div>
+                  </div>
+                  <h3>Datos del la cuenta</h3>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      class="form-control border-primary"
+                      id="nombre_usuario"
+                      placeholder="3704332211"
+                      name="nombre_usuario"
+                    />
+                    <label for="nombre_usuario">Nombre de Usuario</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="password"
+                      class="form-control border-primary"
+                      id="password"
+                      placeholder="3704332211"
+                      name="password"
+                    />
+                    <label for="password">Contraseña</label>
+                  </div>
+
+                  <button class="w-100 btn btn-lg btn-primary" type="submit">
+                    Continuar
+                  </button>
+
+                  <hr class="my-4" />
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="container">
+      <footer
+        class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
+      >
+        <div class="col-md-4 d-flex align-items-center">
+          <a
+            href="/"
+            class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1"
+          >
+            <a href="/"
+              ><img
+                src="../../resources/img/inicio_sesion/logo.png"
+                alt=""
+                width="80px"
+            /></a>
+          </a>
+          <span class="mb-3 mb-md-0 text-body-secondary"
+            >© 2023 San Antonio, Centro de Atención</span
+          >
+        </div>
+
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+          <li class="ms-3">
+            <a class="text-body-secondary" href="#"
+              ><svg class="bi" width="24" height="24">
+                <use xlink:href="#twitter"></use></svg
+              >Facebook</a
+            >
+          </li>
+          <li class="ms-3">
+            <a class="text-body-secondary" href="#"
+              ><svg class="bi" width="24" height="24">
+                <use xlink:href="#instagram"></use></svg
+              >Twitter</a
+            >
+          </li>
+          <li class="ms-3">
+            <a class="text-body-secondary" href="#"
+              ><svg class="bi" width="24" height="24">
+                <use xlink:href="#facebook"></use></svg
+              >Instagram</a
+            >
+          </li>
+        </ul>
+      </footer>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+   
+    <% if(typeof alert != "undefined") { %>
+    <script>
+      Swal.fire({
+          title:"<%= alertTitle %>",
+          text:"<%= alertMessage %>",
+          icon:"<%= alertIcon %>",
+          showConfirmButton: false,
+          timer: 1500
+      }).then(()=>{
+          window.location="/<%= ruta %>"
+      })
+    </script>
+    <% } %>
+  </body>
+</html>
