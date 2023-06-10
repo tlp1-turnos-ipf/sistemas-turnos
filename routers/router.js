@@ -25,6 +25,8 @@ const autentificacion = require('../controllers/autentificacion');
 router.post('/autentificacion', autentificacion.autentificacion);
 
 
+
+
 //Pacientes
 
 const crud = require('../controllers/crud');

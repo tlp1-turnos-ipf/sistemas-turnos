@@ -19,6 +19,17 @@ app.use('/resources', express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
 
 
+const session = require('express-session');
+//Le estamos especificando al framework express que va a usar sesiones y que va a recibir como parametros este objeto
+app.use(session({
+    //Clave secreta
+    secret: `secret`,
+    //La forma en la que se van a guardar las funciones
+    resave: true,
+    saveUninitialized: true
+}))
+
+
 //Direcciones
 app.use('/', require('./routers/router'));
 

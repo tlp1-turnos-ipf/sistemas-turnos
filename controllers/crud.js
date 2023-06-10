@@ -4,6 +4,7 @@ exports.savePaciente = (req, res) => {
 
   const {nombre,apellido,fecha_nac,direccion, dni,email, sexo, telefono, discapacidad,nombre_usuario,password} = req.body;
   const rol = 1;
+  const especialidad = 1;
  
 
   conexion.query(
@@ -17,7 +18,7 @@ exports.savePaciente = (req, res) => {
       fecha_nac: fecha_nac,
       sexo: sexo,
       telefono: telefono,
-      id_especialidad: 0,
+      id_especialidad: especialidad,
       id_discapacidad: discapacidad,
       rol: rol,
     },
@@ -33,9 +34,7 @@ exports.savePaciente = (req, res) => {
           id_persona: id,
         });
         res.redirect("/inicio_sesion/index")
-        
       }
     }
-  )
-    
+  )  
 }

@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../../styles/pantalla_principal.css" />
-    <link rel="stylesheet" href="../../styles/estilo_tablas.css" />
+    <link rel="stylesheet" href="resources/styles/pantalla_principal.css" />
+    <link rel="stylesheet" href="resources/styles/estilo_tablas.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -19,11 +19,13 @@
     <header class="header">
       <a
         class="navbar-brand col-lg-4 me-0 h1 text-center"
-        href="./pantalla_principal.html"
-        ><img src="../../img/inicio_sesion/logo.png" alt="" width="40px" />San
+        href="./pantalla_principal"
+        ><img src="resources/img/inicio_sesion/logo.png" alt="" width="40px" />San
         Antonio</a
       >
     </header>
+
+    <% if(login) { %>
 
     <div class="overlay"></div>
 
@@ -40,6 +42,7 @@
           <a href="#">Lista de turnos</a>
           <a href="#">Historia Clínica</a>
           <a href="#">Historial de turnos</a>
+          <a href="/">Cerrar Session</a>
         </aside>
       </section>
 
@@ -48,11 +51,11 @@
           <section
           class="col-ls-6 col-lg-3 d-flex flex-wrap justify-content-center text-center"
           >
-            <a href="./pacientes_dia.html">
+            <a href="/pacientes_dia">
               <div class="card fondo-color m-3" style="min-width: 18rem">
                 <div class="card-header border-primary">
                   <img
-                    src="../../img/pantalla_principal/pacientes_dia.png"
+                    src="resources/img/pantalla_principal/pacientes_dia.png"
                     alt=""
                     width="60px"
                   />
@@ -67,7 +70,7 @@
             <div class="card fondo-color m-3" style="min-width: 18rem">
               <div class="card-header border-primary">
                 <img
-                  src="../../img/pantalla_principal/pacientes_completos.png"
+                  src="resources/img/pantalla_principal/pacientes_completos.png"
                   alt=""
                   width="60px"
                 />
@@ -82,7 +85,7 @@
             <div class="card fondo-color m-3" style="min-width: 18rem">
               <div class="card-header border-primary">
                 <img
-                  src="../../img/pantalla_principal/historial_pacientes.png"
+                  src="resources/img/pantalla_principal/historial_pacientes.png"
                   alt=""
                   width="60px"
                 />
@@ -96,7 +99,7 @@
           </section>
           <section class="col-sl-10 col-lg-9">
             <div class="text-center">
-              <h3 class="p-4">Pacientes de esta semana</h3>
+              <h3 class="p-4"><%= usuario %></h3>
               <div class="input-group my-3">
                 <p class="mx-2">Buscador: </p>
                 <div class="form-outline">
@@ -123,36 +126,7 @@
                       <td>Ezequiel Romero</td>
                       <td>27-11-2003</td>
                     </tr>
-                    <tr class="fade-in-now">
-                      <th scope="row">45381813</th>
-                      <td>Ezequiel Romero</td>
-                      <td>27-11-2003</td>
-                    </tr>
-                    <tr class="fade-in-now">
-                      <th scope="row">45381813</th>
-                      <td>Ezequiel Romero</td>
-                      <td>27-11-2003</td>
-                    </tr>
-                    <tr class="fade-in-now">
-                      <th scope="row">45381813</th>
-                      <td>Ezequiel Romero</td>
-                      <td>27-11-2003</td>
-                    </tr>
-                    <tr class="fade-in-now">
-                      <th scope="row">45381813</th>
-                      <td>Ezequiel Romero</td>
-                      <td>27-11-2003</td>
-                    </tr>
-                    <tr class="fade-in-now">
-                      <th scope="row">45381813</th>
-                      <td>Ezequiel Romero</td>
-                      <td>27-11-2003</td>
-                    </tr>
-                    <tr class="fade-in-now">
-                      <th scope="row">45381813</th>
-                      <td>Ezequiel Romero</td>
-                      <td>27-11-2003</td>
-                    </tr>
+                   
                   </tbody>
                 </table>
               </div>
@@ -171,11 +145,17 @@
           >
       </footer>
     </div>
-    <script src="../../js/pantalla_principal/pantalla_principal.js"></script>
+
+    <script src="resources/js/pantalla_principal.js"></script>
 
     <script
       src="https://kit.fontawesome.com/553a1bb38c.js"
       crossorigin="anonymous"
     ></script>
+
+    <%} else { %>
+      <h1>Debe iniciar Sesion</h1>
+      <a href="/inicio_sesion_/index">Iniciar sesion</a>
+    <% } %>
   </body>
 </html>
