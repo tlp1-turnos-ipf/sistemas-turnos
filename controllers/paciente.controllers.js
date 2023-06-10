@@ -1,11 +1,9 @@
 const conexion = require("../conection/db");
 
-exports.savePaciente = (req, res) => {
-
+savePaciente = (req, res) => {
   const {nombre,apellido,fecha_nac,direccion, dni,email, sexo, telefono, discapacidad,nombre_usuario,password} = req.body;
   const rol = 1;
   const especialidad = 1;
- 
 
   conexion.query(
     "INSERT INTO personas SET ?",
@@ -33,8 +31,18 @@ exports.savePaciente = (req, res) => {
           contrasenia: password,
           id_persona: id,
         });
-        res.redirect("/inicio_sesion/index")
+        res.render("registrarse/index",{
+          alert: true,
+          alertTitle: "Exitoso",
+          alertMessage: "Registración Exitosa",
+          alertIcon: "success",
+          showConfirmButton: false,
+          timer: 1500,
+          ruta: "inicio_sesion"
+        })
       }
     }
   )  
 }
+
+module.exports = {savePaciente}

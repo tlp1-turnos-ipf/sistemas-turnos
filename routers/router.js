@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-//Inicio
+//Inicio Principal
 
 router.get("/", (req, res)=>{
     res.render("index");
@@ -9,14 +9,8 @@ router.get("/", (req, res)=>{
 
 //Inicio Sesion
 
-router.get("/inicio_sesion/index", (req, res)=>{
+router.get("/inicio_sesion", (req, res)=>{
     res.render("inicio_sesion/index");
-});
-
-//Registrarse
-
-router.get("/registrarse/index", (req, res)=>{
-    res.render("registrarse/index");
 });
 
 //Autentificacion
@@ -25,18 +19,27 @@ const autentificacion = require('../controllers/autentificacion');
 router.post('/autentificacion', autentificacion.autentificacion);
 
 
+//Registrarse
+
+router.get("/registrarse", (req, res)=>{
+    res.render("registrarse/index");
+});
+
+
+
 
 
 //Pacientes
 
-const crud = require('../controllers/crud');
-router.post('/savePaciente', crud.savePaciente);
+const pacientes = require('../controllers/paciente.controllers');
+router.post('/savePaciente', pacientes.savePaciente);
 
 
 //Doctores
 
-const funciones_doctores = require('../controllers/funciones_doctores');
-router.get('/doctores_pantalla_principal', funciones_doctores.pantalla_principal);
+const doctores = require('../controllers/doctores.controllers');
+router.get('/doctores_pantalla_principal', doctores.pantalla_principal);
+router.get('/pacientes_dia', doctores.pacientes_dia);
 
 
 

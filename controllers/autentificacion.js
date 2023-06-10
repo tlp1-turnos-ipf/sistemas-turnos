@@ -8,7 +8,7 @@ exports.autentificacion = async (req, res) => {
 
   if (nombre_usuario && password) {
     conexion.query(
-      "SELECT * FROM usuarios WHERE nombre_usuario = ? and contrasenia = ?",
+      "SELECT * FROM usuarios join personas ON usuarios.id_persona = personas.persona_id WHERE nombre_usuario = ? and contrasenia = ?",
       [nombre_usuario, password],
       async (error, results) => {
         if (results.length == 0) {
@@ -24,17 +24,30 @@ exports.autentificacion = async (req, res) => {
         } else {
           req.session.loggedin = true;
           req.session.usuario = results[0].usuario_id;
-          res.render("inicio_sesion/index", {
-            alert: true,
-            alertTitle: "Exitoso",
-            alertMessage: "Ha ingresado al sistema",
-            alertIcon: "success",
-            showConfirmButton: false,
-            timer: 1500,
-            ruta: "doctores_pantalla_principal",
-          });
+          req.session.rol = results[0].rol;
+
+          if ((req.session.rol = 1)) {
+            res.render("inicio_sesion/index", {
+              alert: true,
+              alertTitle: "Exitoso",
+              alertMessage: "Ha ingresado al sistema",
+              alertIcon: "success",
+              showConfirmButton: false,
+              timer: 1500,
+              ruta: "doctores_pantalla_principal",
+            });
+          }else if ((req.session.rol = 2)) {
+            res.render("inicio_sesion/index", {
+              alert: true,
+              alertTitle: "Exitoso",
+              alertMessage: "Ha ingresado al sistema",
+              alertIcon: "success",
+              showConfirmButton: false,
+              timer: 1500,
+              ruta: "doctores_pantalla_principal",
+            });
+          }
         }
-       
       }
     );
   } else {

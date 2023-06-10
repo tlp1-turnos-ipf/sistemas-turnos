@@ -67,7 +67,7 @@
                   Si aún no ha iniciado sesión, haga clic en el botón de abajo
                 </p>
 
-                <a href="/inicio_sesion/index">
+                <a href="/inicio_sesion">
                   <button
                     type="button"
                     class="btn btn-primary btn-lg px-4 text-light mb-3"
@@ -294,5 +294,23 @@
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
       crossorigin="anonymous"
     ></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+   
+    <% if(typeof alert != "undefined") { %>
+    <script>
+      Swal.fire({
+          title:"<%= alertTitle %>",
+          text:"<%= alertMessage %>",
+          icon:"<%= alertIcon %>",
+          showConfirmButton: false,
+          timer: 1500
+      }).then(()=>{
+          window.location="/<%= ruta %>"
+      })
+    </script>
+    <% } %>
   </body>
 </html>
