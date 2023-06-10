@@ -12,19 +12,21 @@ exports.autentificacion = async (req, res) => {
       [nombre_usuario, password],
       async (error, results) => {
         if (results.length == 0) {
-          res.render("inicio_sesion/index", {
+          res.render("inicio_sesion", {
             alert: true,
             alertTitle: "Error",
             alertMessage: "Usuario o contraseña no correcta",
             alertIcon: "error",
             showConfirmButton: false,
             timer: 1500,
-            ruta: "inicio_sesion/index",
+            ruta: "inicio_sesion",
           });
         } else {
           req.session.loggedin = true;
-          req.session.usuario = results[0].usuario_id;
+          req.session.usuario = results[0].persona_id;
           req.session.rol = results[0].rol;
+          req.session.nombres = results[0].nombres;
+          req.session.apellidos = results[0].apellidos;
 
           if ((req.session.rol = 1)) {
             res.render("inicio_sesion/index", {

@@ -18,6 +18,11 @@ router.get("/inicio_sesion", (req, res)=>{
 const autentificacion = require('../controllers/autentificacion');
 router.post('/autentificacion', autentificacion.autentificacion);
 
+router.get('/logout', (req, res) =>{
+    req.session.destroy(() =>{
+        res.redirect("/")
+    })
+})
 
 //Registrarse
 
