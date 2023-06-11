@@ -1,4 +1,6 @@
-
+main{
+    background-color: rgb(238, 238, 238);
+}
 .main-table{
     overflow: auto;
     width: 100%;
@@ -6,7 +8,7 @@
     border: 2px solid rgb(43, 0, 160);
 }
 
-table{
+.div{
     width: 100vh;
 }
 th,td{
