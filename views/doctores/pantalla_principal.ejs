@@ -96,7 +96,7 @@
                 class="input-group my-3 w-100 shadow p-3 mb-5 bg-body rounded border d-flex justify-content-center"
               >
                 <form action="/search" method="post">
-                  <div class=" div d-flex">
+                  <div class="d-flex flex-grow">
                     <input type="text" id="form1" name="buscar" class="form-control" />
                     <button type="submit" class="btn btn-primary">Buscar</button>
                   </div>
@@ -150,25 +150,25 @@
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-   
-    <% if(typeof alert != "undefined") { %>
-    <script>
-      Swal.fire({
-          title:"<%= alertTitle %>",
-          text:"<%= alertMessage %>",
-          icon:"<%= alertIcon %>",
-          showConfirmButton: false,
-          timer: 1500
-      }).then(()=>{
-          window.location="/<%= ruta %>"
-      })
-    </script>
-    <% } %>
-
     <script
       src="https://kit.fontawesome.com/553a1bb38c.js"
       crossorigin="anonymous"
     ></script>
     <% } %>
+
+
+    <% if(typeof alert != "undefined") { %>
+      <script>
+        Swal.fire({
+            title:"<%= alertTitle %>",
+            text:"<%= alertMessage %>",
+            icon:"<%= alertIcon %>",
+            showConfirmButton: false,
+            timer: 1500
+        }).then(()=>{
+            window.location="/<%= ruta %>"
+        })
+      </script>
+      <% } %>
   </body>
 </html>
