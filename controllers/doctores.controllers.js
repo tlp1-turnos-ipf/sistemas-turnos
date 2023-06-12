@@ -1,12 +1,11 @@
 const conexion = require("../conection/db");
 
-
 pantalla_principal = (req, res) => {
   const id = req.session.usuario;
   const fecha = new Date();
   const añoActual = fecha.getFullYear();
   const hoy = fecha.getDate();
-  const mesActual = fecha.getMonth() + 1; 
+  const mesActual = fecha.getMonth() + 1;
 
   const fechaActual = añoActual + "-" + mesActual + "-" + hoy;
 
@@ -15,17 +14,18 @@ pantalla_principal = (req, res) => {
       "SELECT * FROM `turnos` join personas ON turnos.paciente_id = personas.persona_id WHERE doctor_id = ? and fecha_turno = ? ",
       [id, fechaActual],
       (error, results) => {
+        req.session.results_pantalla_principal= results;
         res.render("doctores/pantalla_principal", {
           results: results,
           login: true,
           usuario: id,
           nombres: req.session.nombres,
           apellidos: req.session.apellidos,
-          fecha: fechaActual
+          fecha: fechaActual,
         });
       }
     );
-  } else{
+  } else {
     res.render("inicio_sesion/index", {
       alert: true,
       alertTitle: "Fallo",
@@ -38,18 +38,25 @@ pantalla_principal = (req, res) => {
   }
 };
 
-
 atender_paciente = (req, res) => {
   const turno_id = req.params.turnos_id;
+  req.session.turno_id = turno_id;
   if (req.session.loggedin) {
     conexion.query(
-      "SELECT * FROM `turnos` join personas ON turnos.paciente_id = personas.persona_id join sexos ON personas.sexo = sexos.sexo_id WHERE turnos_id = ? ",
+      "SELECT * FROM `turnos` left join personas ON turnos.paciente_id = personas.persona_id left join sexos ON personas.sexo = sexos.sexo_id left join devoluciones ON turnos.turnos_id = devoluciones.id_turnos WHERE turnos_id = ? ",
       [turno_id],
       (error, results) => {
         res.render("doctores/atender_paciente", {
           results: results,
           login: true,
-          id_turno: turno_id,
+          id_turno: req.session.turno_id,
+          nombres: results[0].nombres,
+          apellidos: results[0].apellidos,
+          dni: results[0].dni,
+          fecha_nac: results[0].fecha_nac,
+          descripcion_sexo: results[0].descripcion_sexo,
+          telefono: results[0].telefono,
+          situacion: results[0].situacion,
         });
       }
     );
@@ -67,27 +74,27 @@ atender_paciente = (req, res) => {
   }
 };
 
-devolucion_turno_paciente = (req, res) =>{
-  const {turno_id, titulo, descripcion } = req.body;
-  
+devolucion_turno_paciente = (req, res) => {
+  const { turnos_id, titulo, descripcion } = req.body;
+
   if (req.session.loggedin) {
     conexion.query(
       "INSERT INTO devoluciones SET ?",
-    {
-      turnos_id: turno_id,
-      titulo: titulo,
-      descripcion: descripcion,
-    },
+      {
+        id_turnos: turnos_id,
+        titulo: titulo,
+        descripcion: descripcion,
+      },
       (error, results) => {
-        res.render("doctores/atender_paciente", {
+        res.render(`doctores/pantalla_principal`, {
+          login: true,
+          results: req.session.results_pantalla_principal,
           alert: true,
-          alertTitle: "Exitoso",
-          alertMessage: "Se ha agregado la devolución del turno",
+          alertTitle: "Hecho",
+          alertMessage: "Devolución finalizada",
           alertIcon: "success",
-          showConfirmButton: false,
-          timer: 1800,
-          ruta: "doctores_atender/:turno_id",
-          login: true
+          ruta: `doctores_atender/${turnos_id}`,
+          login: true,
         });
       }
     );
@@ -103,7 +110,10 @@ devolucion_turno_paciente = (req, res) =>{
       login: false,
     });
   }
-}
+};
 
-
-module.exports = { pantalla_principal, atender_paciente, devolucion_turno_paciente };
+module.exports = {
+  pantalla_principal,
+  atender_paciente,
+  devolucion_turno_paciente,
+};
