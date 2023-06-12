@@ -41,6 +41,7 @@ router.get('/doctores_pantalla_principal', doctores.pantalla_principal);
 router.get('/doctores_atender/:turnos_id', doctores.atender_paciente);
 router.post('/doctor_devolucion_turno', doctores.devolucion_turno_paciente);
 router.get('/editar_devolucion_doctor/:devolucion_id', doctores.editar_devolucion_doctor);
+router.get('/eliminar_devolucion_doctor/:devolucion_id', doctores.eliminar_devolucion_doctor);
 
 
 module.exports = router;

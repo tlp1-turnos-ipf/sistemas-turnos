@@ -93,7 +93,6 @@ devolucion_turno_paciente = (req, res) => {
           alertMessage: "Devolución finalizada",
           alertIcon: "success",
           ruta: `doctores_atender/${turnos_id}`,
-          login: true,
         });
       }
     );
@@ -140,9 +139,43 @@ editar_devolucion_doctor = (req , res) =>{
   }
 }
 
+eliminar_devolucion_doctor = (req, res) => {
+  const devolucion_id = req.params.devolucion_id;
+
+  if (req.session.loggedin) {
+    conexion.query(
+      "DELETE FROM devoluciones WHERE devolucion_id = ? ",
+      [devolucion_id],
+      (error, results) => {
+        res.render(`doctores/pantalla_principal`, {
+          login: true,
+          results: req.session.results_pantalla_principal,
+          alert: true,
+          alertTitle: "Hecho",
+          alertMessage: "Devolución Eliminada",
+          alertIcon: "success",
+          ruta: `doctores_atender/${req.session.turnos_id}`,
+        });
+      }
+    )
+  } else {
+    res.render("inicio_sesion/index", {
+      alert: true,
+      alertTitle: "Fallo",
+      alertMessage: "No ha iniciado sesión",
+      alertIcon: "error",
+      showConfirmButton: false,
+      timer: 1500,
+      ruta: "inicio_sesion",
+      login: false,
+    });
+  }
+}
+
 module.exports = {
   pantalla_principal,
   atender_paciente,
   devolucion_turno_paciente,
-  editar_devolucion_doctor
+  editar_devolucion_doctor,
+  eliminar_devolucion_doctor
 };
