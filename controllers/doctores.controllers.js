@@ -40,7 +40,6 @@ pantalla_principal = (req, res) => {
 
 atender_paciente = (req, res) => {
   const turno_id = req.params.turnos_id;
-  req.session.turno_id = turno_id;
   if (req.session.loggedin) {
     conexion.query(
       "SELECT * FROM `turnos` left join personas ON turnos.paciente_id = personas.persona_id left join sexos ON personas.sexo = sexos.sexo_id left join devoluciones ON turnos.turnos_id = devoluciones.id_turnos WHERE turnos_id = ? ",
@@ -49,7 +48,7 @@ atender_paciente = (req, res) => {
         res.render("doctores/atender_paciente", {
           results: results,
           login: true,
-          id_turno: req.session.turno_id,
+          id_turno: turno_id,
           nombres: results[0].nombres,
           apellidos: results[0].apellidos,
           dni: results[0].dni,
@@ -110,10 +109,40 @@ devolucion_turno_paciente = (req, res) => {
       login: false,
     });
   }
-};
+}
+
+editar_devolucion_doctor = (req , res) =>{
+  const devolucion_id = req.params.devolucion_id;
+
+  if (req.session.loggedin) {
+    conexion.query(
+      "SELECT * FROM devoluciones WHERE devolucion_id = ? ",
+      [devolucion_id],
+      (error, results) => {
+        res.render("doctores/editar_devolucion_turno", {
+          results: results[0],
+          login: true,
+          
+        });
+      }
+    );
+  } else {
+    res.render("inicio_sesion/index", {
+      alert: true,
+      alertTitle: "Fallo",
+      alertMessage: "No ha iniciado sesión",
+      alertIcon: "error",
+      showConfirmButton: false,
+      timer: 1500,
+      ruta: "inicio_sesion",
+      login: false,
+    });
+  }
+}
 
 module.exports = {
   pantalla_principal,
   atender_paciente,
   devolucion_turno_paciente,
+  editar_devolucion_doctor
 };
