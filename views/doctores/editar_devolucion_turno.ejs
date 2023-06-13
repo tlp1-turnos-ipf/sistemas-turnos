@@ -53,7 +53,7 @@
       <section class="container m-auto">
         <div class="shadow mt-5 p-2 bg-body rounded">
           <p class="fs-5 border-bottom border-dark">Datos de la Devolución</p>
-          <form action="/doctor_devolucion_turno" method="put">
+          <form action="/modificar_devolucion_turno" method="put">
             <input
               type="text"
               name="turnos_id"
@@ -92,8 +92,12 @@
               >
             </div>
             <div class="text-center mt-2">
-                <a href="/doctores_atender/<%= results.id_turnos %>" class="btn btn-secondary">Volver</a>
-              <button type="submit" class="btn btn-primary">Cargar</button>
+              <a
+                href="/doctores_atender/<%= results.id_turnos %>"
+                class="btn btn-secondary"
+                >Volver</a
+              >
+              <button type="submit" class="btn btn-primary">Modificar</button>
             </div>
           </form>
         </div>

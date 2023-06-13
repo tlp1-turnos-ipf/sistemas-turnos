@@ -14,7 +14,7 @@ pantalla_principal = (req, res) => {
       "SELECT * FROM `turnos` join personas ON turnos.paciente_id = personas.persona_id WHERE doctor_id = ? and fecha_turno = ? ",
       [id, fechaActual],
       (error, results) => {
-        req.session.results_pantalla_principal= results;
+        req.session.results_pantalla_principal = results;
         res.render("doctores/pantalla_principal", {
           results: results,
           login: true,
@@ -108,9 +108,9 @@ devolucion_turno_paciente = (req, res) => {
       login: false,
     });
   }
-}
+};
 
-editar_devolucion_doctor = (req , res) =>{
+editar_devolucion_doctor = (req, res) => {
   const devolucion_id = req.params.devolucion_id;
 
   if (req.session.loggedin) {
@@ -121,7 +121,6 @@ editar_devolucion_doctor = (req , res) =>{
         res.render("doctores/editar_devolucion_turno", {
           results: results[0],
           login: true,
-          
         });
       }
     );
@@ -137,7 +136,7 @@ editar_devolucion_doctor = (req , res) =>{
       login: false,
     });
   }
-}
+};
 
 eliminar_devolucion_doctor = (req, res) => {
   const devolucion_id = req.params.devolucion_id;
@@ -151,13 +150,13 @@ eliminar_devolucion_doctor = (req, res) => {
           login: true,
           results: req.session.results_pantalla_principal,
           alert: true,
-          alertTitle: "Hecho",
+          alertTitle: "Eliminado",
           alertMessage: "Devolución Eliminada",
           alertIcon: "success",
           ruta: `doctores_atender/${req.session.turnos_id}`,
         });
       }
-    )
+    );
   } else {
     res.render("inicio_sesion/index", {
       alert: true,
@@ -170,12 +169,15 @@ eliminar_devolucion_doctor = (req, res) => {
       login: false,
     });
   }
-}
+};
+
+modificar_devolucion_turno = (req, res) => {};
 
 module.exports = {
   pantalla_principal,
   atender_paciente,
   devolucion_turno_paciente,
   editar_devolucion_doctor,
-  eliminar_devolucion_doctor
+  modificar_devolucion_turno,
+  eliminar_devolucion_doctor,
 };
