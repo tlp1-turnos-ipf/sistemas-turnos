@@ -1,0 +1,14 @@
+main{
+    background-color: rgb(238, 238, 238);
+}
+.main-table{
+    overflow: auto;
+    width: 100%;
+    height: 60vh;
+    border: 2px solid rgb(43, 0, 160);
+}
+
+
+th,td{
+    min-width: 200px;
+}
