@@ -38,6 +38,46 @@ pantalla_principal = (req, res) => {
   }
 };
 
+
+listar_turnos_completos = (req, res) => {
+  const id = req.session.usuario;
+  const fecha = new Date();
+  const añoActual = fecha.getFullYear();
+  const hoy = fecha.getDate();
+  const mesActual = fecha.getMonth() + 1;
+
+  const fechaActual = añoActual + "-" + mesActual + "-" + hoy;
+
+  if (req.session.loggedin) {
+    conexion.query(
+      "SELECT * FROM `turnos` join personas ON turnos.paciente_id = personas.persona_id WHERE doctor_id = ?",
+      [id],
+      (error, results) => {
+        res.render("doctores/lista_turnos_completo", {
+          results: results,
+          login: true,
+          usuario: id,
+          nombres: req.session.nombres,
+          apellidos: req.session.apellidos,
+          fecha: fechaActual,
+        });
+      }
+    );
+  } else {
+    res.render("inicio_sesion/index", {
+      alert: true,
+      alertTitle: "Fallo",
+      alertMessage: "No ha iniciado sesión",
+      alertIcon: "error",
+      showConfirmButton: false,
+      timer: 1500,
+      ruta: "inicio_sesion",
+    });
+  }
+};
+
+
+
 atender_paciente = (req, res) => {
   const turno_id = req.params.turnos_id;
   if (req.session.loggedin) {
@@ -180,4 +220,5 @@ module.exports = {
   editar_devolucion_doctor,
   modificar_devolucion_turno,
   eliminar_devolucion_doctor,
+  listar_turnos_completos
 };

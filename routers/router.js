@@ -44,5 +44,7 @@ router.get('/editar_devolucion_doctor/:devolucion_id', doctores.editar_devolucio
 router.get('/eliminar_devolucion_doctor/:devolucion_id', doctores.eliminar_devolucion_doctor);
 router.get('/modificar_devolucion_turno', doctores.modificar_devolucion_turno);
 
+router.get('/listar_turnos_completos', doctores.listar_turnos_completos);
+
 
 module.exports = router;

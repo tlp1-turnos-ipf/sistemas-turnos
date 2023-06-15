@@ -72,7 +72,7 @@
                 </div>
               </div>
             </a>
-
+            
             <div
               class="card fondo-color me-3 mt-5 mb-3"
               style="min-width: 15rem; height: 30vh"
@@ -119,7 +119,8 @@
                     <tr>
                       <th scope="col">DNI</th>
                       <th scope="col">Nombre y Apellido</th>
-                      <th scope="col" colspan="2">Funciones</th>
+                      <th scope="col">Fecha</th>
+                      <th scope="col">Horario</th>
                     </tr>
                   </thead>
                   <tbody
@@ -129,20 +130,8 @@
                     <tr class="fade-in-now">
                       <th scope="row"><%= users.dni %></th>
                       <td><%= users.nombres + " " + users.apellidos %></td>
-                      <td>
-                        <a
-                          href="/doctores_atender/<%= users.turnos_id %>"
-                          class="btn btn-primary text-light"
-                          >Atender</a
-                        >
-                      </td>
-                      <td>
-                        <a
-                          href="/doctores_atender/<%= users.turnos_id %>"
-                          class="btn btn-danger"
-                          >Quitar</a
-                        >
-                      </td>
+                      <td><%= fecha_turno %></td>
+                      <td><%= horario_turno %></td>
                     </tr>
                     <% }) %>
                   </tbody>
@@ -170,22 +159,6 @@
       src="https://kit.fontawesome.com/553a1bb38c.js"
       crossorigin="anonymous"
     ></script>
-    <% } %>
-
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
-    <% if(typeof alert != "undefined") { %>
-    <script>
-      Swal.fire({
-        title: "<%= alertTitle %>",
-        text: "<%= alertMessage %>",
-        icon: "<%= alertIcon %>",
-        showConfirmButton: false,
-        timer: 1500,
-      }).then(() => {
-        window.location = "/<%= ruta %>";
-      });
-    </script>
     <% } %>
   </body>
 </html>
