@@ -27,6 +27,7 @@ exports.autentificacion = async (req, res) => {
           req.session.rol = results[0].rol;
           req.session.nombres = results[0].nombres;
           req.session.apellidos = results[0].apellidos;
+          req.session.dni = results[0].dni;
 
           if ((req.session.rol = 1)) {
             res.render("inicio_sesion/index", {
@@ -38,7 +39,7 @@ exports.autentificacion = async (req, res) => {
               timer: 1500,
               ruta: "doctores_pantalla_principal",
             });
-          }else if ((req.session.rol = 2)) {
+          } else if ((req.session.rol = 2)) {
             res.render("inicio_sesion/index", {
               alert: true,
               alertTitle: "Exitoso",
@@ -48,11 +49,19 @@ exports.autentificacion = async (req, res) => {
               timer: 1500,
               ruta: "doctores_pantalla_principal",
             });
+          } else if ((req.session.rol = 3)) {
+            res.render("inicio_sesion/index", {
+              alert: true,
+              alertTitle: "Exitoso",
+              alertMessage: "Ha ingresado al sistema",
+              alertIcon: "success",
+              showConfirmButton: false,
+              timer: 1500,
+              ruta: "",
+            });
           }
         }
       }
     );
-  } else {
-    res.send("Complete sus datos");
-  }
+  } 
 };
