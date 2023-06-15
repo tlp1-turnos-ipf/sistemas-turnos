@@ -32,7 +32,13 @@ router.get("/registrarse", (req, res)=>{
 
 //Pacientes
 const pacientes = require('../controllers/paciente.controllers');
+
 router.post('/savePaciente', pacientes.savePaciente);
+
+
+//Administradores
+const administradores = require('../controllers/administrador.controllers');
+router.get('/administradores_pantalla_principal', administradores.pantalla_principal);
 
 
 //Doctores
