@@ -38,7 +38,7 @@ router.post('/savePaciente', pacientes.savePaciente);
 
 //Administradores
 const administradores = require('../controllers/administrador.controllers');
-router.get('/administradores_pantalla_principal', administradores.pantalla_principal);
+router.get('/administrador_pantalla_principal', administradores.pantalla_principal);
 
 
 //Doctores

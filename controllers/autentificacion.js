@@ -37,7 +37,7 @@ exports.autentificacion = async (req, res) => {
               alertIcon: "success",
               showConfirmButton: false,
               timer: 1500,
-              ruta: "doctores_pantalla_principal",
+              ruta: "administrador_pantalla_principal",
             });
           } else if ((req.session.rol = 2)) {
             res.render("inicio_sesion/index", {
