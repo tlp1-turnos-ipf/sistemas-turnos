@@ -4,7 +4,7 @@ main{
 .main-table{
     overflow: auto;
     width: 100%;
-    height: 50vh;
+    height: 60vh;
     border: 2px solid rgb(43, 0, 160);
 }
 
