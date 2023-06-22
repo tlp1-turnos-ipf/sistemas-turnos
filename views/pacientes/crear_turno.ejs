@@ -30,11 +30,11 @@
         />
         <label for="floatingInput">Coloque su situación</label>
       </div>
-      <input type="number" name="paciente" value="<%= paciente  %>">
-      <input type="number" name="doctor" value="<%= doctor  %>">
-      <input type="text" name="fecha_turno" value="<%= fecha_turno  %>">
-      <input type="text" name="horario_turno" value="<%= horario  %>">
-      <input type="number" name="estado" value="1">
+      <input type="number" name="paciente" value="<%= paciente  %>" hidden>
+      <input type="number" name="doctor" value="<%= doctor %>" hidden>
+      <input type="text" name="fecha_turno" value="<%= fecha_turno  %>" hidden>
+      <input type="text" name="horario_turno" value="<%= horario  %>" hidden>
+      <input type="number" name="estado" value="1" hidden>
 
       
       <button class="w-100 btn btn-lg btn-primary" type="submit">

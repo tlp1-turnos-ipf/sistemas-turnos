@@ -10,7 +10,7 @@ router.get("/paciente", (req, res)=>{
     res.render("principal_paciente")
 })
 router.get("/doctor", (req, res)=>{
-    res.render("principal.doctor")
+    res.render("principal_doctor")
 })
 router.get("/administrador", (req, res)=>{
     res.render("principal.administrador")
@@ -26,6 +26,7 @@ router.get("/inicio_sesion", (req, res)=>{
 //Autentificacion
 const autentificacion = require('../controllers/autentificacion');
 router.post('/autentificacion/paciente', autentificacion.autentificacion_paciente);
+router.post('/autentificacion/doctor', autentificacion.autentificacion);
 //Cerrar sesion
 router.get('/logout', (req, res) =>{
     req.session.destroy(() =>{
@@ -44,6 +45,7 @@ router.get("/registrarse", (req, res)=>{
 
 const pacientes = require('../controllers/paciente.controllers');
 router.post('/savePaciente', pacientes.savePaciente);
+
 router.get('/paciente_pantalla_principal', pacientes.pantalla_principal);
 
 
@@ -55,6 +57,7 @@ router.get("/seleccionar_doctor/:especialidad_id", turnos.buscar_doctores);
 router.get("/seleccionar/fecha_turno/:doctor_id", turnos.buscar_fechas);
 router.get("/seleccionar/fecha_horario/:fecha_turno_id", turnos.buscar_horario);
 router.get("/seleccionar/crear_turno/:doctor_fecha_horario_id", turnos.crear_turno);
+router.post("/pacientes/insertar_turno", turnos.insertar_turno);
 
 
 //Doctores

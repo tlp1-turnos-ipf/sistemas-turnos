@@ -1,0 +1,170 @@
+<%- include("partials/header_principal.ejs") -%>
+
+<header class="container-fluid">
+  <nav
+    class="navbar navbar-expand-lg bg-body-tertiary rounded"
+    aria-label="Thirteenth navbar example"
+  >
+    <div class="container-fluid text-center">
+    <img
+          src="resources/img/inicio_sesion/logo.png"
+          alt="esooo"
+          width="40px"
+       
+      >
+      <button
+        class="navbar-toggler collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarsExample11"
+        aria-controls="navbarsExample11"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="navbar-collapse d-lg-flex collapse" id="navbarsExample11">
+        <ul class="navbar-nav col-lg-6 justify-content-lg-center">
+          <li class="nav-item justify-content-center">
+            <p class="">0810-222-333</p>
+            <p class="">Lunes a Domingos - 7:00hs a 19:00hs</p>
+          </li>
+        </ul>
+        <div class="d-lg-flex col-lg-4 justify-content-lg-end">
+          <button class="btn btn-primary m-1">Ayuda</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="container-fluid fondo">
+    <div class="fondo2">
+      <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+        <div class="row align-items-center g-lg-5 py-5">
+          <div class="col-md-10 mx-auto col-lg-5">
+            <form
+              class="p-4 p-md-3 border rounded-3 bg-white"
+              action="/autentificacion/doctor"
+              method="post"
+            >
+              <div
+                class="m-3 text-center fw-bold d-flex justify-content-center align-items-center border-bottom"
+              >
+                <img
+                  src="resources/img/inicio_sesion/logo.png"
+                  alt=""
+                  width="100px"
+                />
+                <p>Inicio de Sesión</p>
+              </div>
+
+              <p>Ingresa tus datos</p>
+
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control border-primary"
+                  id="floatingInput"
+                  placeholder="juan123"
+                  name="nombre_usuario"
+                  required
+                />
+                <label for="floatingInput">Nombre de Usuario</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input
+                  type="password"
+                  class="form-control border-primary"
+                  id="floatingPassword"
+                  placeholder="Password"
+                  name="password"
+                  min="5"
+                  max="15"
+                  required
+                />
+                <label for="floatingPassword">Contraseña</label>
+              </div>
+              <button class="w-100 btn btn-lg btn-primary" type="submit">
+                Continuar
+              </button>
+              <hr class="my-4" />
+              <div class="mb-3 text-center link">
+                <a href="#" class="text-decoration-none text-dark"
+                  >He olvidado mis datos</a
+                >
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="container">
+  <footer
+    class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
+  >
+    <div class="col-md-4 d-flex align-items-center">
+      <a
+        href="/"
+        class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1"
+      >
+        <a href="/"
+          ><img
+            src="resources/img/inicio_sesion/logo.png"
+            alt=""
+            width="80px"
+        /></a>
+      </a>
+      <span class="mb-3 mb-md-0 text-body-secondary"
+        >© 2023 San Antonio, Centro de Atención</span
+      >
+    </div>
+
+    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+      <li class="ms-3">
+        <a class="text-body-secondary" href="#"
+          ><svg class="bi" width="24" height="24">
+            <use xlink:href="#twitter"></use></svg
+          >Facebook</a
+        >
+      </li>
+      <li class="ms-3">
+        <a class="text-body-secondary" href="#"
+          ><svg class="bi" width="24" height="24">
+            <use xlink:href="#instagram"></use></svg
+          >Twitter</a
+        >
+      </li>
+      <li class="ms-3">
+        <a class="text-body-secondary" href="#"
+          ><svg class="bi" width="24" height="24">
+            <use xlink:href="#facebook"></use></svg
+          >Instagram</a
+        >
+      </li>
+    </ul>
+  </footer>
+</div>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<% if(typeof alert != "undefined") { %>
+<script>
+  Swal.fire({
+    title: "<%= alertTitle %>",
+    text: "<%= alertMessage %>",
+    icon: "<%= alertIcon %>",
+    showConfirmButton: false,
+    timer: 1500,
+  }).then(() => {
+    window.location = "/<%= ruta %>";
+  });
+</script>
+
+<% } %> <%- include("partials/footer_principal.ejs") -%>

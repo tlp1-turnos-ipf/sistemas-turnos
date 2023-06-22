@@ -76,6 +76,41 @@ crear_turno = (req, res) => {
 };
 
 
+insertar_turno = (req, res) => {
+  const {paciente, doctor,fecha_turno,horario_turno, estado, situacion} = req.body;
 
 
-module.exports = { buscar_especialidades, buscar_doctores, buscar_fechas, buscar_horario, crear_turno };
+  conexion.query(
+    "INSERT INTO `turnos` SET ?",
+    {
+      paciente_id: paciente,
+      doctor_id: doctor,
+      fecha_turno: fecha_turno,
+      horario_turno: horario_turno,
+      id_tipo_estado: estado,
+      situacion: situacion
+
+    },
+    (error, results) => {
+      if (error) {
+        throw error;
+      }else{
+        res.render("registrarse/index", {
+          alert: true,
+          alertTitle: "Exitoso",
+          alertMessage: "Turno realizado",
+          alertIcon: "success",
+          showConfirmButton: false,
+          timer: 1500,
+          ruta: "paciente_pantalla_principal"
+         
+        });
+      }
+    }
+  )  
+}
+
+
+
+
+module.exports = { buscar_especialidades, buscar_doctores, buscar_fechas, buscar_horario, crear_turno, insertar_turno };
