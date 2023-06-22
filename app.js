@@ -27,7 +27,7 @@ app.use(session({
 
 
 //Direcciones
-app.use('/', require('./routers/router'));
+app.use(require('./routers/router'));
 
 
 //Escuchamos el Puerto

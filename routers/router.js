@@ -6,6 +6,16 @@ router.get("/", (req, res)=>{
     res.render("index");
 });
 
+router.get("/paciente", (req, res)=>{
+    res.render("principal_paciente")
+})
+router.get("/doctor", (req, res)=>{
+    res.render("principal.doctor")
+})
+router.get("/administrador", (req, res)=>{
+    res.render("principal.administrador")
+})
+
 
 //Inicio Sesion
 router.get("/inicio_sesion", (req, res)=>{
@@ -15,7 +25,7 @@ router.get("/inicio_sesion", (req, res)=>{
 
 //Autentificacion
 const autentificacion = require('../controllers/autentificacion');
-router.post('/autentificacion', autentificacion.autentificacion);
+router.post('/autentificacion/paciente', autentificacion.autentificacion_paciente);
 //Cerrar sesion
 router.get('/logout', (req, res) =>{
     req.session.destroy(() =>{
