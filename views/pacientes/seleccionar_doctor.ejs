@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../resources/styles/pantalla_principal.css" />
+    <link rel="stylesheet" href="../../resources/styles/estilo_tablas.css" />
+    <link rel="stylesheet" href="../../resources/styles/solicitar_turno.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <header class="header">
+      <a
+        class="navbar-brand col-lg-4 me-0 h1 text-center"
+        href="./pantalla_principal.html"
+        ><img
+          src="../../resources/img/inicio_sesion/logo.png"
+          class="imgLogo"
+          alt=""
+          width="40px"
+        />San Antonio</a
+      >
+    </header>
+
+    <div class="overlay"></div>
+
+    <main>
+      <section>
+        <button class="burger" type="button" onclick="toggleMenu()">
+          <i class="fa-solid fa-bars"></i>
+          <i class="fa-solid fa-close"></i>
+        </button>
+
+        <aside>
+          <a href="#">Inicio</a>
+          <a href="#">Solicitud de turno</a>
+          <a href="#">Lista de turnos</a>
+          <a href="#">Mi Historia Clínica</a>
+          <a href="#">Historial de turnos</a>
+        </aside>
+      </section>
+      <h1 class="text-center my-3">Seleccione al doctor</h1>
+
+      <section class="d-flex-column align-items-center justify-content-center">
+        <div class="input-group my-3">
+          <div class="form-outline w-100 d-flex justify-content-center">
+            <input
+              type="search"
+              id="form1"
+              placeholder="Buscar..."
+              class="form-control w-50"
+            />
+            <button type="button" class="btn btn-primary">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+
+        <article class="container main-table">
+          <% results.forEach((users) => { %>
+          <div
+            class="shadow mb-1 bg-body rounded border justify-content-center align-items-center"
+          >
+            <a
+              href="/seleccionar/fecha_turno/<%= users.doctor_id %>"
+              class="btn btn-primary m-auto text-center tamanio"
+            >
+              <h3><%= users.dni + " - " +users.nombres + " " + users.apellidos %></h3>
+            </a>
+          </div>
+          <% }) %>
+        </article>
+      </section>
+    </main>
+
+    <div class="container">
+      <footer
+        class="d-flex flex-wrap justify-content-between align-items-center py-1 border-top"
+      >
+        <span class="mb-md-0 text-body-secondary text-center"
+          >© 2023 San Antonio, Centro de Atención</span
+        >
+      </footer>
+    </div>
+
+    <script src="../../resources/js/pantalla_principal/pantalla_principal.js"></script>
+
+    <script
+      src="https://kit.fontawesome.com/553a1bb38c.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

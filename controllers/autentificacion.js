@@ -100,7 +100,7 @@ exports.autentificacion_paciente = async (req, res) => {
             alertIcon: "success",
             showConfirmButton: false,
             timer: 1500,
-            ruta: "pacientes_pantalla_principal",
+            ruta: "paciente_pantalla_principal",
           });
         }
       }

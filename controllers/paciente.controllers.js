@@ -1,5 +1,43 @@
 const conexion = require("../conection/db");
 
+pantalla_principal = (req, res) => {
+  const id = req.session.usuario;
+  const fecha = new Date();
+  const añoActual = fecha.getFullYear();
+  const hoy = fecha.getDate();
+  const mesActual = fecha.getMonth() + 1;
+
+  const fechaActual = añoActual + "-" + mesActual + "-" + hoy;
+
+  if (req.session.loggedin) {
+    conexion.query(
+      "SELECT * FROM `turnos` join personas ON turnos.doctor_id = personas.persona_id JOIN doctores ON personas.persona_id = doctores.id_persona WHERE paciente_id = ? and fecha_turno = ? ",
+      [id, fechaActual],
+      (error, results) => {
+        results = results;
+        res.render("pacientes/paciente_pantalla_principal", {
+          results: results,
+          login: true,
+          usuario: id,
+          nombres: req.session.nombres,
+          apellidos: req.session.apellidos,
+          fecha: fechaActual,
+        });
+      }
+    );
+  } else {
+    res.render("inicio_sesion/index", {
+      alert: true,
+      alertTitle: "Fallo",
+      alertMessage: "No ha iniciado sesión",
+      alertIcon: "error",
+      showConfirmButton: false,
+      timer: 1500,
+      ruta: "inicio_sesion",
+    });
+  }
+};
+
 savePaciente = (req, res) => {
   const {nombre,apellido,fecha_nac,direccion, dni,email, sexo, telefono, discapacidad,nombre_usuario,password} = req.body;
   const rol = 1;
@@ -47,4 +85,4 @@ savePaciente = (req, res) => {
   )  
 }
 
-module.exports = {savePaciente}
+module.exports = {savePaciente, pantalla_principal}

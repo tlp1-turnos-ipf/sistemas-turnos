@@ -1,0 +1,48 @@
+<%- include("../partials/header_principal.ejs") -%>
+
+<main>
+  <div class="col-md-10 mx-auto col-lg-5">
+    <form
+      class="p-4 p-md-3 border rounded-3 bg-white"
+      action="/pacientes/insertar_turno"
+      method="post"
+    >
+      <div
+        class="m-3 text-center fw-bold d-flex justify-content-center align-items-center border-bottom"
+      >
+        <img
+          src="../../resources/img/inicio_sesion/logo.png"
+          alt=""
+          width="100px"
+        />
+      </div>
+
+      <p>Coloque los datos solicitados</p>
+
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control border-primary"
+          id="floatingInput"
+          placeholder="algo"
+          name="situacion"
+          required
+        />
+        <label for="floatingInput">Coloque su situación</label>
+      </div>
+      <input type="number" name="paciente" value="<%= paciente  %>">
+      <input type="number" name="doctor" value="<%= doctor  %>">
+      <input type="text" name="fecha_turno" value="<%= fecha_turno  %>">
+      <input type="text" name="horario_turno" value="<%= horario  %>">
+      <input type="number" name="estado" value="1">
+
+      
+      <button class="w-100 btn btn-lg btn-primary" type="submit">
+        Continuar
+      </button>
+      </div>
+    </form>
+  </div>
+</main>
+
+<%- include("../partials/footer_principal.ejs") -%>
