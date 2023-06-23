@@ -6,6 +6,8 @@ router.get("/", (req, res)=>{
     res.render("index");
 });
 
+//Inicios
+
 router.get("/paciente", (req, res)=>{
     res.render("principal_paciente")
 })
@@ -13,7 +15,7 @@ router.get("/doctor", (req, res)=>{
     res.render("principal_doctor")
 })
 router.get("/administrador", (req, res)=>{
-    res.render("principal.administrador")
+    res.render("principal_administrador")
 })
 
 
@@ -27,6 +29,7 @@ router.get("/inicio_sesion", (req, res)=>{
 const autentificacion = require('../controllers/autentificacion');
 router.post('/autentificacion/paciente', autentificacion.autentificacion_paciente);
 router.post('/autentificacion/doctor', autentificacion.autentificacion);
+router.post('/autentificacion/administrador', autentificacion.autentificacion_admin);
 //Cerrar sesion
 router.get('/logout', (req, res) =>{
     req.session.destroy(() =>{
@@ -45,7 +48,6 @@ router.get("/registrarse", (req, res)=>{
 
 const pacientes = require('../controllers/paciente.controllers');
 router.post('/savePaciente', pacientes.savePaciente);
-
 router.get('/paciente_pantalla_principal', pacientes.pantalla_principal);
 
 
@@ -71,5 +73,10 @@ router.get('/modificar_devolucion_turno', doctores.modificar_devolucion_turno);
 
 router.get('/listar_turnos_completos', doctores.listar_turnos_completos);
 
+
+//Administradores
+router.get('/doctores_pantalla_principal', (req,res)=>{
+    res.render('administradores_pantalla_principal');
+});
 
 module.exports = router;

@@ -1,4 +1,4 @@
-<%- include("../partials/header_principal.ejs") -%>
+<%- include("partials/header_principal.ejs") -%>
 
 <header class="container-fluid">
   <nav
@@ -6,12 +6,11 @@
     aria-label="Thirteenth navbar example"
   >
     <div class="container-fluid text-center">
-      <a class="navbar-brand col-lg-4 me-0 h1 text-center" href="/"
-        ><img
-          src="../../resources/img/inicio_sesion/logo.png"
+    <img
+          src="resources/img/inicio_sesion/logo.png"
           alt="esooo"
           width="40px"
-        />San Antonio</a
+       
       >
       <button
         class="navbar-toggler collapsed"
@@ -33,7 +32,7 @@
           </li>
         </ul>
         <div class="d-lg-flex col-lg-4 justify-content-lg-end">
-          <button class="btn btn-primary m-1">Registrarse</button>
+          <button class="btn btn-primary m-1">Ayuda</button>
         </div>
       </div>
     </div>
@@ -48,14 +47,14 @@
           <div class="col-md-10 mx-auto col-lg-5">
             <form
               class="p-4 p-md-3 border rounded-3 bg-white"
-              action="/autentificacion/paciente"
+              action="/autentificacion/administrador"
               method="post"
             >
               <div
                 class="m-3 text-center fw-bold d-flex justify-content-center align-items-center border-bottom"
               >
                 <img
-                  src="../../resources/img/inicio_sesion/logo.png"
+                  src="resources/img/inicio_sesion/logo.png"
                   alt=""
                   width="100px"
                 />
@@ -94,8 +93,8 @@
               </button>
               <hr class="my-4" />
               <div class="mb-3 text-center link">
-                <a href="/registrarse" class="text-decoration-none text-dark w-100 btn btn-info"
-                  >REGISTRARSE</a
+                <a href="#" class="text-decoration-none text-dark"
+                  >He olvidado mis datos</a
                 >
               </div>
             </form>
@@ -117,7 +116,7 @@
       >
         <a href="/"
           ><img
-            src="../../resources/img/inicio_sesion/logo.png"
+            src="resources/img/inicio_sesion/logo.png"
             alt=""
             width="80px"
         /></a>
@@ -167,4 +166,5 @@
     window.location = "/<%= ruta %>";
   });
 </script>
-<% } %> <%- include("../partials/footer_principal.ejs") -%>
+
+<% } %> <%- include("partials/footer_principal.ejs") -%>
