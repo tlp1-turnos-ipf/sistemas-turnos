@@ -74,9 +74,11 @@ router.get('/modificar_devolucion_turno', doctores.modificar_devolucion_turno);
 router.get('/listar_turnos_completos', doctores.listar_turnos_completos);
 
 
-//Administradores
+//ADMINISTRADORES
 const admin = require('../controllers/admin.controllers');
 router.get('/administrador_pantalla_principal', admin.pantalla_principal);
+
+//Manejando pacientes
 router.get('/admin_pacientes', admin.admin_pacientes);
 router.get('/admin_eliminar_paciente/:eliminar_paciente', admin.eliminar_pacientes);
 router.get('/admin_editar_paciente/:editar_paciente', admin.editar_pacientes);
@@ -84,5 +86,7 @@ router.get('accion_modificar/:editar_paciente', admin.editar_pacientes);
 router.get('/admin_agregar_paciente', admin.agregar_pacientes);
 router.post('/accion_crear_paciente', admin.crear_pacientes);
 router.post('/accion_modificar_paciente', admin.modificar_pacientes);
+//Manejando doctores
+router.get('/admin_doctores', admin.admin_doctores);
 
 module.exports = router;

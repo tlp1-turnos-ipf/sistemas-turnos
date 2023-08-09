@@ -8,6 +8,7 @@ pantalla_principal = (req, res) => {
   });
 };
 
+//MANEJANDO PACIENTES
 admin_pacientes = (req, res) => {
 
   if (req.session.loggedin) {
@@ -166,7 +167,7 @@ editar_pacientes = (req, res) => {
 };
 
 modificar_pacientes = (req, res) => {
-  
+
   const {nombre,apellido,fecha_nac,direccion, dni,email, sexo, telefono, discapacidad,nombre_usuario,password} = req.body;
   const rol = 1;
 
@@ -213,6 +214,36 @@ modificar_pacientes = (req, res) => {
   )  
 }
 
+//MANEJANDO DOCTORES
+
+admin_doctores = (req, res) => {
+
+  if (req.session.loggedin) {
+    conexion.query(
+      "SELECT * FROM `doctores` LEFT JOIN personas ON doctores.id_persona = personas.persona_id",
+      (error, results) => {
+        req.session.results_pantalla_principal = results;
+        res.render("administrador/lista_doctores", {
+          results: results,
+          login: true,
+          nombres: req.session.nombres,
+          apellidos: req.session.apellidos,
+        });
+      }
+    );
+  } else {
+    res.render("inicio_sesion/index", {
+      alert: true,
+      alertTitle: "Fallo",
+      alertMessage: "No ha iniciado sesión",
+      alertIcon: "error",
+      showConfirmButton: false,
+      timer: 1500,
+      ruta: "inicio_sesion",
+    });
+  }
+};
+
 
 
 module.exports = {
@@ -222,5 +253,6 @@ module.exports = {
   agregar_pacientes,
   crear_pacientes,
   editar_pacientes,
-  modificar_pacientes
+  modificar_pacientes,
+  admin_doctores
 };

@@ -12,7 +12,7 @@
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
     />
-    <title>Pantalla Principal Administradores</title>
+    <title>Lista Pacientes - Administradores</title>
   </head>
 
   <body>
@@ -43,18 +43,14 @@
           "
         >
           <div
-            class="d-flex flex-column flex-shrink-0 p-3"
-            style="width: 280px; height: 100vh"
+            class="d-flex flex-column flex-shrink-0 pt-5"
+            style="width: 230px; height: 100vh"
           >
             <a
               href="/"
-              class="d-flex align-items-center mb-3 me-md-auto text-white text-decoration-none border-bottom"
+              class="d-flex align-items-center mb-3  me-md-auto text-white text-decoration-none border-bottom"
             >
-              <img
-                src="resources/img/inicio_sesion/logo.png"
-                alt="logo.png"
-                width="70px"
-              />
+             <img src="resources/img/inicio_sesion/logo.png" alt="logo.png" width="70px">
               <span class="fs-4">San Antonio</span>
             </a>
             <hr />
@@ -113,32 +109,66 @@
         <section class="w-100">
           <div
             class="p-5"
-            style="height: 1px; background: rgb(190, 190, 190)"
-          >
-        </div>
+            style="height: 1px; background: rgb(165, 173, 248)"
+          ></div>
 
-          <div class="p-3" style="width: 70%;">
-            <div class="column">
-              <div class="col-sm-6 mb-6 mb-sm-0">
-                <div class="card p-2">
-                  <a href="/admin_pacientes" class="btn btn-primary">
-                    <div class="card-body">
-                      <h5 class="card-title text-center">Pantalla de Pacientes</h5>
-                    </div>
-                  </a>
-                </div>
+          <div
+            class="my-3 shadow p-3 m-5 bg-body rounded border d-flex justify-content-between"
+          >
+            <form action="/search" method="post">
+              <div class="d-flex flex-grow">
+                <input
+                  type="text"
+                  id="form1"
+                  name="buscar"
+                  class="form-control"
+                />
+                <button type="submit" class="btn btn-secondary">Buscar</button>
               </div>
-              <div class="col-sm-6">
-                <div class="card p-2">
-                  <a href="/admin_doctores" class="btn btn-secondary">
-                    <div class="card-body">
-                      <h5 class="card-title text-center">Pantalla de Doctores</h5>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
+            </form>
+            <a
+            href="/admin_agregar_paciente"
+            class="btn btn-primary text-light"
+            >Agregar Doctor</a
+          >
           </div>
+
+          <div class="main-table shadow m-5 bg-body rounded border">
+            <table class="table table-striped rounded text-center">
+              <thead class="table-dark">
+                <tr>
+                  <th scope="col">DNI</th>
+                  <th scope="col">Nombre y Apellido</th>
+                  <th scope="col" colspan="2">Funciones</th>
+                </tr>
+              </thead>
+              <tbody
+                class="d-flex-reverse align-items-center justify-content-center"
+              >
+                <% results.forEach((users) => { %>
+                <tr class="fade-in-now">
+                  <th scope="row"><%= users.dni %></th>
+                  <td><%= users.nombres + " " + users.apellidos %></td>
+                  <td>
+                    <a
+                      href="/admin_editar_paciente/<%= users.doctor_id %>"
+                      class="btn btn-secondary text-light"
+                      >Editar</a
+                    >
+                  </td>
+                  <td>
+                    <a
+                      href="/admin_eliminar_paciente/<%= users.doctor_id %>"
+                      class="btn btn-danger"
+                      >Eliminar</a
+                    >
+                  </td>
+                </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+      
         </section>
       </div>
     </main>
@@ -159,23 +189,5 @@
       src="https://kit.fontawesome.com/553a1bb38c.js"
       crossorigin="anonymous"
     ></script>
-
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
-    <% if(typeof alert != "undefined") { %>
-    <script>
-      Swal.fire({
-        title: "<%= alertTitle %>",
-        text: "<%= alertMessage %>",
-        icon: "<%= alertIcon %>",
-        showConfirmButton: false,
-        timer: 1500,
-      }).then(() => {
-        if ("<%= ruta %>" != "") {
-          window.location = "/<%= ruta %>";
-        }
-      });
-    </script>
-    <% } %>
   </body>
 </html>
