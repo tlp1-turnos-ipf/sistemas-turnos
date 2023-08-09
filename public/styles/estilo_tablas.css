@@ -58,7 +58,7 @@ th,td{
     padding: 0 15px;
   }
   .input-box input:focus {
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.459);
   }
   .form .column {
     display: flex;
@@ -103,8 +103,7 @@ th,td{
     font-size: 1rem;
   }
   .form button {
-    height: 55px;
-    width: 100%;
+  
     color: #fff;
     font-size: 1rem;
     font-weight: 400;
@@ -113,6 +112,17 @@ th,td{
     cursor: pointer;
     transition: all 0.2s ease;
     background: rgb(130, 106, 251);
+  }
+  .form a {
+  
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-top: 30px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: rgb(101, 70, 252);
   }
   .form button:hover {
     background: rgb(88, 56, 250);
