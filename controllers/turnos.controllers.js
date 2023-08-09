@@ -57,17 +57,20 @@ buscar_horario = (req, res) => {
 };
 
 
+
+
 crear_turno = (req, res) => {
   const doctor_fecha_horario_id = req.params.doctor_fecha_horario_id;
   if (req.session.loggedin) {
-    conexion.query("SELECT * FROM `fecha_doctores_horarios` JOIN fecha_doctores ON fecha_doctores_horarios.id_fecha_doctores = fecha_doctores.fecha_doctores_id WHERE fecha_doctores_horarios_id = ?",
+    conexion.query(
+      "SELECT * FROM `fecha_doctores_horarios` JOIN fecha_doctores ON fecha_doctores_horarios.id_fecha_doctores = fecha_doctores.fecha_doctores_id JOIN doctores ON fecha_doctores.id_doctor = doctores.doctor_id JOIN personas ON doctores.id_persona = personas.persona_id WHERE fecha_doctores_horarios_id = ?",
     [doctor_fecha_horario_id],
     (error, results) => {
       res.render("pacientes/crear_turno", {
         results: results,
         login: true,
         paciente: req.session.usuario,
-        doctor: results[0].id_doctor,
+        doctor: results[0].id_persona,
         fecha_turno: results[0]. fecha_turno,
         horario: results[0].horario,
       });
@@ -78,6 +81,7 @@ crear_turno = (req, res) => {
 
 insertar_turno = (req, res) => {
   const {paciente, doctor,fecha_turno,horario_turno, estado, situacion} = req.body;
+
 
 
   conexion.query(

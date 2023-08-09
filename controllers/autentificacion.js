@@ -29,16 +29,15 @@ exports.autentificacion = async (req, res) => {
           req.session.apellidos = results[0].apellidos;
           req.session.dni = results[0].dni;
 
-          
-            res.render("inicio_sesion/index", {
-              alert: true,
-              alertTitle: "Doctor",
-              alertMessage: "Ha ingresado al sistema",
-              alertIcon: "success",
-              showConfirmButton: false,
-              timer: 1500,
-              ruta: "doctores_pantalla_principal",
-            });
+          res.render("inicio_sesion/index", {
+            alert: true,
+            alertTitle: "Doctor",
+            alertMessage: "Ha ingresado al sistema",
+            alertIcon: "success",
+            showConfirmButton: false,
+            timer: 1500,
+            ruta: "doctores_pantalla_principal",
+          });
         }
       }
     );
@@ -67,10 +66,6 @@ exports.autentificacion_paciente = async (req, res) => {
         } else {
           req.session.loggedin = true;
           req.session.usuario = results[0].persona_id;
-          req.session.rol = results[0].rol;
-          req.session.nombres = results[0].nombres;
-          req.session.apellidos = results[0].apellidos;
-          req.session.dni = results[0].dni;
 
           res.render("inicio_sesion/index", {
             alert: true,
@@ -80,13 +75,13 @@ exports.autentificacion_paciente = async (req, res) => {
             showConfirmButton: false,
             timer: 1500,
             ruta: "paciente_pantalla_principal",
+            
           });
         }
       }
     );
   }
 };
-
 
 exports.autentificacion_admin = async (req, res) => {
   const nombre_usuario = req.body.nombre_usuario;
@@ -115,7 +110,7 @@ exports.autentificacion_admin = async (req, res) => {
           req.session.apellidos = results[0].apellidos;
           req.session.dni = results[0].dni;
 
-          res.render("inicio_sesion/index", {
+          res.render("administrador/index", {
             alert: true,
             alertTitle: "Administrador",
             alertMessage: "Ha ingresado al sistema",

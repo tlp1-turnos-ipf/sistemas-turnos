@@ -3,25 +3,23 @@ const conexion = require("../conection/db");
 pantalla_principal = (req, res) => {
   const id = req.session.usuario;
   const fecha = new Date();
-  const añoActual = fecha.getFullYear();
-  const hoy = fecha.getDate();
-  const mesActual = fecha.getMonth() + 1;
 
-  const fechaActual = añoActual + "-" + mesActual + "-" + hoy;
+  const fechaa = fecha.toLocaleDateString()
 
   if (req.session.loggedin) {
     conexion.query(
       "SELECT * FROM `turnos` join personas ON turnos.doctor_id = personas.persona_id JOIN doctores ON personas.persona_id = doctores.id_persona JOIN especialidades ON doctores.id_especialidad = especialidades.especialidad_id WHERE paciente_id = ? ",
       [id],
       (error, results) => {
-        req.session.results_paciente = results
+        
         res.render("pacientes/paciente_pantalla_principal", {
           results: results,
           login: true,
           usuario: id,
           nombres: req.session.nombres,
           apellidos: req.session.apellidos,
-          fecha: fechaActual,
+          
+          
         });
       }
     );

@@ -27,25 +27,14 @@
           width="40px"
         />San Antonio</a
       >
+      <div>
+        <a href="/logout" class="btn btn-primary">Cerrar Sesión</a>
+      </div>
     </header>
 
     <div class="overlay"></div>
 
     <main>
-      <section>
-        <button class="burger" type="button" onclick="toggleMenu()">
-          <i class="fa-solid fa-bars"></i>
-          <i class="fa-solid fa-close"></i>
-        </button>
-
-        <aside>
-          <a href="#">Inicio</a>
-          <a href="#">Solicitud de turno</a>
-          <a href="#">Lista de turnos</a>
-          <a href="#">Mi Historia Clínica</a>
-          <a href="#">Historial de turnos</a>
-        </aside>
-      </section>
 
       <section>
         <div class="row m-0 d-flex justify-content-center align-items-center">
@@ -124,33 +113,32 @@
 
               <div class="main-table shadow mb-5 bg-body rounded border">
                 <table class="table table-striped rounded">
-                    <thead class="table-dark">
-                        <tr>
-                          <th scope="col">Nombre y Apellido</th>
-                          <th scope="col">especialidad</th>
-                          <th scope="col">Horario del Turno</th>
-                          <th scope="col">Cancelar</th>
-                        </tr>
-                      </thead>
-                      <tbody
-                        class="d-flex-reverse align-items-center justify-content-center"
-                      >
-                        <% results.forEach((users) => { %>
-                        <tr class="fade-in-now">
-                          <td><%= users.nombres + " " + users.apellidos %></td>
-                          <td><%= users.descripcion_especialidad %></td>
-                          <td><%= users.horario_turno %></td>
-                          <td>
-                            <a
-                              href="/doctores_atender/<%= users.turnos_id %>"
-                              class="btn btn-primary text-light"
-                              >Cancelar turno</a
-                            >
-                          </td>
-                         
-                        </tr>
-                        <% }) %>
-                      </tbody>
+                  <thead class="table-dark">
+                    <tr>
+                      <th scope="col">Nombre y Apellido</th>
+                      <th scope="col">especialidad</th>
+                      <th scope="col">Horario del Turno</th>
+                      <th scope="col">Cancelar</th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    class="d-flex-reverse align-items-center justify-content-center"
+                  >
+                    <% results.forEach((users) => { %>
+                    <tr class="fade-in-now">
+                      <td><%= users.nombres + " " + users.apellidos %></td>
+                      <td><%= users.descripcion_especialidad %></td>
+                      <td><%= users.horario_turno %></td>
+                      <td>
+                        <a
+                          href="/doctores_atender/<%= users.turnos_id %>"
+                          class="btn btn-primary text-light"
+                          >Cancelar turno</a
+                        >
+                      </td>
+                    </tr>
+                    <% }) %>
+                  </tbody>
                 </table>
               </div>
             </div>

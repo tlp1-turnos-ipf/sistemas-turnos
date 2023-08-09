@@ -75,8 +75,11 @@ router.get('/listar_turnos_completos', doctores.listar_turnos_completos);
 
 
 //Administradores
-router.get('/doctores_pantalla_principal', (req,res)=>{
-    res.render('administradores_pantalla_principal');
-});
+const admin = require('../controllers/admin.controllers');
+router.get('/administrador_pantalla_principal', admin.pantalla_principal);
+router.get('/admin_pacientes', admin.admin_pacientes);
+router.get('/admin_eliminar_paciente/:eliminar_paciente', admin.eliminar_pacientes);
+router.get('/admin_agregar_paciente', admin.agregar_pacientes);
+router.post('/accion_crear_paciente', admin.crear_pacientes);
 
 module.exports = router;

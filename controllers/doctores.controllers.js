@@ -2,17 +2,12 @@ const conexion = require("../conection/db");
 
 pantalla_principal = (req, res) => {
   const id = req.session.usuario;
-  const fecha = new Date();
-  const añoActual = fecha.getFullYear();
-  const hoy = fecha.getDate();
-  const mesActual = fecha.getMonth() + 1;
-
-  const fechaActual = añoActual + "-" + mesActual + "-" + hoy;
+ 
 
   if (req.session.loggedin) {
     conexion.query(
-      "SELECT * FROM `turnos` join personas ON turnos.paciente_id = personas.persona_id WHERE doctor_id = ? and fecha_turno = ? ",
-      [id, fechaActual],
+      "SELECT * FROM `turnos` join personas ON turnos.paciente_id = personas.persona_id WHERE doctor_id = ? ",
+      [id],
       (error, results) => {
         req.session.results_pantalla_principal = results;
         res.render("doctores/pantalla_principal", {
@@ -21,7 +16,6 @@ pantalla_principal = (req, res) => {
           usuario: id,
           nombres: req.session.nombres,
           apellidos: req.session.apellidos,
-          fecha: fechaActual,
         });
       }
     );
@@ -42,11 +36,6 @@ pantalla_principal = (req, res) => {
 listar_turnos_completos = (req, res) => {
   const id = req.session.usuario;
   const fecha = new Date();
-  const añoActual = fecha.getFullYear();
-  const hoy = fecha.getDate();
-  const mesActual = fecha.getMonth() + 1;
-
-  const fechaActual = añoActual + "-" + mesActual + "-" + hoy;
 
   if (req.session.loggedin) {
     conexion.query(
@@ -59,7 +48,6 @@ listar_turnos_completos = (req, res) => {
           usuario: id,
           nombres: req.session.nombres,
           apellidos: req.session.apellidos,
-          fecha: fechaActual,
         });
       }
     );

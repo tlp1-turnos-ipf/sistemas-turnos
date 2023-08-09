@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="resources/styles/pantalla_principal.css" />
+    <link rel="stylesheet" href="resources/styles/estilo_tablas.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <title>Lista Pacientes - Administradores</title>
+  </head>
+
+  <body>
+    <button class="burger" type="button" onclick="toggleMenu()">
+      <i class="fa-solid fa-bars"></i>
+      <i class="fa-solid fa-close"></i>
+    </button>
+
+    <aside>
+      <a href="#">Inicio</a>
+      <a href="#">Solicitud de turno</a>
+      <a href="#">Lista de turnos</a>
+      <a href="#">Historia Clínica</a>
+      <a href="#">Historial de turnos</a>
+      <a href="/logout">Cerrar Sesion</a>
+    </aside>
+
+    <main class="container-fluid m-0 p-0">
+      <div class="d-flex">
+        <nav
+          style="
+            background: linear-gradient(
+              100deg,
+              rgba(2, 0, 31, 0.945),
+              70%,
+              rgba(0, 0, 87, 0.9)
+            );
+          "
+        >
+          <div
+            class="d-flex flex-column flex-shrink-0 pt-5"
+            style="width: 230px; height: 100vh"
+          >
+            <a
+              href="/"
+              class="d-flex align-items-center mb-3  me-md-auto text-white text-decoration-none border-bottom"
+            >
+             <img src="resources/img/inicio_sesion/logo.png" alt="logo.png" width="70px">
+              <span class="fs-4">San Antonio</span>
+            </a>
+            <hr />
+            <ul class="nav nav-pills flex-column mb-auto">
+              <li class="nav-item">
+                <a href="#" class="nav-link" aria-current="page">
+                  <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#home"></use>
+                  </svg>
+                  Agregar Paciente
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-white">
+                  <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#speedometer2"></use>
+                  </svg>
+                  Modificar Paciente
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-white">
+                  <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#table"></use>
+                  </svg>
+                  Buscar Paciente
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link" aria-current="page">
+                  <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#home"></use>
+                  </svg>
+                  Agregar Doctor
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-white">
+                  <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#speedometer2"></use>
+                  </svg>
+                  Modificar Doctor
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-white">
+                  <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#table"></use>
+                  </svg>
+                  Buscar Doctor
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <section class="w-100">
+          <div
+            class="p-5"
+            style="height: 1px; background: rgb(165, 173, 248)"
+          ></div>
+
+          <div
+            class="my-3 shadow p-3 m-5 bg-body rounded border d-flex justify-content-between"
+          >
+            <form action="/search" method="post">
+              <div class="d-flex flex-grow">
+                <input
+                  type="text"
+                  id="form1"
+                  name="buscar"
+                  class="form-control"
+                />
+                <button type="submit" class="btn btn-secondary">Buscar</button>
+              </div>
+            </form>
+            <a
+            href="/admin_agregar_paciente"
+            class="btn btn-primary text-light"
+            >Agregar Paciente</a
+          >
+          </div>
+
+          <div class="main-table shadow m-5 bg-body rounded border">
+            <table class="table table-striped rounded text-center">
+              <thead class="table-dark">
+                <tr>
+                  <th scope="col">DNI</th>
+                  <th scope="col">Nombre y Apellido</th>
+                  <th scope="col" colspan="2">Funciones</th>
+                </tr>
+              </thead>
+              <tbody
+                class="d-flex-reverse align-items-center justify-content-center"
+              >
+                <% results.forEach((users) => { %>
+                <tr class="fade-in-now">
+                  <th scope="row"><%= users.dni %></th>
+                  <td><%= users.nombres + " " + users.apellidos %></td>
+                  <td>
+                    <a
+                      href="/doctores_atender/<%= users.paciente_id %>"
+                      class="btn btn-secondary text-light"
+                      >Modificar</a
+                    >
+                  </td>
+                  <td>
+                    <a
+                      href="/admin_eliminar_paciente/<%= users.paciente_id %>"
+                      class="btn btn-danger"
+                      >Eliminar</a
+                    >
+                  </td>
+                </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+      
+        </section>
+      </div>
+    </main>
+
+    <div class="container">
+      <footer
+        class="d-flex flex-wrap justify-content-between align-items-center py-1 border-top"
+      >
+        <span class="mb-md-0 text-body-secondary text-center"
+          >© 2023 San Antonio, Centro de Atención</span
+        >
+      </footer>
+    </div>
+
+    <script src="resources/js/pantalla_principal.js"></script>
+
+    <script
+      src="https://kit.fontawesome.com/553a1bb38c.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
