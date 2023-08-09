@@ -244,6 +244,40 @@ admin_doctores = (req, res) => {
   }
 };
 
+eliminar_doctores = (req, res) => {
+  const id = req.params.eliminar_doctor;
+ 
+
+  if (req.session.loggedin) {
+    conexion.query(
+      "DELETE FROM doctores WHERE doctor_id = ?",
+      [id],
+      (error, results) => {
+        res.render("administrador/index",{
+          alert: true,
+          alertTitle: "Exitoso",
+          alertMessage: "Eliminación Exitosa",
+          alertIcon: "success",
+          showConfirmButton: false,
+          timer: 1500,
+          ruta: "admin_doctores"
+        })
+        res.render("administrador/index");
+      }
+    );
+  } else {
+    res.render("inicio_sesion/index", {
+      alert: true,
+      alertTitle: "Fallo",
+      alertMessage: "No ha iniciado sesión",
+      alertIcon: "error",
+      showConfirmButton: false,
+      timer: 1500,
+      ruta: "inicio_sesion",
+    });
+  }
+};
+
 
 
 module.exports = {
@@ -254,5 +288,6 @@ module.exports = {
   crear_pacientes,
   editar_pacientes,
   modificar_pacientes,
-  admin_doctores
+  admin_doctores,
+  eliminar_doctores
 };
