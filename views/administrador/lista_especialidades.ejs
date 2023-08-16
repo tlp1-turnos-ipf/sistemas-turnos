@@ -12,7 +12,7 @@
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
     />
-    <title>Lista Pacientes - Administradores</title>
+    <title>Lista Especialidades - Administradores</title>
   </head>
 
   <body>
@@ -111,7 +111,7 @@
             class="p-5"
             style="height: 1px; background: rgb(165, 173, 248)"
           >
-        <h3 class="text-light">Doctores</h3>
+        <h3 class="text-light">Especialidades</h3>
         </div>
 
           <div
@@ -124,23 +124,31 @@
                   id="form1"
                   name="buscar"
                   class="form-control"
+                  required
                 />
                 <button type="submit" class="btn btn-secondary">Buscar</button>
               </div>
             </form>
-            <a
-            href="/admin_agregar_doctor"
-            class="btn btn-primary text-light"
-            >Agregar Doctor</a
-          >
+
+            <form action="/admin_agregar_especialidad" method="post">
+              <div class="d-flex flex-grow">
+                <input
+                  type="text"
+                  id="form1"
+                  name="especialidad_crear"
+                  class="form-control"
+                  required
+                />
+                <button type="submit" class="btn btn-primary">Agregar</button>
+              </div>
+            </form>
+           
           </div>
 
           <div class="main-table shadow m-5 bg-body rounded border">
             <table class="table table-striped rounded text-center">
               <thead class="table-dark">
                 <tr>
-                  <th scope="col">DNI</th>
-                  <th scope="col">Nombre y Apellido</th>
                   <th scope="col">Especialidad</th>
                   <th scope="col" colspan="2">Funciones</th>
                 </tr>
@@ -150,19 +158,17 @@
               >
                 <% results.forEach((users) => { %>
                 <tr class="fade-in-now">
-                  <th scope="row"><%= users.dni %></th>
-                  <td><%= users.nombres + " " + users.apellidos %></td>
                   <td><%= users.descripcion_especialidad %></td>
                   <td>
                     <a
-                      href="/admin_editar_doctor/<%= users.doctor_id %>"
+                      href="/admin_editar_doctor/<%= users.especialidad_id %>"
                       class="btn btn-secondary text-light"
                       >Editar</a
                     >
                   </td>
                   <td>
                     <a
-                      href="/admin_eliminar_doctor/<%= users.doctor_id %>"
+                      href="/admin_eliminar_doctor/<%= users.especialidad_id %>"
                       class="btn btn-danger"
                       >Eliminar</a
                     >
@@ -172,10 +178,19 @@
               </tbody>
             </table>
           </div>
+
+          
       
         </section>
       </div>
+      
     </main>
+    
+    
+
+
+
+
 
     <div class="container">
       <footer
@@ -188,6 +203,7 @@
     </div>
 
     <script src="resources/js/pantalla_principal.js"></script>
+    <script src="resources/js/modal.js"></script>
 
     <script
       src="https://kit.fontawesome.com/553a1bb38c.js"
