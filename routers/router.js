@@ -89,6 +89,10 @@ router.get("accion_modificar/:editar_paciente", admin.editar_pacientes);
 router.get("/admin_agregar_paciente", admin.agregar_pacientes);
 router.post("/accion_crear_paciente", admin.crear_pacientes);
 router.post("/accion_modificar_paciente", admin.modificar_pacientes);
+// router.post(
+//   "/pantallas_devoluciones_paciente/:id",
+//   admin.pantalla_devoluciones_paciente
+// );
 
 //Manejando doctores
 router.get("/admin_doctores", admin.admin_doctores);

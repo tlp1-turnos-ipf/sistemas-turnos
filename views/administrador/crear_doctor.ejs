@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport"  content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="resources/styles/pantalla_principal.css" />
     <link rel="stylesheet" href="resources/styles/estilo_tablas.css" />
     <link
@@ -97,12 +97,15 @@
             </ul>
           </div>
         </nav>
-        <section class="w-100 d-flex flex-column align-items-center" style="background: rgb(236, 236, 236)">
+        <section
+          class="w-100 d-flex flex-column align-items-center"
+          style="background: rgb(230, 230, 230)"
+        >
           <div
             class="p-5 w-100"
             style="height: 1px; background: rgb(165, 173, 248)"
           ></div>
-          <div class="container2" >
+          <div class="container2">
             <header>Registrar Doctor</header>
             <form action="/accion_crear_doctor" method="post" class="form">
               <div class="column">
@@ -162,9 +165,7 @@
                     value="2"
                     checked
                   />
-                  <label class="form-check-label" for="sexo2">
-                    Femenino
-                  </label>
+                  <label class="form-check-label" for="sexo2"> Femenino </label>
                 </div>
                 <div class="form-check">
                   <input
@@ -175,48 +176,43 @@
                     value="3"
                     checked
                   />
-                  <label class="form-check-label" for="sexo3">
-                    Otros
-                  </label>
+                  <label class="form-check-label" for="sexo3"> Otros </label>
                 </div>
               </div>
               <div class="radio m-3">
                 <label for="radio">Especialidad</label>
                 <br />
                 <div class="gender-box">
-                    <select
-                      name="especialidad"
-                      id="especialidad"
-                      class="form-select border-secondary"
-                      aria-label="especialidad"
-                      required
-                    >
-                      <option value="#">------</option>
-                      <option value="1">Cardiólogo</option>
-                      <option value="2">Oftalmólogo</option>
-                      <option value="3">Pediatra</option>
-                      <option value="4">Endocrinólogo</option>
-                      <option value="5">Ortopedista</option>
-                      <option value="6">Otorrinolaringólogo</option>
-                      <option value="7">Ginecólogo</option>
-                     
-                    </select>
-                  </div>
-                
+                  <select
+                    name="especialidad"
+                    id="especialidad"
+                    class="form-select border-secondary"
+                    aria-label="especialidad"
+                    required
+                  >
+                    <option value="#">------</option>
+                    <option value="1">Cardiólogo</option>
+                    <option value="2">Oftalmólogo</option>
+                    <option value="3">Pediatra</option>
+                    <option value="4">Endocrinólogo</option>
+                    <option value="5">Ortopedista</option>
+                    <option value="6">Otorrinolaringólogo</option>
+                    <option value="7">Ginecólogo</option>
+                  </select>
+                </div>
               </div>
               <div class="gender-box">
                 <h3><b>Datos de la cuenta</b></h3>
                 <div class="column">
-                    <div class="input-box">
-                      <label>Nombre de Usuario</label>
-                      <input type="text" name="nombre_usuario" required />
-                    </div>
-                    <div class="input-box">
-                      <label>Contraseña</label>
-                      <input type="password" name="password" required />
-                    </div>
-                   
+                  <div class="input-box">
+                    <label>Nombre de Usuario</label>
+                    <input type="text" name="nombre_usuario" required />
                   </div>
+                  <div class="input-box">
+                    <label>Contraseña</label>
+                    <input type="password" name="password" required />
+                  </div>
+                </div>
               </div>
               <button>Agregar Doctor</button>
             </form>

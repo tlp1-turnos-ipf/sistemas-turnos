@@ -12,7 +12,7 @@ pantalla_principal = (req, res) => {
 admin_pacientes = (req, res) => {
   if (req.session.loggedin) {
     conexion.query(
-      "SELECT * FROM `pacientes` LEFT JOIN personas ON pacientes.id_persona = personas.persona_id",
+      "SELECT * FROM `pacientes` LEFT JOIN personas ON pacientes.id_persona_paciente = personas.persona_id",
       (error, results) => {
         req.session.results_pantalla_principal = results;
         res.render("administrador/lista_pacientes", {
@@ -127,7 +127,7 @@ crear_pacientes = (req, res) => {
         });
 
         conexion.query("INSERT INTO pacientes SET ?", {
-          id_persona: id,
+          id_persona_paciente: id,
           id_discapacidad: discapacidad,
         });
         res.render("administrador/index", {
@@ -149,7 +149,7 @@ editar_pacientes = (req, res) => {
 
   if (req.session.loggedin) {
     conexion.query(
-      "SELECT * FROM `pacientes` LEFT JOIN personas ON pacientes.id_persona = personas.persona_id WHERE paciente_id = ? ",
+      "SELECT * FROM `pacientes` LEFT JOIN personas ON pacientes.id_persona_paciente = personas.persona_id WHERE paciente_id = ? ",
       [paciente_id],
       (error, results) => {
         res.render("administrador/editar_paciente", {
@@ -397,22 +397,17 @@ editar_doctores = (req, res) => {
   }
 };
 
-
-
 admin_especialidades = (req, res) => {
   if (req.session.loggedin) {
-    conexion.query(
-      "SELECT * FROM `especialidades` ",
-      (error, results) => {
-        req.session.results_pantalla_principal = results;
-        res.render("administrador/lista_especialidades", {
-          results: results,
-          login: true,
-          nombres: req.session.nombres,
-          apellidos: req.session.apellidos,
-        });
-      }
-    );
+    conexion.query("SELECT * FROM `especialidades` ", (error, results) => {
+      req.session.results_pantalla_principal = results;
+      res.render("administrador/lista_especialidades", {
+        results: results,
+        login: true,
+        nombres: req.session.nombres,
+        apellidos: req.session.apellidos,
+      });
+    });
   } else {
     res.render("inicio_sesion/index", {
       alert: true,
@@ -427,29 +422,27 @@ admin_especialidades = (req, res) => {
 };
 
 agregar_especialidad = (req, res) => {
-  const {especialidad_crear} = req.body;
- 
+  const { especialidad_crear } = req.body;
 
   conexion.query(
     "INSERT INTO especialidades SET ?",
     {
       descripcion_especialidad: especialidad_crear,
-     
     },
     (error, results) => {
       if (error) {
         throw error;
-      } 
-        res.render("administrador/index", {
-          alert: true,
-          alertTitle: "Exitoso",
-          alertMessage: "Se ha agregado la especialidad",
-          alertIcon: "success",
-          showConfirmButton: false,
-          timer: 1500,
-          ruta: "admin_especialidades",
-        });
       }
+      res.render("administrador/index", {
+        alert: true,
+        alertTitle: "Exitoso",
+        alertMessage: "Se ha agregado la especialidad",
+        alertIcon: "success",
+        showConfirmButton: false,
+        timer: 1500,
+        ruta: "admin_especialidades",
+      });
+    }
   );
 };
 
@@ -467,5 +460,5 @@ module.exports = {
   crear_doctores,
   editar_doctores,
   admin_especialidades,
-  agregar_especialidad
+  agregar_especialidad,
 };

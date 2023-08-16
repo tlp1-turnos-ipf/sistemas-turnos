@@ -97,7 +97,10 @@
             </ul>
           </div>
         </nav>
-        <section class="w-100 d-flex flex-column align-items-center">
+        <section
+          class="w-100 d-flex flex-column align-items-center"
+          style="background: rgb(230, 230, 230)"
+        >
           <div
             class="p-5 w-100"
             style="height: 1px; background: rgb(165, 173, 248)"
@@ -162,9 +165,7 @@
                     value="2"
                     checked
                   />
-                  <label class="form-check-label" for="sexo2">
-                    Femenino
-                  </label>
+                  <label class="form-check-label" for="sexo2"> Femenino </label>
                 </div>
                 <div class="form-check">
                   <input
@@ -175,9 +176,7 @@
                     value="3"
                     checked
                   />
-                  <label class="form-check-label" for="sexo3">
-                    Otros
-                  </label>
+                  <label class="form-check-label" for="sexo3"> Otros </label>
                 </div>
               </div>
               <div class="radio m-3">
@@ -213,18 +212,17 @@
               <div class="gender-box">
                 <h3><b>Datos de la cuenta</b></h3>
                 <div class="column">
-                    <div class="input-box">
-                      <label>Nombre de Usuario</label>
-                      <input type="text" name="nombre_usuario" required />
-                    </div>
-                    <div class="input-box">
-                      <label>Contraseña</label>
-                      <input type="password" name="password" required />
-                    </div>
-                   
+                  <div class="input-box">
+                    <label>Nombre de Usuario</label>
+                    <input type="text" name="nombre_usuario" required />
                   </div>
+                  <div class="input-box">
+                    <label>Contraseña</label>
+                    <input type="password" name="password" required />
+                  </div>
+                </div>
               </div>
-              
+
               <button>Agregar Paciente</button>
             </form>
           </div>
