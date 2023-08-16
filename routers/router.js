@@ -47,7 +47,7 @@ router.get("/paciente_pantalla_principal", pacientes.pantalla_principal);
 
 //Funciones para sacar turnos
 const turnos = require("../controllers/turnos.controllers");
-router.get("/solicitar_turno", turnos.buscar_especialidades);
+router.get("/solicitar-turno", turnos.buscar_especialidades);
 router.get("/seleccionar_doctor/:especialidad_id", turnos.buscar_doctores);
 router.get("/seleccionar/fecha_turno/:doctor_id", turnos.buscar_fechas);
 router.get("/seleccionar/fecha_horario/:fecha_turno_id", turnos.buscar_horario);

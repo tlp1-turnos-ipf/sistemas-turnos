@@ -8,6 +8,10 @@ body{
     
 }
 
+.card > a:hover{
+  background-color: rgba(134, 146, 250, 0.589);
+}
+
 
 th,td{
     min-width: 200px;
