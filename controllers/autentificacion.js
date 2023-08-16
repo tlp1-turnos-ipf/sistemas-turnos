@@ -8,7 +8,7 @@ exports.autentificacion = async (req, res) => {
 
   if (nombre_usuario && password) {
     conexion.query(
-      "SELECT * FROM usuarios join personas ON usuarios.id_persona = personas.persona_id LEFT join pacientes ON personas.persona_id = pacientes.id_persona WHERE nombre_usuario = ? and contrasenia = ?",
+      "SELECT * FROM usuarios left join personas ON usuarios.id_persona = personas.persona_id left join pacientes ON personas.persona_id = pacientes.id_persona_paciente  WHERE nombre_usuario = ? and contrasenia = ?",
       [nombre_usuario, password],
       async (error, results) => {
         if (results.length == 0) {
@@ -23,9 +23,10 @@ exports.autentificacion = async (req, res) => {
           });
         } else {
           req.session.loggedin = true;
-          req.session.usuario = results[0].paciente_id;
+          req.session.usuario = results[0].persona_id;
           req.session.nombres = results[0].nombres;
           req.session.apellidos = results[0].apellidos;
+          req.session.paciente = results[0].paciente_id;
           const rol = results[0].rol;
 
           console.log(results);

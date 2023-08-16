@@ -2,14 +2,13 @@ const conexion = require("../conection/db");
 
 pantalla_principal = (req, res) => {
   const id = req.session.usuario;
- 
 
   if (req.session.loggedin) {
     conexion.query(
-      "SELECT * FROM `turnos` join personas ON turnos.paciente_id = personas.persona_id WHERE doctor_id = ? ",
+      "SELECT * FROM `turnos` join pacientes ON turnos.id_paciente= pacientes.paciente_id JOIN personas ON pacientes.id_persona_paciente = personas.persona_id WHERE doctor_id = ? ",
       [id],
       (error, results) => {
-        req.session.results_pantalla_principal = results;
+        console.log(results);
         res.render("doctores/pantalla_principal", {
           results: results,
           login: true,
@@ -31,7 +30,6 @@ pantalla_principal = (req, res) => {
     });
   }
 };
-
 
 listar_turnos_completos = (req, res) => {
   const id = req.session.usuario;
@@ -64,13 +62,11 @@ listar_turnos_completos = (req, res) => {
   }
 };
 
-
-
 atender_paciente = (req, res) => {
   const turno_id = req.params.turnos_id;
   if (req.session.loggedin) {
     conexion.query(
-      "SELECT * FROM `turnos` left join personas ON turnos.paciente_id = personas.persona_id left join sexos ON personas.sexo = sexos.sexo_id left join devoluciones ON turnos.turnos_id = devoluciones.id_turnos WHERE turnos_id = ? ",
+      "SELECT * FROM `turnos` left join personas ON turnos.id_paciente = personas.persona_id left join sexos ON personas.sexo = sexos.sexo_id left join devoluciones ON turnos.turnos_id = devoluciones.id_turnos WHERE turnos_id = ? ",
       [turno_id],
       (error, results) => {
         res.render("doctores/atender_paciente", {
@@ -113,7 +109,7 @@ devolucion_turno_paciente = (req, res) => {
         descripcion: descripcion,
       },
       (error, results) => {
-        res.render(`doctores/pantalla_principal`, {
+        res.render(`inicio_sesion/index`, {
           login: true,
           results: req.session.results_pantalla_principal,
           alert: true,
@@ -208,5 +204,5 @@ module.exports = {
   editar_devolucion_doctor,
   modificar_devolucion_turno,
   eliminar_devolucion_doctor,
-  listar_turnos_completos
+  listar_turnos_completos,
 };

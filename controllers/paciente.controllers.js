@@ -5,7 +5,7 @@ pantalla_principal = (req, res) => {
 
   if (req.session.loggedin) {
     conexion.query(
-      "SELECT * FROM `turnos` join personas ON turnos.doctor_id = personas.persona_id JOIN doctores ON personas.persona_id = doctores.id_persona JOIN especialidades ON doctores.id_especialidad = especialidades.especialidad_id WHERE paciente_id = ? ",
+      "SELECT * FROM `turnos` join personas ON turnos.doctor_id = personas.persona_id join pacientes ON turnos.id_paciente = pacientes.paciente_id JOIN doctores ON personas.persona_id = doctores.id_persona  JOIN especialidades ON doctores.id_especialidad = especialidades.especialidad_id WHERE pacientes.id_persona_paciente = ?",
       [id],
       (error, results) => {
         res.render("pacientes/paciente_pantalla_principal", {

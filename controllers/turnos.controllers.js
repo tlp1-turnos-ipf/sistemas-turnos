@@ -81,13 +81,12 @@ crear_turno = (req, res) => {
 };
 
 insertar_turno = (req, res) => {
-  const { paciente, doctor, fecha_turno, horario_turno, estado, situacion } =
-    req.body;
+  const { doctor, fecha_turno, horario_turno, estado, situacion } = req.body;
 
   conexion.query(
     "INSERT INTO `turnos` SET ?",
     {
-      paciente_id: paciente,
+      id_paciente: req.session.paciente,
       doctor_id: doctor,
       fecha_turno: fecha_turno,
       horario_turno: horario_turno,

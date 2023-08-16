@@ -1,48 +1,195 @@
-<%- include("../partials/header_principal.ejs") -%>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="../../resources/styles/pantalla_principal.css"
+    />
+    <link rel="stylesheet" href="../../resources/styles/estilo_tablas.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <title>Lista de Turnos</title>
+  </head>
 
-<main>
-  <div class="col-md-10 mx-auto col-lg-5">
-    <form
-      class="p-4 p-md-3 border rounded-3 bg-white"
-      action="/pacientes/insertar_turno"
-      method="post"
-    >
-      <div
-        class="m-3 text-center fw-bold d-flex justify-content-center align-items-center border-bottom"
+  <body>
+    <button class="burger" type="button" onclick="toggleMenu()">
+      <i class="fa-solid fa-bars"></i>
+      <i class="fa-solid fa-close"></i>
+    </button>
+
+    <aside>
+      <a href="#">Inicio</a>
+      <a href="#">Solicitud de turno</a>
+      <a href="#">Lista de turnos</a>
+      <a href="#">Historia Clínica</a>
+      <a href="#">Historial de turnos</a>
+      <a href="/logout">Cerrar Sesion</a>
+    </aside>
+
+    <main class="container-fluid m-0 p-0">
+      <div class="d-flex">
+        <nav
+          style="
+            background: linear-gradient(
+              100deg,
+              rgba(2, 0, 31, 0.945),
+              70%,
+              rgba(0, 0, 87, 0.9)
+            );
+          "
+        >
+          <div
+            class="d-flex flex-column flex-shrink-0 pt-2"
+            style="width: 230px; height: 100vh"
+          >
+            <a
+              href="/"
+              class="d-flex align-items-center mb-3 me-md-auto text-white text-decoration-none border-bottom"
+            >
+              <img
+                src="../../resources/img/inicio_sesion/logo.png"
+                alt="logo.png"
+                width="70px"
+              />
+              <span class="fs-4">San Antonio</span>
+            </a>
+            <hr />
+            <ul class="nav nav-pills flex-column mb-auto">
+              <li class="nav-item">
+                <a
+                  href="/solicitar-turno"
+                  class="nav-link text-white"
+                  aria-current="page"
+                >
+                  <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#home"></use>
+                  </svg>
+                  Solicitar Turno
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link text-white" aria-current="page">
+                  <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#home"></use>
+                  </svg>
+                  Listado de Turnos
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-white">
+                  <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#speedometer2"></use>
+                  </svg>
+                  Devoluciones turno
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-white">
+                  <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#speedometer2"></use>
+                  </svg>
+                  Reprogramar turno
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <section class="w-100 fondo_principal">
+          <div class="p-5" style="height: 1px; background: rgb(134, 146, 250)">
+            <h3 class="text-light"><b>Fechas</b></h3>
+          </div>
+
+          <div
+            class="my-3 shadow p-3 m-5 bg-body rounded border d-flex justify-content-center"
+          >
+            <div class="col-md-10 mx-auto col-lg-5">
+              <form
+                class="p-4 p-md-3 border rounded-3 bg-white"
+                action="/pacientes/insertar_turno"
+                method="post"
+              >
+                <div
+                  class="m-3 text-center fw-bold d-flex justify-content-center align-items-center border-bottom"
+                >
+                  <img
+                    src="../../resources/img/inicio_sesion/logo.png"
+                    alt=""
+                    width="100px"
+                  />
+                </div>
+
+                <p>Coloque los datos solicitados</p>
+
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control border-primary"
+                    id="floatingInput"
+                    placeholder="algo"
+                    name="situacion"
+                    required
+                  />
+                  <label for="floatingInput">Coloque su situación</label>
+
+                  <input
+                    type="number"
+                    name="paciente"
+                    value="<%= paciente  %>"
+                    hidden
+                  />
+                  <input
+                    type="number"
+                    name="doctor"
+                    value="<%= doctor %>"
+                    hidden
+                  />
+                  <input
+                    type="text"
+                    name="fecha_turno"
+                    value="<%= fecha_turno  %>"
+                    hidden
+                  />
+                  <input
+                    type="text"
+                    name="horario_turno"
+                    value="<%= horario  %>"
+                    hidden
+                  />
+                  <input type="number" name="estado" value="1" hidden />
+
+                  <button class="w-100 btn btn-lg btn-primary" type="submit">
+                    Continuar
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <div class="container">
+      <footer
+        class="d-flex flex-wrap justify-content-between align-items-center py-1 border-top"
       >
-        <img
-          src="../../resources/img/inicio_sesion/logo.png"
-          alt=""
-          width="100px"
-        />
-      </div>
+        <span class="mb-md-0 text-body-secondary text-center"
+          >© 2023 San Antonio, Centro de Atención</span
+        >
+      </footer>
+    </div>
 
-      <p>Coloque los datos solicitados</p>
+    <script src="../../resources/js/pantalla_principal.js"></script>
 
-      <div class="form-floating mb-3">
-        <input
-          type="text"
-          class="form-control border-primary"
-          id="floatingInput"
-          placeholder="algo"
-          name="situacion"
-          required
-        />
-        <label for="floatingInput">Coloque su situación</label>
-      </div>
-      <input type="number" name="paciente" value="<%= paciente  %>" hidden>
-      <input type="number" name="doctor" value="<%= doctor %>" hidden>
-      <input type="text" name="fecha_turno" value="<%= fecha_turno  %>" hidden>
-      <input type="text" name="horario_turno" value="<%= horario  %>" hidden>
-      <input type="number" name="estado" value="1" hidden>
-
-      
-      <button class="w-100 btn btn-lg btn-primary" type="submit">
-        Continuar
-      </button>
-      </div>
-    </form>
-  </div>
-</main>
-
-<%- include("../partials/footer_principal.ejs") -%>
+    <script
+      src="https://kit.fontawesome.com/553a1bb38c.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
