@@ -19,7 +19,7 @@ turnosCtrl.obtenerTurnos = async (req, res) => {
       include: [
         {
           model: DoctorFecha,
-          attributes: ["fecha", "horario_turno"],
+          attributes: ["fecha"],
           include: {
             model: Doctor,
             include: [

@@ -14,7 +14,7 @@ authCtrl.login = async (req, res) => {
 
   try {
     // Verificar si el email existe
-    const existeUsuario = await Usuario.findOne({ email });
+    const existeUsuario = await Usuario.findOne({ where: { email } });
 
     if (!existeUsuario) {
       return res.status(400).json({

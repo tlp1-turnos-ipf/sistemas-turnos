@@ -11,6 +11,15 @@ doctoresCtrl.crearDoctor = async (req, res) => {
   const { especialidad } = req.body;
 
   try {
+    //Obtenemos el ultimo id de especialidad
+    const ultimoIdEspecialidad = await Especialidad.max("especialidad_id");
+    //En caso que haya errores al guardar un Doctor
+    if (!ultimoIdEspecialidad) {
+      throw {
+        message: "Primero cargue una especialidad",
+      };
+    }
+
     //Obtenemos el id de la ultima persona creada
     const ultimoIdUsuario = await Usuario.max("usuario_id");
 
@@ -47,7 +56,7 @@ doctoresCtrl.obtenerDoctores = async (req, res) => {
         },
         {
           model: Usuario,
-         
+
           include: {
             model: Persona,
           },

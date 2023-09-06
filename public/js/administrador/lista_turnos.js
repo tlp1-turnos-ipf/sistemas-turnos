@@ -58,7 +58,7 @@ const mostrarTurnos = (Turnos) => {
                         <td>${personaPaciente.nombres} ${personaPaciente.apellidos}</td>
                         <td>${personaDoctor.nombres} ${personaDoctor.apellidos}</td>
                         <td>${especialidad.descripcion_especialidad}</td>
-                        <td>${fecha.horario_turno}</td>
+                        <td>${fecha.fecha}</td>
                         <td>
                             <button onclick=eliminarPaciente(event) class="btn btn-danger btn-sm" data-id="${turnos.turno_id}">Eliminar</button>
                             <a href="/paciente/editar/${turnos.turno_id}" class="btn btn-warning btn-sm">Editar</a>

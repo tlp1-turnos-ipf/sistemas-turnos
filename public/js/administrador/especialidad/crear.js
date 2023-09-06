@@ -2,7 +2,9 @@ const formNuevo = document.querySelector("#formNuevaEspecialidad");
 
 formNuevo.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const descripcion_especialidad = document.querySelector("#descripcion_especialidad").value;
+  const descripcion_especialidad = document.querySelector(
+    "#descripcion_especialidad"
+  ).value;
 
   //Crea al horario
   const response = await fetch(`http://localhost:3000/api/especialidad`, {
@@ -28,7 +30,7 @@ formNuevo.addEventListener("submit", async (e) => {
 
   Swal.fire({
     icon: "success",
-    title: "Horario creado",
+    title: "Especialidad creada",
     text: respToJson.message,
   });
 

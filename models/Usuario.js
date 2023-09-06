@@ -16,10 +16,6 @@ const Usuario = sequelize.define(
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: {
-        args: true,
-        message: "El email ya existe",
-      },
     },
     password: {
       type: DataTypes.STRING,
@@ -28,7 +24,7 @@ const Usuario = sequelize.define(
     estado: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
-      defaultValue:true
+      defaultValue: true,
     },
     persona_id: {
       type: DataTypes.INTEGER,

@@ -49,17 +49,20 @@ formNuevoPaciente.addEventListener("submit", async (e) => {
   );
 
   //Crea el usuario
-  const responseUsuario = await fetch("http://localhost:3000/api/usuario", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      nombre_usuario,
-      email,
-      password,
-    }),
-  });
+  const responseUsuario = await fetch(
+    "http://localhost:3000/api/usuario/paciente",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nombre_usuario,
+        email,
+        password,
+      }),
+    }
+  );
 
   //Crea al paciente
   const responsePaciente = await fetch("http://localhost:3000/api/paciente", {

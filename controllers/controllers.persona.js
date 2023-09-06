@@ -69,7 +69,7 @@ Ctrl.crearPersona = async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(error.status || 500).json({
-      message: error.message || "Error al crear el usuario",
+      message: error.message || "Error al crear la persona",
     });
   }
 };
