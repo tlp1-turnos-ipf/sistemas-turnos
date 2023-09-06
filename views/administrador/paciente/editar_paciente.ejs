@@ -1,0 +1,104 @@
+<%- include("../../partials/admin/header_administrador.ejs") -%>
+<section class="w-100" style="background-color: rgb(240, 240, 240)">
+  <div class="p-5" style="height: 1px; background: rgb(0, 4, 41)"></div>
+
+  <div class="container px-4 py-5">
+    <form class="p-1 p-md-4" id="formEditarPaciente" data-id="<%= id %>">
+      <div class="m-2 fw-bold d-flex justify-content-center border-bottom">
+        <p class="fs-5">
+          <img src="/img/inicio_sesion/logo.png" alt="" width="30px" />Modificar
+          Paciente
+        </p>
+      </div>
+
+      <div class="d-flex flex-wrap mb-5 justify-content-center w-100">
+        <div class="form-floating m-2 inputForm">
+          <input
+            type="text"
+            class="form-control border-secondary"
+            id="nombres"
+            placeholder="juan"
+            name="nombre"
+            value=""
+          />
+          <label for="nombre">Nombres</label>
+        </div>
+        <div class="form-floating m-2 inputForm">
+          <input
+            type="text"
+            class="form-control border-secondary"
+            id="apellidos"
+            placeholder="Perez"
+            name="apellido"
+            value=""
+            required
+          />
+          <label for="apellido">Apellidos</label>
+        </div>
+        <div class="form-floating m-2 inputForm">
+          <input
+            type="date"
+            class="form-control border-secondary"
+            id="fecha_nac"
+            placeholder="00/00/0000"
+            name="fecha_nac"
+            value=""
+            required
+          />
+          <label for="fecha">Fecha de Nacimiento</label>
+        </div>
+        <div class="form-floating m-2 inputForm">
+          <input
+            type="number"
+            class="form-control border-secondary"
+            id="dni"
+            placeholder=""
+            name="dni"
+            value=""
+            required
+          />
+          <label for="dni">DNI</label>
+        </div>
+        <div class="form-floating m-2 inputForm">
+          <input
+            type="text"
+            class="form-control border-secondary"
+            id="direccion"
+            placeholder="mz 71 cs 30"
+            name="direccion"
+            value=""
+            required
+          />
+          <label for="direccion">Dirección</label>
+        </div>
+        <div class="form-floating m-2 inputForm">
+          <input
+            type="number"
+            class="form-control border-secondary"
+            id="telefono"
+            placeholder="3704332211"
+            name="telefono"
+            value=""
+            required
+          />
+          <label for="telefono">Teléfono</label>
+        </div>
+
+        <hr class="my-4" />
+      </div>
+      <div class="d-flex justify-content-center flex-wrap">
+        <a href="/lista_pacientes" class="btn btn-secondary btn-lg mx-2"
+          >Volver</a
+        >
+        <button class="btn btn-lg btn-primary mx-2" type="submit">
+          Editar
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script src="/js/pantalla_principal.js"></script>
+<script src="/js/administrador/paciente/editar_paciente.js"></script>
+
+<%- include("../../partials/admin/footer_admin.ejs") -%>

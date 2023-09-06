@@ -1,0 +1,78 @@
+<%- include("../partials/admin/header_administrador.ejs") -%>
+
+<section class="w-100" >
+  <div class="p-5 fw-bold fs-5 text-white" style="height: 1px; background: rgb(0, 4, 41)">Admin</div>
+
+  <div class="px-5">
+    <h3 class="fw-bold my-5" style="font-family:Georgia, 'Times New Roman', Times, serif">Navegación de Pantallas</h3>
+    <div class="row">
+      <div class="col-sm-6 mb-6 mb-sm-0">
+        <div class="card m-2 shadow rounded border">
+          <img
+            src="/img/admin/pacientes.png"
+            alt=""
+            width="80px"
+            style="position: absolute; top: -20px"
+          />
+          <a href="/lista_pacientes" class="btn">
+            <div class="card-body">
+              <p class="card-title text-center">
+                Pantalla de Pacientes Activos
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card m-2 shadow rounded border">
+          <img
+            src="/img/admin/doctores.png"
+            alt=""
+            width="160px"
+            style="position: absolute; top: -20px; left: -50px"
+          />
+          <a href="/lista_doctores" class="btn">
+            <div class="card-body">
+              <p class="card-title text-center">
+                Pantalla de Doctores Activos
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card m-2 shadow rounded border">
+          <img
+            src="/img/admin/especialidades.png"
+            alt=""
+            width="80px"
+            style="position: absolute; top: -5px; left: 6px;"
+          />
+          <a href="/lista_especialidades" class="btn">
+            <div class="card-body">
+              <p class="card-title text-center">Pantalla de Especialidades</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card m-2 shadow rounded border">
+          <img
+            src="/img/admin/turnos.png"
+            alt=""
+            width="80px"
+            style="position: absolute; top: -10px; left: 6px"
+          />
+          <a href="/lista_turnos" class="btn">
+            <div class="card-body">
+              <p class="card-title text-center">Pantalla de Turnos</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="js/pantalla_principal.js"></script>
+
+<%- include("../partials/admin/footer_admin.ejs") -%>

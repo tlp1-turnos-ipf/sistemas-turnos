@@ -1,0 +1,88 @@
+<%- include("../../partials/admin/header_administrador.ejs") -%>
+<section class="w-100" style="background-color: rgb(240, 240, 240)">
+  <div class="p-5" style="height: 1px; background: rgb(0, 4, 41)"></div>
+
+  <div class="container px-4 py-1">
+    <form class="p-1 p-md-4" id="formNuevoHorario" data-id="<%= id %>">
+      <div class="m-2 fw-bold d-flex justify-content-center border-bottom">
+        <p class="fs-5">
+          <img src="/img/inicio_sesion/logo.png" alt="" width="30px" />Agregar
+          Horario
+        </p>
+      </div>
+
+      <div class="d-flex flex-column align-items-center">
+        <div class="form-floating m-2 inputForm w-50">
+          <input
+            type="date"
+            class="form-control border-secondary"
+            id="fecha"
+            placeholder="3704332211"
+            name="fecha"
+            required
+          />
+          <label for="fecha">Fecha del Turno</label>
+        </div>
+        <div class="form-floating m-2 inputForm w-50">
+          <input
+            type="time"
+            class="form-control border-secondary"
+            id="horario_inicio"
+            placeholder="example@gmail.com"
+            name="horario_turno"
+            required
+          />
+          <label for="horario_turno">Horario de Inicio</label>
+        </div>
+        <div class="form-floating m-2 inputForm w-50">
+          <input
+            type="time"
+            class="form-control border-secondary"
+            id="horario_fin"
+            placeholder="example@gmail.com"
+            name="horario_turno"
+            required
+          />
+          <label for="horario_turno">Horario de Fin</label>
+        </div>
+        <div class="form-floating m-2 inputForm w-50">
+          <select name="" id="descripcion" class="form-control border-secondary">
+            <option value="#"></option>
+            <option value="Mañana">Turno Mañana</option>
+            <option value="Tarde">Turno Tarde</option>
+            <option value="Noche">Turno Noche</option>
+          </select>
+          <label for="horario_turno">Descripcion Turno</label>
+        </div>
+        <div class="form-floating m-2 inputForm w-50">
+          <input
+            type="number"
+            class="form-control border-secondary"
+            id="cantidad_turnos"
+            name="cantidad_turnos"
+            required
+          />
+          <label for="cantidad_turnos">Cantidad de Turnos</label>
+        </div>
+
+        <hr class="my-4" />
+      </div>
+      <div class="d-flex justify-content-center">
+        <a
+          href="/lista_horarios/<%= id %>"
+          class="btn btn-lg btn-secondary mx-2"
+          >Volver</a
+        >
+
+        <button class="btn btn-lg btn-primary mx-2" type="submit">
+          Confirmar
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script src="/js/pantalla_principal.js"></script>
+<script src="/js/administrador/fechas/crear_horario.js"></script>
+
+<%- include("../../partials/admin/footer_admin.ejs") -%>

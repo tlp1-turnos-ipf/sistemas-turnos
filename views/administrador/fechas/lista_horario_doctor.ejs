@@ -1,0 +1,39 @@
+<%- include("../../partials/admin/header_administrador.ejs") -%>
+
+<section class="w-100" style="background-color: rgb(240, 240, 240)">
+  <div
+    class="p-5 fs-5 text-white"
+    style="height: 1px; background: rgb(0, 4, 41)"
+  >
+    Horarios y turnos
+  </div>
+
+  <div
+    class="my-3 shadow p-3 m-5 bg-body rounded border d-flex justify-content-between"
+  >
+    <a href="/crear_horario/<%= id %>" class="btn btn-primary text-light"
+      >Agregar Horario</a
+    >
+  </div>
+
+  <div class="main-table shadow m-5 bg-body rounded border">
+    <table class="table table-striped rounded text-center">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Fecha</th>
+          <th scope="col">Horario</th>
+          <th scope="col" colspan="2">Funciones</th>
+        </tr>
+      </thead>
+      <tbody
+        class="d-flex-reverse align-items-center justify-content-center"
+        id="listaHorarios"
+        data-id="<%= id %>"
+      ></tbody>
+    </table>
+  </div>
+</section>
+<script src="/js/pantalla_principal.js"></script>
+<script src="/js/administrador/fechas/lista_horarios.js"></script>
+
+<%- include("../../partials/admin/footer_admin.ejs") -%>

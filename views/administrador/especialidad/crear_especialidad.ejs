@@ -1,0 +1,45 @@
+<%- include("../../partials/admin/header_administrador.ejs") -%>
+<section class="w-100" style="background-color: rgb(240, 240, 240)">
+  <div class="p-5" style="height: 1px; background: rgb(0, 4, 41)"></div>
+
+  <div class="container px-4 py-1">
+    <form class="p-1 p-md-4" id="formNuevaEspecialidad">
+      <div class="m-2 fw-bold d-flex justify-content-center border-bottom">
+        <p class="fs-5">
+          <img src="/img/inicio_sesion/logo.png" alt="" width="30px" />Agregar
+          Especialidad
+        </p>
+      </div>
+      <div class="d-flex flex-wrap justify-content-center">
+        <div class="form-floating m-2 inputForm">
+          <input
+            type="text"
+            class="form-control border-secondary"
+            id="descripcion_especialidad"
+            placeholder="juan"
+            name="nombre"
+            required
+          />
+          <label for="nombre">Nombre especialidad</label>
+        </div>
+        
+        
+        <hr class="my-4" />
+      </div>
+      <div class="d-flex justify-content-center">
+        <a href="/lista_especialidades" class="btn btn-lg btn-secondary mx-2"
+          >Volver</a
+        >
+
+        <button class="btn btn-lg btn-primary mx-2" type="submit">
+          Confirmar
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script src="/js/pantalla_principal.js"></script>
+<script src="/js/administrador/especialidad/crear.js"></script>
+
+<%- include("../../partials/admin/footer_admin.ejs") -%>
