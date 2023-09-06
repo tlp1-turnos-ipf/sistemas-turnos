@@ -39,7 +39,7 @@ const DoctorFecha = sequelize.define(
     },
   },
   {
-    timestamps: false, // Esto desactivará los campos de timestamp automáticos
+    timestamps: true,
     tableName: "doctores_fecha",
   }
 );

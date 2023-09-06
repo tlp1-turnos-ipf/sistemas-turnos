@@ -38,7 +38,7 @@ const Persona = sequelize.define(
     },
   },
   {
-    timestamps: false, // Esto desactivará los campos de timestamp automáticos
+    timestamps: true,
     tableName: "personas",
   }
 );
