@@ -12,7 +12,7 @@ doctoresCtrl.crearDoctor = async (req, res) => {
 
   try {
     //Obtenemos el ultimo id de especialidad
-    const ultimoIdEspecialidad = await Especialidad.max("especialidad_id");
+    const ultimoIdEspecialidad = await Especialidad.findOne();
     //En caso que haya errores al guardar un Doctor
     if (!ultimoIdEspecialidad) {
       throw {
