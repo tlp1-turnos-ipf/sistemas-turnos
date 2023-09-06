@@ -28,6 +28,7 @@ const Usuario = sequelize.define(
     estado: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
+      defaultValue:true
     },
     persona_id: {
       type: DataTypes.INTEGER,

@@ -21,6 +21,7 @@ const Turno = sequelize.define(
     estado_turno: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      defaultValue: true
     },
   },
   {

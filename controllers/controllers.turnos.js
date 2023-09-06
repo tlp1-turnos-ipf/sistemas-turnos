@@ -79,7 +79,6 @@ turnosCtrl.crearTurno = async (req, res) => {
       const nuevoTurno = await Turno.create({
         paciente_id: paciente_id,
         doctor_fecha_id: id,
-        estado_turno: 1,
       });
 
       // Reducir la cantidad de turnos en 1

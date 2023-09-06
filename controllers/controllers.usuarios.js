@@ -17,7 +17,6 @@ usuarioCtrl.crearUsuarioPaciente = async (req, res) => {
       nombre_usuario,
       email,
       password: await bcrypt.hash(password, await bcrypt.genSalt(10)),
-      estado: 1,
       persona_id: ultimoIdPersona,
       rol: 3,
     });

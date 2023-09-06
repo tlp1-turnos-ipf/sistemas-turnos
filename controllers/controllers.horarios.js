@@ -17,7 +17,6 @@ horariosCtrl.crearHorario = async (req, res) => {
       horario_fin,
       descripcion,
       cantidad_turnos,
-      estado_turno: 1,
     });
 
     //En caso que haya errores al guardar un horario
