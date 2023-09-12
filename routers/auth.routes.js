@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const { login } = require("../controllers/controllers.auth");
+const { ctrlLoginUser, ctrlGetUserInfoByToken, deleteToken } = require("../controllers/controllers.auth");
 const { crearPersona } = require("../controllers/controllers.persona");
 // =====================================================
 // Rutas para renderizar las vistas de login y registro
@@ -20,6 +20,11 @@ router.get("/register", (req, res) => res.render("auth/registrarse_en_linea"));
 router.post("/api/persona/registro", crearPersona);
 
 //Login
-router.post("/api/login", login);
+router.post("/auth/login", ctrlLoginUser);
+
+//Buscar Info del Token
+router.get('/auth/token', ctrlGetUserInfoByToken)
+
+
 
 module.exports = router;

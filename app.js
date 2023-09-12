@@ -30,6 +30,7 @@ conectarDB();
 
 app.use(require("./routers/index.routes"));
 app.use(require("./routers/auth.routes"));
+app.use(require('./routers/rol.routes'))
 app.use(require("./routers/pacientes.routes"));
 app.use(require("./routers/admin.routes"));
 app.use(require("./routers/usuario.routes"));
