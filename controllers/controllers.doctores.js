@@ -5,6 +5,8 @@ const Usuario = require("../models/Usuario");
 const Paciente = require("../models/Paciente");
 const Doctor = require("../models/Doctor");
 const Especialidad = require("../models/Especialidad");
+const Rol = require("../models/Rol");
+const DevolucionTurno = require("../models/DevolucionTurno");
 
 //Controlador para crear a los docotores activos
 doctoresCtrl.crearDoctor = async (req, res) => {
