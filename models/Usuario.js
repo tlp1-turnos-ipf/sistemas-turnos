@@ -45,7 +45,4 @@ const Usuario = sequelize.define(
 Persona.hasMany(Usuario, { foreignKey: "persona_id", as: "usuarios" });
 Usuario.belongsTo(Persona, { foreignKey: "persona_id" });
 
-// Crear tabla si no existe
-Usuario.sync();
-
 module.exports = Usuario;

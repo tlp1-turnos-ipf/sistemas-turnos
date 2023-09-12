@@ -49,7 +49,5 @@ const DoctorFecha = sequelize.define(
 Doctor.hasMany(DoctorFecha, { foreignKey: "doctor_id", as: "fechas_doctores" });
 DoctorFecha.belongsTo(Doctor, { foreignKey: "doctor_id" });
 
-// Crear tabla si no existe
-DoctorFecha.sync();
 
 module.exports = DoctorFecha;

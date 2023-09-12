@@ -9,6 +9,10 @@ const Doctor = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
+    imagen_firma: {
+      type: DataTypes.BLOB,
+      allowNull: true
+    },
     usuario_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -28,7 +32,6 @@ const Doctor = sequelize.define(
 Usuario.hasMany(Doctor, { foreignKey: "usuario_id", as: "doctores" });
 Doctor.belongsTo(Usuario, { foreignKey: "usuario_id" });
 
-// Crear tabla si no existe
-Doctor.sync();
+
 
 module.exports = Doctor;

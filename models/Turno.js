@@ -38,7 +38,4 @@ Turno.belongsTo(Paciente, { foreignKey: "paciente_id" });
 DoctorFecha.hasMany(Turno, { foreignKey: "doctor_fecha_id" });
 Turno.belongsTo(DoctorFecha, { foreignKey: "doctor_fecha_id" });
 
-// Crear tabla si no existe
-Turno.sync();
-
 module.exports = Turno;

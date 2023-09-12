@@ -43,7 +43,5 @@ const Persona = sequelize.define(
   }
 );
 
-// Crear tabla si no existe
-Persona.sync();
 
 module.exports = Persona;
