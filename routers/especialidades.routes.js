@@ -1,5 +1,6 @@
 const router = require("express").Router();
-
+const { validateSchema } = require('./../middlewares/validar_schema');
+const { validateSpecialty } = require('./../models/validation');
 const {
   obtenerEspecialidades,
   crearEspecialidad
@@ -23,6 +24,6 @@ router.get("/crear_especialidad", (req, res) => {
 router.get("/api/especialidad", obtenerEspecialidades);
 
 //Crear todas las especialidades
-router.post("/api/especialidad", crearEspecialidad);
+router.post("/api/especialidad", validateSpecialty, validateSchema, crearEspecialidad);
 
 module.exports = router;
