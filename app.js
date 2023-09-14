@@ -28,17 +28,7 @@ app.set("view engine", "ejs");
 const { conectarDB } = require("./conection/db");
 conectarDB();
 
-app.use(require("./routers/index.routes"));
-app.use(require("./routers/auth.routes"));
-app.use(require('./routers/rol.routes'))
-app.use(require("./routers/pacientes.routes"));
-app.use(require("./routers/admin.routes"));
-app.use(require("./routers/usuario.routes"));
-app.use(require("./routers/persona.routes"));
-app.use(require("./routers/doctores.routes"));
-app.use(require("./routers/horarios.routes"));
-app.use(require("./routers/turnos.routes"));
-app.use(require("./routers/especialidades.routes"));
+app.use(require("./routers/routes"));
 
 // 404 - Not found
 app.use((req, res, next) => {
