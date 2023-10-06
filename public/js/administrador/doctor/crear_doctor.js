@@ -46,17 +46,20 @@ formNuevoDoctor.addEventListener("submit", async (e) => {
     }
   );
 
-  const responseUsuario = await fetch("http://localhost:3000/api/usuario/doctor", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      nombre_usuario,
-      email,
-      password,
-    }),
-  });
+  const responseUsuario = await fetch(
+    "http://localhost:3000/api/usuario/doctor",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nombre_usuario,
+        email,
+        password,
+      }),
+    }
+  );
 
   //Crea al doctor
   const responseDoctor = await fetch("http://localhost:3000/api/doctor", {

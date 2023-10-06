@@ -6,7 +6,6 @@ const Usuario = require("../models/Usuario");
 const Persona = require("../models/Persona");
 const Paciente = require("../models/Paciente");
 const Especialidad = require("../models/Especialidad");
-const Sequelize = require("sequelize");
 
 // Controlador para obtener todos los turnos
 turnosCtrl.obtenerTurnos = async (req, res) => {

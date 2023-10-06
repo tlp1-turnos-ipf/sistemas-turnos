@@ -15,7 +15,6 @@ router.use(require("./horarios.routes"));
 router.use(require("./turnos.routes"));
 router.use(require("./especialidades.routes"));
 
-
 //Rutas de doctores
 router.use(require("./turnos.doctores.routes"));
 
