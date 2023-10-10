@@ -1,3 +1,5 @@
+const { obtenerTurnosDelDia } = require("../controllers/controllers.turnos");
+
 const router = require("express").Router();
 
 //Ir a la pantalla principal de los doctores
@@ -13,6 +15,6 @@ router.get("/doctor/turnos", (req, res) => {
 // =====================================================
 //         Rutas gestionar Doctores
 // =====================================================
-
+router.get("/lista_turnos/doctor/dia", obtenerTurnosDelDia)
 
 module.exports = router;
