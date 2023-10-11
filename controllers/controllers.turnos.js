@@ -6,7 +6,7 @@ const Usuario = require("../models/Usuario");
 const Persona = require("../models/Persona");
 const Paciente = require("../models/Paciente");
 const Especialidad = require("../models/Especialidad");
-const Sequelize = require("sequelize");
+const jwt = require('jsonwebtoken'); 
 
 // Controlador para obtener todos los turnos
 turnosCtrl.obtenerTurnos = async (req, res) => {
@@ -103,5 +103,76 @@ turnosCtrl.crearTurno = async (req, res) => {
     });
   }
 };
+
+//Obtener todos los turnos del dia del doctor
+turnosCtrl.obtenerTurnosDelDia = async (req, res) => {
+  const token = req.headers.authorization; // Supongamos que el token se pasa en los encabezados
+  try {
+    
+
+    if (!token) {
+      return res.status(401).json({ message: 'Token no proporcionado' });
+    }
+
+     // Decodificar el token para obtener el ID del usuario
+     const { user: id } = jwt.verify(token, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'); 
+
+
+    const turnos = await Turno.findAll({
+      where: {
+        estado_turno: 1,
+      },
+
+      include: [
+        {
+          model: DoctorFecha,
+          attributes: ["fecha"],
+          include: {
+            model: Doctor,
+            include: [
+              {
+                model: Usuario,
+                where: {
+                  usuario_id: id
+                },
+                include: {
+                  model: Persona,
+                },
+              },
+              {
+                model: Especialidad,
+              },
+            ],
+          },
+        },
+        {
+          model: Paciente,
+          include: {
+            model: Usuario,
+
+            include: {
+              model: Persona,
+            },
+          },
+        },
+      ],
+    });
+
+    if (!turnos) {
+      throw {
+        status: 404,
+        message: "No se encontraron turnos",
+      };
+    }
+
+    return res.status(200).json(turnos);
+  } catch (error) {
+    console.log(error);
+    return res.status(error.status || 500).json({
+      message: error.message || "Error al obtener los turnos",
+    });
+  }
+};
+
 
 module.exports = turnosCtrl;

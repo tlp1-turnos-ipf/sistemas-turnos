@@ -13,8 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
   })
       .then(res => res.json())
       .then(data => {
-          if(data.email) {
+          if(data.rol == 1) {
               window.location.href = '/administrador'
+          }
+          else if(data.rol == 3) {
+              window.location.href = '/paciente'
+          }
+          else if(data.rol == 4) {
+              window.location.href = '/doctor'
           }
       })
  }
