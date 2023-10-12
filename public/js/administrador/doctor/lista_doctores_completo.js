@@ -2,13 +2,7 @@ const tablaDoctores = document.querySelector("#listaDoctores");
 
 // Función para obtener los usaurios
 const obtenerDoctores = async () => {
-  const token = localStorage.getItem("token");
-  console.log(token);
-  const response = await fetch("http://localhost:3000/api/doctor/completo", {
-    headers: {
-      Authorization: token,
-    },
-  });
+  const response = await fetch("http://localhost:3000/api/doctor/completo");
 
   if (response.status === 404) {
     return [];

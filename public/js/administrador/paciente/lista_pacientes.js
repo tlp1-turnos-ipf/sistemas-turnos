@@ -2,13 +2,7 @@ const tablaPacientes = document.querySelector("#listaPacientes");
 
 // Función para obtener los usaurios
 const obtenerPacientes = async () => {
-  const token = localStorage.getItem("token");
-  console.log(token);
-  const response = await fetch("http://localhost:3000/api/paciente", {
-    headers: {
-      Authorization: token,
-    },
-  });
+  const response = await fetch("http://localhost:3000/api/paciente");
 
   if (response.status === 404) {
     return [];

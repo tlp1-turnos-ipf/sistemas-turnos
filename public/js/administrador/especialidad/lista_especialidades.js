@@ -2,8 +2,6 @@ const tablaEspecialidades = document.querySelector("#listaEspecialidad");
 
 // Función para obtener las especialidades
 const obtenerEspecialidades = async () => {
-  const token = localStorage.getItem("token");
-  console.log(token);
   const response = await fetch("http://localhost:3000/api/especialidad");
 
   if (response.status === 404) {
