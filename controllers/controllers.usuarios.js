@@ -11,6 +11,7 @@ usuarioCtrl.crearUsuarioPaciente = async (req, res) => {
   try {
     //Obtenemos el id de la ultima persona creada
     const ultimoIdPersona = await Persona.max("persona_id");
+    console.log(ultimoIdPersona)
 
     //Se guardan los datos en la bd
     const nuevoUsuario = await Usuario.create({

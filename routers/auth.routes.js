@@ -1,6 +1,5 @@
 const router = require("express").Router();
-
-const { ctrlLoginUser, ctrlGetUserInfoByToken, deleteToken } = require("../controllers/controllers.auth");
+const { ctrlLoginUser, ctrlGetUserInfoByToken } = require("../controllers/controllers.auth");
 const { crearPersona } = require("../controllers/controllers.persona");
 // =====================================================
 // Rutas para renderizar las vistas de login y registro
@@ -24,7 +23,5 @@ router.post("/auth/login", ctrlLoginUser);
 
 //Buscar Info del Token
 router.get('/auth/token', ctrlGetUserInfoByToken)
-
-
 
 module.exports = router;

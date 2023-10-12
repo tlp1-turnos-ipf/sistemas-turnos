@@ -2,13 +2,8 @@ const tablaTurnos = document.querySelector("#listaTurnos");
 
 // Función para obtener los usaurios
 const obtenerTurnos = async () => {
-  const token = localStorage.getItem("token");
-  console.log(token);
-  const response = await fetch("http://localhost:3000/api/turno", {
-    headers: {
-      Authorization: token,
-    },
-  });
+
+  const response = await fetch("http://localhost:3000/api/lista_turnos/doctor/dia");
 
   if (response.status === 404) {
     return [];
@@ -43,25 +38,20 @@ const mostrarTurnos = (Turnos) => {
     const fecha = turnos.Doctor_Fecha;
 
     //Datos del Doctor
-    const doctor = fecha.Doctor;
-    const especialidad = doctor.Especialidad;
+    const doctor = fecha.Doctor.Usuario;
     const usuarioDoctor = doctor.Usuario;
-    const personaDoctor = usuarioDoctor.Persona;
 
     //Datos del paciente
-    const paciente = turnos.Paciente;
-    const usuarioPaciente = paciente.Usuario;
+    const usuarioPaciente = turnos.Paciente.Usuario;
     const personaPaciente = usuarioPaciente.Persona;
 
     tablaTurnos.innerHTML += `
                     <tr>
                         <td>${personaPaciente.nombres} ${personaPaciente.apellidos}</td>
-                        <td>${personaDoctor.nombres} ${personaDoctor.apellidos}</td>
-                        <td>${especialidad.descripcion_especialidad}</td>
                         <td>${fecha.fecha}</td>
                         <td>
-                            <button onclick=eliminarPaciente(event) class="btn btn-danger btn-sm" data-id="${turnos.turno_id}">Eliminar</button>
-                            <a href="/paciente/editar/${turnos.turno_id}" class="btn btn-warning btn-sm">Editar</a>
+                            <button onclick=eliminarTurno() class="btn btn-danger btn-sm" data-id="${turnos.turno_id}">Atender</button>
+                            <a href="/paciente/editar/${turnos.turno_id}" class="btn btn-warning btn-sm">No asistió</a>
                         </td>
                     </tr>
                 `;
