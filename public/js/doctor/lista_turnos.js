@@ -2,7 +2,6 @@ const tablaTurnos = document.querySelector("#listaTurnos");
 
 // Función para obtener los usaurios
 const obtenerTurnos = async () => {
-
   const response = await fetch("http://localhost:3000/api/lista_turnos/doctor/dia");
 
   if (response.status === 404) {
@@ -25,7 +24,8 @@ const obtenerTurnos = async () => {
 };
 
 const mostrarTurnos = (Turnos) => {
-  if (Turnos.length === 0) {
+  console.log(Turnos);
+  if (Turnos.length === 0 ) {
     tablaTurnos.innerHTML = `
             <tr>
                 <td colspan="5">No hay Turnos</td>
@@ -34,12 +34,12 @@ const mostrarTurnos = (Turnos) => {
   }
 
   Turnos.forEach((turnos) => {
+
     //Datos del horario y fecha
     const fecha = turnos.Doctor_Fecha;
 
     //Datos del Doctor
     const doctor = fecha.Doctor.Usuario;
-    const usuarioDoctor = doctor.Usuario;
 
     //Datos del paciente
     const usuarioPaciente = turnos.Paciente.Usuario;

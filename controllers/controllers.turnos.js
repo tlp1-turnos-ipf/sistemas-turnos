@@ -6,17 +6,17 @@ const Usuario = require("../models/Usuario");
 const Persona = require("../models/Persona");
 const Paciente = require("../models/Paciente");
 const Especialidad = require("../models/Especialidad");
-const jwt = require('jsonwebtoken'); 
+const jwt = require("jsonwebtoken");
 const { userInfo } = require("os");
 
-// Controlador para obtener todos los turnos
+//Obtener todos los turnos del dia del doctor
 turnosCtrl.obtenerTurnos = async (req, res) => {
   try {
     const turnos = await Turno.findAll({
       where: {
         estado_turno: 1,
       },
-
+      whereIn: ["estado_turno", [1]],
       include: [
         {
           model: DoctorFecha,
@@ -107,30 +107,32 @@ turnosCtrl.crearTurno = async (req, res) => {
 
 //Obtener todos los turnos del dia del doctor
 turnosCtrl.obtenerTurnosDelDia = async (req, res) => {
-  
+  const usuario_id = req.cookies.id;
+
   try {
     const turnos = await Turno.findAll({
       where: {
         estado_turno: true,
       },
-
       include: [
         {
           model: DoctorFecha,
+          attributes: ["doctor_fecha_id", "doctor_id", "fecha"],
           include: {
             model: Doctor,
+            where: {
+              usuario_id,
+            },
             include: [
               {
-                model: Especialidad,
-              },
-              {
                 model: Usuario,
-                where: {
-                  usuario_id: 7
-                },
+
                 include: {
                   model: Persona,
                 },
+              },
+              {
+                model: Especialidad,
               },
             ],
           },
@@ -163,6 +165,5 @@ turnosCtrl.obtenerTurnosDelDia = async (req, res) => {
     });
   }
 };
-
 
 module.exports = turnosCtrl;

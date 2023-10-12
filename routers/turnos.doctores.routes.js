@@ -9,7 +9,7 @@ router.get("/doctor", (req, res) => {
 
 //Ir a la lista de los turnos
 router.get("/doctor/turnos/dia", (req, res) => {
-  res.render("doctor/lista_turnos");
+  res.render("doctor/lista_turnos", {id: req.cookies.id});
 });
 
 // =====================================================
