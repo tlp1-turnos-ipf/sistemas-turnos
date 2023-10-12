@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const cookieParser = require("cookie-parser");
 const Usuario = require("../models/Usuario");
 const jwt = require("jsonwebtoken");
 const { generarJWT } = require("../helpers/generar_jwt");
@@ -35,12 +36,22 @@ authCtrl.ctrlLoginUser = async (req, res) => {
 
     // Generar el JWT
     const token = await generarJWT({ user: user.usuario_id });
+    console.log(token)
+    const cookiesOptions = {
+      expires: new Date(Date.now() + process.env.CookiesExpireIn * 24 * 60 * 1000),
+      httpOnly: true,
+      sameSite: 'strict'
+    };
 
     if (!token) {
       return res.status(400).json({
         message: "No tiene una sesion iniciada",
       });
     }
+
+    res.cookie("token", token, cookiesOptions);
+    res.cookie("id", user.usuario_id)
+    res.cookie("rol", user.rol)
 
     res.status(200).json(token);
   } catch (error) {
@@ -53,10 +64,11 @@ authCtrl.ctrlLoginUser = async (req, res) => {
 
 // es un controlador que voy a usar para validar si el token es válido.
 authCtrl.ctrlGetUserInfoByToken = async (req, res) => {
-  const token = req.headers.authorization;
+  const token = req.cookies.token;
+  console.log(token)
 
   try {
-    if (!token) {
+    if (token) {
       console.log("No hay token");
       return null;
     }

@@ -1,6 +1,5 @@
 const router = require("express").Router();
-const { validateSchema } = require('./../middlewares/validar_schema');
-const { validatePerson } = require('./../models/validation');
+
 const { ctrlLoginUser, ctrlGetUserInfoByToken, deleteToken } = require("../controllers/controllers.auth");
 const { crearPersona } = require("../controllers/controllers.persona");
 // =====================================================
@@ -25,7 +24,5 @@ router.post("/auth/login", ctrlLoginUser);
 
 //Buscar Info del Token
 router.get('/auth/token', ctrlGetUserInfoByToken)
-
-
 
 module.exports = router;
