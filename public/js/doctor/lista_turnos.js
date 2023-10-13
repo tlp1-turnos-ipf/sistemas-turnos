@@ -34,7 +34,6 @@ const mostrarTurnos = (Turnos) => {
   }
 
   Turnos.forEach((turnos) => {
-
     //Datos del horario y fecha
     const fecha = turnos.Doctor_Fecha;
 

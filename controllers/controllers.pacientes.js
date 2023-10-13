@@ -1,6 +1,7 @@
 const pacientesCtrl = {};
 const bcrypt = require("bcrypt");
 const Persona = require("../models/Persona");
+const Rol = require("../models/Rol");
 const Usuario = require("../models/Usuario");
 const Paciente = require("../models/Paciente");
 const Sequelize = require("sequelize");
@@ -12,6 +13,13 @@ pacientesCtrl.crearPaciente = async (req, res) => {
   try {
     //Obtenemos el id de la ultima persona creada
     const ultimoIdUsuario = await Usuario.max("usuario_id");
+
+    const roles = await Rol.findAll();
+
+    if(!roles) {
+      return res.status(400).json({message:"Primero es necesario que cargue los roles"})
+    }
+
 
     //Se guardan los datos en la bd
     const nuevoUsuario = await Paciente.create({

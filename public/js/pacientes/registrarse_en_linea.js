@@ -48,6 +48,15 @@ formNuevoPaciente.addEventListener("submit", async (e) => {
     }
   );
 
+  if (responseIdPersona.status !== 201 && responseIdPersona.status !== 200) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: respToJson.message,
+    });
+    return;
+  }
+
   //Crea el usuario
   const responseUsuario = await fetch(
     "http://localhost:3000/api/usuario/paciente",

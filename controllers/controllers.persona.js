@@ -1,6 +1,7 @@
 const Ctrl = {};
 const Persona = require("../models/Persona");
 const Usuario = require("../models/Usuario");
+const Rol = require("../models/Rol");
 const Paciente = require("../models/Paciente");
 
 // Controlador para crear nuevo Persona
@@ -30,6 +31,14 @@ Ctrl.crearPersona = async (req, res) => {
         status: 400,
         message: "La Persona ya existe",
       };
+    }
+
+    const roles = await Rol.findAll();
+    console.log(roles);
+    if (!roles) {
+      return res
+        .status(400)
+        .json({ message: "Primero es necesario que cargue los roles" });
     }
 
     //Verifica si existe el usuario

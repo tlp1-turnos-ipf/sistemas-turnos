@@ -117,16 +117,14 @@ turnosCtrl.obtenerTurnosDelDia = async (req, res) => {
       include: [
         {
           model: DoctorFecha,
-          attributes: ["doctor_fecha_id", "doctor_id", "fecha"],
           include: {
             model: Doctor,
-            where: {
-              usuario_id,
-            },
             include: [
               {
                 model: Usuario,
-
+                where: {
+                  usuario_id,
+                },
                 include: {
                   model: Persona,
                 },
@@ -156,6 +154,7 @@ turnosCtrl.obtenerTurnosDelDia = async (req, res) => {
         message: "No se encontraron turnos",
       };
     }
+    console.log(turnos.length)
 
     return res.status(200).json(turnos);
   } catch (error) {
