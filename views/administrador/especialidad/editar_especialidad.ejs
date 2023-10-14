@@ -3,10 +3,10 @@
   <div class="p-5" style="height: 1px; background: rgb(0, 4, 41)"></div>
 
   <div class="container px-4 py-1">
-    <form class="p-1 p-md-4" id="formNuevaEspecialidad">
+    <form class="p-1 p-md-4" id="formEditarEspecialidad" data-id="<%= id %>">
       <div class="m-2 fw-bold d-flex justify-content-center border-bottom">
         <p class="fs-5">
-          <img src="/img/inicio_sesion/logo.png" alt="" width="30px" />Agregar
+          <img src="/img/inicio_sesion/logo.png" alt="" width="30px" />Editar
           Especialidad
         </p>
       </div>
@@ -16,14 +16,13 @@
             type="text"
             class="form-control border-secondary"
             id="descripcion_especialidad"
-            placeholder="juan"
-            name="nombre"
+            name="descripcion_especialidad"
+            value=""
             required
           />
-          <label for="nombre">Nombre especialidad</label>
+          <label for="descripcion_especialidad">Nombre especialidad</label>
         </div>
-        
-        
+
         <hr class="my-4" />
       </div>
       <div class="d-flex justify-content-center">
@@ -40,6 +39,6 @@
 </section>
 
 <script src="/js/pantalla_principal.js"></script>
-<script src="/js/administrador/especialidad/crear.js"></script>
+<script src="/js/administrador/especialidad/editar.js"></script>
 
 <%- include("../../partials/admin/footer_admin.ejs") -%>

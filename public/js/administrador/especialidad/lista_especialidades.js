@@ -47,12 +47,12 @@ const mostrarEspecialidades = (Especialidades) => {
   });
 };
 
-// Programar el evento cuando se carga toda la vista (sin los datos de usuarios)
+// Programar el evento cuando se carga toda la vista 
 document.addEventListener("DOMContentLoaded", async () => {
   console.log("DOM Cargado");
 
   const especialidades = await obtenerEspecialidades();
 
-  // Mostrar Pacientes en la tabla
+  // Mostrar especialidades en la tabla
   mostrarEspecialidades(especialidades);
 });

@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Se obtienen los datos de la respuesta (fetch)
     const data = await response.json();
-    console.log(data);
 
     nombres.value = data.nombres;
     apellidos.value = data.apellidos;

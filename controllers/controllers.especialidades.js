@@ -1,14 +1,10 @@
 const EspecialidadesCtrl = {};
-const bcrypt = require("bcrypt");
-const Persona = require("../models/Persona");
-const Usuario = require("../models/Usuario");
 const Especialidad = require("../models/Especialidad");
-const Sequelize = require("sequelize");
 
-// Controlador para obtener todos los Especialidades activos
+// Controlador para obtener todos las Especialidades
 EspecialidadesCtrl.obtenerEspecialidades = async (req, res) => {
   try {
-    const Especialidades = await Especialidad.findAll();
+    const Especialidades = await Especialidad.findAll()
 
     if (!Especialidades) {
       throw {
@@ -22,6 +18,28 @@ EspecialidadesCtrl.obtenerEspecialidades = async (req, res) => {
     console.log(error);
     return res.status(error.status || 500).json({
       message: error.message || "Error al obtener los Especialidades",
+    });
+  }
+};
+
+// Controlador para obtener especialidad por id
+EspecialidadesCtrl.obtenerEspecialidadPorId = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const especialidad = await Especialidad.findByPk(id)
+
+    if (!especialidad) {
+      throw {
+        status: 404,
+        message: "No se encontró la especialidad",
+      };
+    }
+
+    return res.status(200).json(especialidad);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Error interno del Servidor",
     });
   }
 };
@@ -51,5 +69,43 @@ EspecialidadesCtrl.crearEspecialidad = async (req, res) => {
     });
   }
 };
+
+//Modificar especialidad
+EspecialidadesCtrl.updateEspecialidad = async (req, res) => {
+  const { id } = req.params;
+
+  const { descripcion_especialidad } = req.body;
+
+  try {
+    const especialidadUpdate = await Especialidad.update(
+      {
+        descripcion_especialidad
+      },
+      {
+        where: {
+          especialidad_id: id,
+        },
+      }
+    );
+
+    if (!especialidadUpdate) {
+      throw {
+        status: 400,
+        message: "No se pudo actualizar la especialidad",
+      };
+    }
+
+    return res.json({
+      message: "Actualizado correctamente",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message:
+       "Error interno del servidor",
+    });
+  }
+};
+
 
 module.exports = EspecialidadesCtrl;

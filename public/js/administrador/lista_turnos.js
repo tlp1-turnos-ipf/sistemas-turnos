@@ -2,13 +2,7 @@ const tablaTurnos = document.querySelector("#listaTurnos");
 
 // Función para obtener los usaurios
 const obtenerTurnos = async () => {
-  const token = localStorage.getItem("token");
-  console.log(token);
-  const response = await fetch("http://localhost:3000/api/turno", {
-    headers: {
-      Authorization: token,
-    },
-  });
+  const response = await fetch("http://localhost:3000/api/turno");
 
   if (response.status === 404) {
     return [];
@@ -53,16 +47,23 @@ const mostrarTurnos = (Turnos) => {
     const usuarioPaciente = paciente.Usuario;
     const personaPaciente = usuarioPaciente.Persona;
 
+    let botonesHtml = ""; // Esta variable almacenará los botones HTML
+
+    if (!usuarioDoctor.estado) {
+      botonesHtml = `<td><a href="/reprogramar/turno/${turnos.turno_id}" class="btn btn-danger btn-sm">Reprogramar</a></td>`;
+    } else {
+      botonesHtml = `<td><a class="btn btn-warning btn-sm px-4 text-white">Editar</a></td>`;
+    }
+
     tablaTurnos.innerHTML += `
                     <tr>
                         <td>${personaPaciente.nombres} ${personaPaciente.apellidos}</td>
                         <td>${personaDoctor.nombres} ${personaDoctor.apellidos}</td>
                         <td>${especialidad.descripcion_especialidad}</td>
                         <td>${fecha.fecha}</td>
-                        <td>
-                            <button onclick=eliminarPaciente(event) class="btn btn-danger btn-sm" data-id="${turnos.turno_id}">Eliminar</button>
-                            <a href="/paciente/editar/${turnos.turno_id}" class="btn btn-warning btn-sm">Editar</a>
-                        </td>
+                        
+                        ${botonesHtml}
+                        
                     </tr>
                 `;
   });

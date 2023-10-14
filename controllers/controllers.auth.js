@@ -18,12 +18,12 @@ authCtrl.ctrlLoginUser = async (req, res) => {
       });
     }
 
-    // Verificar si el usuario está activo
-    if (!user.estado) {
-      return res.status(400).json({
-        message: "El usuario no está activo",
-      });
-    }
+    // // Verificar si el usuario está activo
+    // if (!user.estado) {
+    //   return res.status(400).json({
+    //     message: "El usuario no está activo",
+    //   });
+    // }
 
     // Verificar la contraseña
     const passwordValido = await bcrypt.compare(password, user.password);
