@@ -16,6 +16,7 @@ formNuevoPaciente.addEventListener("submit", async (e) => {
   const email = document.querySelector("#email").value;
   const password = document.querySelector("#password").value;
   const confirmPassword = document.querySelector("#confirmPassword").value;
+  const rol = 3;
 
   //Verifica que las contraseñas coincidan
   if (password !== confirmPassword) {
@@ -27,7 +28,7 @@ formNuevoPaciente.addEventListener("submit", async (e) => {
     return;
   }
 
-  //Se crea la persona
+  // SE CREA LA PERSONA
   const responseIdPersona = await fetch(
     "http://localhost:3000/api/persona/registro",
     {
@@ -48,18 +49,20 @@ formNuevoPaciente.addEventListener("submit", async (e) => {
     }
   );
 
-  if (responseIdPersona.status !== 201 && responseIdPersona.status !== 200) {
+  const respToJsonPersona = await responseIdPersona.json();
+
+  if (respToJsonPersona.status !== 201 && respToJsonPersona.status !== 200) {
     Swal.fire({
       icon: "error",
       title: "Oops...",
-      text: respToJson.message,
+      text: respToJsonPersona.message,
     });
     return;
   }
 
-  //Crea el usuario
+  // SE CREA EL USUARIO
   const responseUsuario = await fetch(
-    "http://localhost:3000/api/usuario/paciente",
+    "http://localhost:3000/api/usuario",
     {
       method: "POST",
       headers: {
@@ -69,9 +72,21 @@ formNuevoPaciente.addEventListener("submit", async (e) => {
         nombre_usuario,
         email,
         password,
+        rol
       }),
     }
   );
+
+  const respToJsonUsuario = await responseUsuario.json();
+
+  if (respToJsonUsuario.status !== 201 && respToJsonUsuario.status !== 200) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: respToJsonUsuario.message,
+    });
+    return;
+  }
 
   //Crea al paciente
   const responsePaciente = await fetch("http://localhost:3000/api/paciente", {
@@ -97,7 +112,7 @@ formNuevoPaciente.addEventListener("submit", async (e) => {
 
   Swal.fire({
     icon: "success",
-    title: "Paciente creado",
+    title: "Exitoso",
     text: respToJson.message,
   });
 

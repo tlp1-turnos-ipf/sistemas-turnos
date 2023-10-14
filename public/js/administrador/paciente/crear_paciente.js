@@ -16,7 +16,9 @@ formNuevoPaciente.addEventListener("submit", async (e) => {
   const email = document.querySelector("#email").value;
   const password = document.querySelector("#password").value;
   const confirmPassword = document.querySelector("#confirmPassword").value;
+  const rol = 3;
 
+  //Verifica que las contraseñas coincidan
   if (password !== confirmPassword) {
     Swal.fire({
       icon: "error",
@@ -26,6 +28,7 @@ formNuevoPaciente.addEventListener("submit", async (e) => {
     return;
   }
 
+  // SE CREA LA PERSONA
   const responseIdPersona = await fetch(
     "http://localhost:3000/api/persona/registro",
     {
@@ -46,17 +49,44 @@ formNuevoPaciente.addEventListener("submit", async (e) => {
     }
   );
 
-  const responseUsuario = await fetch("http://localhost:3000/api/usuario/paciente", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      nombre_usuario,
-      email,
-      password,
-    }),
-  });
+  const respToJsonPersona = await responseIdPersona.json();
+
+  if (respToJsonPersona.status !== 201 && respToJsonPersona.status !== 200) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: respToJsonPersona.message,
+    });
+    return;
+  }
+
+  // SE CREA EL USUARIO
+  const responseUsuario = await fetch(
+    "http://localhost:3000/api/usuario",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nombre_usuario,
+        email,
+        password,
+        rol
+      }),
+    }
+  );
+
+  const respToJsonUsuario = await responseUsuario.json();
+
+  if (respToJsonUsuario.status !== 201 && respToJsonUsuario.status !== 200) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: respToJsonUsuario.message,
+    });
+    return;
+  }
 
   //Crea al paciente
   const responsePaciente = await fetch("http://localhost:3000/api/paciente", {
@@ -79,6 +109,14 @@ formNuevoPaciente.addEventListener("submit", async (e) => {
     });
     return;
   }
+
+  Swal.fire({
+    icon: "success",
+    title: "Exitoso",
+    text: respToJson.message,
+  });
+
+  console.log(respToJson.message);
 
   formNuevoPaciente.reset();
 

@@ -13,15 +13,6 @@ doctoresCtrl.crearDoctor = async (req, res) => {
   const { especialidad } = req.body;
 
   try {
-    //Obtenemos el ultimo id de especialidad
-    const ultimoIdEspecialidad = await Especialidad.findOne();
-    //En caso que haya errores al guardar un Doctor
-    if (!ultimoIdEspecialidad) {
-      throw {
-        message: "Primero cargue una especialidad",
-      };
-    }
-
     //Obtenemos el id de la ultima persona creada
     const ultimoIdUsuario = await Usuario.max("usuario_id");
 
@@ -43,7 +34,7 @@ doctoresCtrl.crearDoctor = async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(error.status || 500).json({
-      message: "Error al crear el Doctor",
+      message: "Error interno en el servidor",
     });
   }
 };

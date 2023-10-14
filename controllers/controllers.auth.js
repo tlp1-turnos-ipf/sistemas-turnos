@@ -52,6 +52,7 @@ authCtrl.ctrlLoginUser = async (req, res) => {
     res.cookie("token", token, cookiesOptions);
     res.cookie("id", user.usuario_id)
     res.cookie("rol", user.rol)
+    res.cookie("name", user.nombre_usuario)
 
     res.status(200).json(token);
   } catch (error) {
