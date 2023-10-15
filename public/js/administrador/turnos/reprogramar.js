@@ -126,33 +126,52 @@ const mostrarHorarios = (turnos) => {
   const personaDoctor = usuarioDoctor.Persona;
 
   ListaHorario.innerHTML += `
-  <option>
-    <div class="card m-5">
-      <div class="card-header">Fecha</div>
-      <div class="card-body">
-        <blockquote class="blockquote mb-0">
-          <p>Horario inicio - Horario Fin</p>
-          <footer class="blockquote-footer">
-            <button>E</button>
+  
+    <div class="card m-5 border-primary">
+      <div class="card-header border-primary">27/11/20023</div>
+      <div class="card-body border-primary">
+        <blockquote class="blockquote mb-0 d-flex flex-wrap justify-content-around">
+          <p>18:30hs - 20:00hs <span class="fw-bold">Turno Tarde</span></p>
+          <footer class="">
+            <button class="btn btn-sm btn-primary">Reprogramar</button>
           </footer>
         </blockquote>
       </div>
     </div>
-  </option>
-  <option>
-    <div class="card m-5">
-      <div class="card-header">Fecha</div>
-      <div class="card-body">
-        <blockquote class="blockquote mb-0">
-          <p>Horario inicio - Horario Fin</p>
-          <footer class="blockquote-footer">
-            <button>E</button>
+    <div class="card m-5 border-primary">
+      <div class="card-header border-primary">27/11/20023</div>
+      <div class="card-body border-primary">
+        <blockquote class="blockquote mb-0 d-flex flex-wrap justify-content-around">
+          <p>18:30hs - 20:00hs <span class="fw-bold">Turno Tarde</span></p>
+          <footer class="">
+            <button class="btn btn-sm btn-primary">Reprogramar</button>
           </footer>
         </blockquote>
       </div>
     </div>
-  </option>
-    
+    <div class="card m-5 border-primary">
+      <div class="card-header border-primary">27/11/20023</div>
+      <div class="card-body border-primary">
+        <blockquote class="blockquote mb-0 d-flex flex-wrap justify-content-around">
+          <p>18:30hs - 20:00hs <span class="fw-bold">Turno Tarde</span></p>
+          <footer class="">
+            <button class="btn btn-sm btn-primary">Reprogramar</button>
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+    <div class="card m-5 border-primary">
+      <div class="card-header border-primary">27/11/20023</div>
+      <div class="card-body border-primary">
+        <blockquote class="blockquote mb-0 d-flex flex-wrap justify-content-around">
+          <p>18:30hs - 20:00hs <span class="fw-bold">Turno Tarde</span></p>
+          <footer class="">
+            <button class="btn btn-sm btn-primary">Reprogramar</button>
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+  
     `;
 };
 

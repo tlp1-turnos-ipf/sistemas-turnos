@@ -158,12 +158,12 @@ turnosCtrl.crearTurno = async (req, res) => {
 //Reprogramar Turno
 turnosCtrl.reprogramarTurno = async (req, res) => {
   const { id } = req.params;
-  const {doctor_fecha_id} = req.body;
+  const { doctor_fecha_id } = req.body;
 
   try {
     const turnoReprogramado = await Turno.update(
       {
-        doctor_fecha_id
+        doctor_fecha_id,
       },
       {
         where: {
@@ -185,70 +185,7 @@ turnosCtrl.reprogramarTurno = async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).json({
-      message:
-       "Error interno del servidor",
-    });
-  }
-};
-
-
-
-//Obtener todos los turnos del dia del doctor
-turnosCtrl.obtenerTurnosDelDia = async (req, res) => {
-  const usuario_id = req.cookies.id;
-
-  try {
-    const turnos = await Turno.findAll({
-      where: {
-        estado_turno: true,
-      },
-      include: [
-        {
-          model: DoctorFecha,
-          include: {
-            model: Doctor,
-            include: [
-              {
-                model: Usuario,
-                where: {
-                  usuario_id,
-                },
-                include: {
-                  model: Persona,
-                },
-              },
-              {
-                model: Especialidad,
-              },
-            ],
-          },
-        },
-        {
-          model: Paciente,
-          include: {
-            model: Usuario,
-
-            include: {
-              model: Persona,
-            },
-          },
-        },
-      ],
-    });
-
-    if (!turnos) {
-      throw {
-        status: 404,
-        message: "No se encontraron turnos",
-      };
-    }
-    console.log(turnos.length);
-
-    return res.status(200).json(turnos);
-  } catch (error) {
-    console.log(error);
-    return res.status(error.status || 500).json({
-      message: error.message || "Error al obtener los turnos",
+      message: "Error interno del servidor",
     });
   }
 };

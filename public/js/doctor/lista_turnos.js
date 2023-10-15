@@ -1,8 +1,10 @@
 const tablaTurnos = document.querySelector("#listaTurnos");
+const idUser = parseInt(tablaTurnos.dataset.id)
+console.log(idUser)
 
 // Función para obtener los usaurios
 const obtenerTurnos = async () => {
-  const response = await fetch("http://localhost:3000/api/lista_turnos/doctor/dia");
+  const response = await fetch("http://localhost:3000/api/turno");
 
   if (response.status === 404) {
     return [];
@@ -38,22 +40,23 @@ const mostrarTurnos = (Turnos) => {
     const fecha = turnos.Doctor_Fecha;
 
     //Datos del Doctor
-    const doctor = fecha.Doctor.Usuario;
+    const doctorUsuario = fecha.Doctor.Usuario;
 
     //Datos del paciente
     const usuarioPaciente = turnos.Paciente.Usuario;
     const personaPaciente = usuarioPaciente.Persona;
 
-    tablaTurnos.innerHTML += `
-                    <tr>
-                        <td>${personaPaciente.nombres} ${personaPaciente.apellidos}</td>
-                        <td>${fecha.fecha}</td>
-                        <td>
-                            <button onclick=eliminarTurno() class="btn btn-danger btn-sm" data-id="${turnos.turno_id}">Atender</button>
-                            <a href="/paciente/editar/${turnos.turno_id}" class="btn btn-warning btn-sm">No asistió</a>
-                        </td>
-                    </tr>
-                `;
+    if(doctorUsuario.usuario_id === idUser)
+      tablaTurnos.innerHTML += `
+                      <tr>
+                          <td>${personaPaciente.nombres} ${personaPaciente.apellidos}</td>
+                          <td>${fecha.fecha}</td>
+                          <td>
+                              <button onclick=eliminarTurno() class="btn btn-danger btn-sm" data-id="${turnos.turno_id}">Atender</button>
+                              <a href="/paciente/editar/${turnos.turno_id}" class="btn btn-warning btn-sm">No asistió</a>
+                          </td>
+                      </tr>
+                  `;
   });
 };
 
