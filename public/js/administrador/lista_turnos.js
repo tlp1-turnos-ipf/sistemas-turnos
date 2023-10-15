@@ -55,6 +55,7 @@ const mostrarTurnos = (Turnos) => {
       botonesHtml = `<td><a class="btn btn-warning btn-sm px-4 text-white">Editar</a></td>`;
     }
 
+    if(turnos.estado_turno === true)
     tablaTurnos.innerHTML += `
                     <tr>
                         <td>${personaPaciente.nombres} ${personaPaciente.apellidos}</td>

@@ -40,6 +40,6 @@ formNuevo.addEventListener("submit", async (e) => {
   formNuevo.reset();
 
   setTimeout(() => {
-    window.location.href = `/doctor/turno/atender/${turnoId}`;
+    window.location.href = `/doctor/turno/atender/${turnoId}/:idDevolucion`;
   }, 2000);
 });

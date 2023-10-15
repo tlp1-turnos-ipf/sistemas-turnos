@@ -11,9 +11,6 @@ const Especialidad = require("../models/Especialidad");
 turnosCtrl.obtenerTurnos = async (req, res) => {
   try {
     const turnos = await Turno.findAll({
-      where: {
-        estado_turno: 1,
-      },
       include: [
         {
           model: DoctorFecha,
@@ -167,7 +164,7 @@ turnosCtrl.reprogramarTurno = async (req, res) => {
       },
       {
         where: {
-          turnos_id: id,
+          turno_id: id,
         },
       }
     );
@@ -181,6 +178,40 @@ turnosCtrl.reprogramarTurno = async (req, res) => {
 
     return res.json({
       message: "Actualizado correctamente",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Error interno del servidor",
+    });
+  }
+};
+
+//Reprogramar Turno
+turnosCtrl.eliminarTurno = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const turnoEliminado = await Turno.update(
+      {
+        estado_turno: false,
+      },
+      {
+        where: {
+          turno_id: id,
+        },
+      }
+    );
+
+    if (!turnoEliminado) {
+      throw {
+        status: 400,
+        message: "No se pudo eliminar",
+      };
+    }
+
+    return res.json({
+      message: "Eliminado correctamente",
     });
   } catch (error) {
     console.log(error);

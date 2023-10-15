@@ -1,6 +1,14 @@
 const tablaTurnos = document.querySelector("#listaTurnos");
-const idUser = parseInt(tablaTurnos.dataset.id)
-console.log(idUser)
+const idUser = parseInt(tablaTurnos.dataset.id);
+
+const today = new Date();
+const year = today.getFullYear();
+const month = String(today.getMonth() + 1).padStart(2, "0"); // El mes es 0-indexado, por lo que le sumamos 1 y lo formateamos
+const day = String(today.getDate()).padStart(2, "0");
+
+const formattedDate = `${year}-${month}-${day}`;
+
+console.log(formattedDate);
 
 // Función para obtener los usaurios
 const obtenerTurnos = async () => {
@@ -27,7 +35,7 @@ const obtenerTurnos = async () => {
 
 const mostrarTurnos = (Turnos) => {
   console.log(Turnos);
-  if (Turnos.length === 0 ) {
+  if (Turnos.length === 0) {
     tablaTurnos.innerHTML = `
             <tr>
                 <td colspan="5">No hay Turnos</td>
@@ -46,17 +54,19 @@ const mostrarTurnos = (Turnos) => {
     const usuarioPaciente = turnos.Paciente.Usuario;
     const personaPaciente = usuarioPaciente.Persona;
 
-    if(doctorUsuario.usuario_id === idUser)
+    if (doctorUsuario.usuario_id === idUser && fecha.fecha === formattedDate && turnos.estado_turno === true) {
       tablaTurnos.innerHTML += `
-                      <tr>
-                          <td>${personaPaciente.nombres} ${personaPaciente.apellidos}</td>
-                          <td>${fecha.fecha}</td>
-                          <td>
-                              <a href="/doctor/turno/atender/${turnos.turno_id}" class="btn btn-warning btn-sm">Atender</a>
-                              <button onclick=eliminarTurno() class="btn btn-primary btn-sm" data-id="${turnos.turno_id}">No asistió</button>
-                          </td>
-                      </tr>
-                  `;
+      <tr>
+          <td>${personaPaciente.nombres} ${personaPaciente.apellidos}</td>
+          <td>Turno ${fecha.descripcion}</td>
+          <td>${fecha.horario_inicio}</td>
+          <td>
+              <a href="/doctor/turno/atender/${turnos.turno_id}/:idDevolucion" class="btn btn-warning btn-sm">Atender</a>
+              <button onclick=eliminarRegistro(event) class="btn btn-primary btn-sm" data-id="${turnos.turno_id}">No asistió</button>
+          </td>
+      </tr>
+  `;
+    }
   });
 };
 
@@ -69,3 +79,35 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Mostrar Turnos en la tabla
   mostrarTurnos(turnos);
 });
+
+//Eliminar Turno
+const eliminar = async (event) => {
+  //Obtengo el ID
+  const id = event.target.dataset.id;
+  console.log(id);
+
+  try {
+    const res = await fetch(`http://localhost:3000/api/turno/${id}`, {
+      method: "DELETE",
+    });
+
+    const data = await res.json();
+
+    Swal.fire({
+      icon: "success",
+      title: "Excelente",
+      text: data.message,
+    });
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 1500);
+  } catch (error) {
+    console.log(error);
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: error.message,
+    });
+  }
+};

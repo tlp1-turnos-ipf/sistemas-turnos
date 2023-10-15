@@ -4,7 +4,8 @@ const {
   crearTurno,
   obtenerTurnos,
   obtenerTurnoPorId,
-  reprogramarTurno
+  reprogramarTurno,
+  eliminarTurno
 } = require("../controllers/controllers.turnos");
 
 //Ir a la pantalla de los turnos
@@ -36,7 +37,10 @@ router.get("/api/turno/reprogramar/:id", obtenerTurnoPorId);
 //Obtener todos los turnos
 router.get("/api/turno", obtenerTurnos);
 
-//Actualizar turno
+//Eliminar turno
+router.delete("/api/turno/:id", eliminarTurno);
+
+//Reprogramar turno
 router.put("/api/turno/actualizar/:id", reprogramarTurno)
 
 module.exports = router;

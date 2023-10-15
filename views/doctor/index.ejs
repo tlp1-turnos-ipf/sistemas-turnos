@@ -1,7 +1,7 @@
 <%- include("../partials/admin/header_administrador.ejs") -%>
 
 <section class="w-100" >
-  <div class="p-5 fw-bold fs-5 text-white" style="height: 1px; background: rgb(0, 4, 41)">Paciente</div>
+  <div class="p-5 fw-bold fs-5 text-white" style="height: 1px; background: rgb(0, 4, 41)"><%= user %></div>
 
   <div class="px-5">
     <h3 class="fw-bold my-5" style="font-family:Georgia, 'Times New Roman', Times, serif">Navegación de Pantallas</h3>
@@ -31,7 +31,7 @@
             width="160px"
             style="position: absolute; top: -20px; left: -50px"
           />
-          <a href="/lista_doctores" class="btn">
+          <a href="/doctor/turnos/completo" class="btn">
             <div class="card-body">
               <p class="card-title text-center">
                 Listado de Turnos Completo

@@ -1,7 +1,7 @@
 <%- include("../partials/admin/header_administrador.ejs") -%>
 
 <section class="w-100" style="background-color: rgb(240, 240, 240)">
-  <div class="p-5" style="height: 1px; background: rgb(0, 4, 41)"></div>
+  <div class="p-5 fs-5 text-white fw-bold" style="height: 1px; background: rgb(0, 4, 41)">Listado de Turnos del Día</div>
 
   <div
     class="my-3 shadow p-3 m-5 bg-body rounded border d-flex justify-content-between"
@@ -32,6 +32,7 @@
       <thead class="table-dark">
         <tr>
           <th scope="col">Paciente</th>
+          <th scope="col">Turno</th>
           <th scope="col">Horario</th>
           <th scope="col" colspan="2">Funciones</th>
         </tr>
@@ -46,5 +47,6 @@
 
 <script src="/js/pantalla_principal.js"></script>
 <script src="/js/doctor/lista_turnos.js"></script>
+<script src="/js/alerta.js"></script>
 
 <%- include("../partials/admin/footer_admin.ejs") -%>
