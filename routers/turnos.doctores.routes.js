@@ -10,6 +10,12 @@ router.get("/doctor/turnos/dia", (req, res) => {
   res.render("doctor/lista_turnos", {idUser: req.cookies.id});
 });
 
+//Ir a la lista de los turnos
+router.get("/doctor/turno/atender/:id", (req, res) => {
+  const {id} = req.params;
+  res.render("doctor/atender_paciente",{user: req.cookies.name, idTurno: id});
+});
+
 // =====================================================
 //         Rutas gestionar Doctores
 // =====================================================
