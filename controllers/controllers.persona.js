@@ -2,6 +2,7 @@ const Ctrl = {};
 const Persona = require("../models/Persona");
 const Usuario = require("../models/Usuario");
 const Rol = require("../models/Rol");
+const Especialidad = require("../models/Especialidad");
 const Paciente = require("../models/Paciente");
 
 // Controlador para crear nuevo Persona
@@ -31,6 +32,14 @@ Ctrl.crearPersona = async (req, res) => {
       return res
         .status(400)
         .json({ message: "Primero es necesario que cargue los roles" });
+    }
+
+    const especialidades = await Especialidad.findAll();
+
+    if (!especialidades) {
+      return res
+        .status(400)
+        .json({ message: "Primero es necesario que las especialidades" });
     }
 
     //Verifica si existe el usuario
