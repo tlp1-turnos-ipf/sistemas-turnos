@@ -1,5 +1,5 @@
 const formNuevo = document.querySelector("#crearDevolucion");
-const turnoId = parseInt(formNuevo.dataset.id)
+const turnoId = parseInt(formNuevo.dataset.id);
 formNuevo.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -16,7 +16,7 @@ formNuevo.addEventListener("submit", async (e) => {
     body: JSON.stringify({
       titulo_turno,
       descripcion_turno,
-      turno_id
+      turno_id,
     }),
   });
 
@@ -40,6 +40,6 @@ formNuevo.addEventListener("submit", async (e) => {
   formNuevo.reset();
 
   setTimeout(() => {
-    window.location.href = `/doctor/turno/atender/${turnoId}/:idDevolucion`;
+    window.location.href = `/doctor/turno/atender/${turnoId}/:idDevolucion/${pacienteID}`;
   }, 2000);
 });

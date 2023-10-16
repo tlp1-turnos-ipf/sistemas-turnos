@@ -70,7 +70,7 @@ if (formEditar) {
         timer: 1500,
       });
       setTimeout(() => {
-        window.location.href = `/doctor/turno/atender/${turnoId}/:idDevolucion`;
+        window.location.href = `/doctor/turno/atender/${turnoID}/:idDevolucion/${pacienteID}`;
       }, 1500);
     } catch (error) {
       Swal.fire({

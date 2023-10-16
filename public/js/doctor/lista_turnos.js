@@ -8,7 +8,6 @@ const day = String(today.getDate()).padStart(2, "0");
 
 const formattedDate = `${year}-${month}-${day}`;
 
-console.log(formattedDate);
 
 // Función para obtener los usaurios
 const obtenerTurnos = async () => {
@@ -61,7 +60,7 @@ const mostrarTurnos = (Turnos) => {
           <td>Turno ${fecha.descripcion}</td>
           <td>${fecha.horario_inicio}</td>
           <td>
-              <a href="/doctor/turno/atender/${turnos.turno_id}/:idDevolucion" class="btn btn-warning btn-sm">Atender</a>
+              <a href="/doctor/turno/atender/${turnos.turno_id}/:idDevolucion/${personaPaciente.persona_id}" class="btn btn-warning btn-sm">Atender</a>
               <button onclick=eliminarRegistro(event) class="btn btn-primary btn-sm" data-id="${turnos.turno_id}">No asistió</button>
           </td>
       </tr>

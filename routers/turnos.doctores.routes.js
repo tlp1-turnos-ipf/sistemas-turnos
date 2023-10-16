@@ -16,9 +16,9 @@ router.get("/doctor/turnos/completo", (req, res) => {
 });
 
 //Ir a la lista de los turnos
-router.get("/doctor/turno/atender/:id/:idDevolucion", (req, res) => {
-  const {id, idDevolucion} = req.params;
-  res.render("doctor/atender_paciente",{user: req.cookies.name, idTurno: id, idDevolucion});
+router.get("/doctor/turno/atender/:id/:idDevolucion/:idPaciente", (req, res) => {
+  const {id, idDevolucion, idPaciente} = req.params;
+  res.render("doctor/atender_paciente",{user: req.cookies.name, idTurno: id, idDevolucion, idPaciente: idPaciente});
 });
 
 // =====================================================

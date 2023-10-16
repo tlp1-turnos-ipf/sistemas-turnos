@@ -31,32 +31,14 @@
       <div class="row m-0">
         <section class="col-lg-4 mt-5">
           <div class="d-flex justify-content-center">
-            <h6>Paciente:</h6>
+            <h6 class="fw-bold fs-4">Paciente</h6>
             <p><b></b></p>
           </div>
-          <div class="shadow mb-5 bg-body rounded border">
-            <div class="d-flex flex-wrap m-4">
-              <p><b>DNI: </b></p>
-              <p></p>
-            </div>
-            <div class="d-flex flex-wrap m-4">
-              <p><b>Fecha Nacimiento: </b></p>
-              <p></p>
-            </div>
-
-            <div class="d-flex flex-wrap m-4">
-              <p><b>Sexo: </b></p>
-              <p></p>
-            </div>
-            <div class="d-flex flex-wrap m-4">
-              <p><b>Teléfono: </b></p>
-              <p></p>
-            </div>
-            <div class="d-flex flex-wrap m-4">
-              <p><b>Descripción Problema: </b></p>
-              <p></p>
-            </div>
-          </div>
+          <div
+            data-id="<%= idPaciente %>"
+            id="DatoPaciente"
+            class="shadow mb-5 bg-body rounded border"
+          ></div>
         </section>
 
         <section class="col-lg-8">
@@ -150,7 +132,11 @@
                 ></textarea>
               </div>
               <div class="text-center mt-2">
-                <a href="/doctor/turno/atender/<%= idTurno %>/:idDevolucion" class="btn btn-secondary">Cancelar</a>
+                <a
+                  href="/doctor/turno/atender/<%= idTurno %>/:idDevolucion/<%= idPaciente %>"
+                  class="btn btn-secondary"
+                  >Cancelar</a
+                >
                 <button type="submit" class="btn btn-primary">Modificar</button>
               </div>
             </form>
