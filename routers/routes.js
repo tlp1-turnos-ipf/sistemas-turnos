@@ -18,6 +18,9 @@ router.use(require("./especialidades.routes"));
 //Rutas de doctores
 router.use(require("./turnos.doctores.routes"));
 
+//Rutas de doctores
+router.use(require("./turnos.pacientes.routes"));
+
 //Devolcion
 router.use(require("./devolucion.routes"));
 
