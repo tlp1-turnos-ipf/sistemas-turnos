@@ -84,7 +84,7 @@ const mostrarDevoluciones = (Devoluciones) => {
     }
   });
 };
-//Mostrar devoluciones
+//Mostrar Paciente
 const mostrarPaciente = (Paciente) => {
   DatoPaciente.innerHTML = "";
 
@@ -94,7 +94,7 @@ const mostrarPaciente = (Paciente) => {
               <p>${Paciente.dni}</p>
             </div>
             <div class="d-flex flex-wrap m-4">
-              <p><b>Fecha Nacimiento: </b></p>
+              <p><b>Nombre y Apellido: </b></p>
               <p>${Paciente.nombres} ${Paciente.apellidos}</p>
             </div>
             <div class="d-flex flex-wrap m-4">
@@ -144,6 +144,38 @@ const eliminar = async (event) => {
 
     setTimeout(() => {
       window.location.href = `/doctor/turno/atender/${turnoID}/:idDevolucion/${pacienteID}`;
+    }, 1500);
+  } catch (error) {
+    console.log(error);
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: error.message,
+    });
+  }
+};
+
+//Eliminar Turno
+const finalizarTurno = async (event) => {
+  //Obtengo el ID
+  const id = event.target.dataset.id;
+  console.log(id);
+
+  try {
+    const res = await fetch(`http://localhost:3000/api/turno/${id}`, {
+      method: "DELETE",
+    });
+
+    const data = await res.json();
+
+    Swal.fire({
+      icon: "success",
+      title: "Excelente",
+      text: data.message,
+    });
+
+    setTimeout(() => {
+      window.location.href = `/doctor/turnos/dia`;
     }, 1500);
   } catch (error) {
     console.log(error);

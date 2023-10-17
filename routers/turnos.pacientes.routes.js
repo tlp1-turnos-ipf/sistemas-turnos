@@ -28,5 +28,13 @@ router.get("/paciente/historial", (req, res) => {
     idUser: req.cookies.id,
   });
 });
+//Ir a la pantalla de historial de devoluciones
+router.get("/paciente/devolucion/:id", (req, res) => {
+  const { id } = req.params;
+  res.render("paciente/ver_devolucion", {
+    user: req.cookies.name,
+    idTurno: id,
+  });
+});
 
 module.exports = router;

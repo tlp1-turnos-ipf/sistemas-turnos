@@ -55,23 +55,16 @@ const mostrarTurnos = (Turnos) => {
     const usuarioPaciente = turnos.Paciente.Usuario;
     const personaPaciente = usuarioPaciente.Persona;
 
-    let botonHtml = ""; // Esta variable almacenará los botones HTML
-
-    if (fecha.fecha === formattedDate) {
-      botonHtml = `<td><button class="btn btn-sm btn-primary"> Dia actual </button></td>`;
-    } else {
-      botonHtml = `<td><button class="btn btn-sm btn-danger">${fecha.fecha}</button></td>`;
-    }
-
-    if (usuarioPaciente.usuario_id === idUser && turnos.estado_turno === true) {
+    if (
+      usuarioPaciente.usuario_id === idUser &&
+      turnos.estado_turno === false
+    ) {
       tablaTurnos.innerHTML += `
       <tr>
           <td>${doctorPersona.nombres} ${doctorPersona.apellidos}</td>
           <td>${especialidadDoctor}</td>
-          <td>${fecha.descripcion}</td>
-          <td>${fecha.horario_inicio}</td>
-
-          ${botonHtml}
+          <td>${fecha.fecha}</td>
+          <td><a class="btn btn-sm btn-primary" href="/paciente/devolucion/${turnos.turno_id}">Ver Devoluciones</a></td>
           
       </tr>
   `;

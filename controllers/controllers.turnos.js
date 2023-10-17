@@ -212,7 +212,7 @@ turnosCtrl.eliminarTurno = async (req, res) => {
     }
 
     return res.json({
-      message: "Eliminado correctamente",
+      message: "Finalizado correctamente",
     });
   } catch (error) {
     console.log(error);
