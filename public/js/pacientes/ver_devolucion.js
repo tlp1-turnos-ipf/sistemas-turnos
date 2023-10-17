@@ -31,7 +31,7 @@ const mostrarDevoluciones = (Devoluciones) => {
   Devoluciones.forEach((devolucion) => {
     if (devolucion.turno_id === turnoID) {
       listaDevolucion.innerHTML += `
-    <div class="shadow m-4 p-3 bg-body rounded border text-center" style="min-width: 300px; max-width: 300px">
+    <div class="shadow m-4 p-3 bg-body rounded border text-center" style="min-width: 300px; max-width: 500px">
        <h3 class="fw-bold">${devolucion.titulo_turno}</h3>   
        <p>${devolucion.descripcion_turno}</p>
        <div class="p-3 d-flex flex-wrap justify-content-center">

@@ -9,7 +9,7 @@ const DevolucionTurno = sequelize.define(
       allowNull: false,
     },
     descripcion_turno: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(1000),
       allowNull: false,
     },
     turno_id: {
