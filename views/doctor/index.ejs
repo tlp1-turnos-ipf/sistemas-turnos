@@ -1,16 +1,24 @@
-<%- include("../partials/admin/header_administrador.ejs") -%>
+<%- include("../partials/header_doctor.ejs") -%>
 
-<section class="w-100" >
-  <div class="p-5 fw-bold fs-5 text-white" style="height: 1px; background: rgb(0, 4, 41)"><%= user %></div>
+<section class="w-100">
+  <div
+    class="p-5 fw-bold fs-5 text-white"
+    style="height: 1px; background: rgb(0, 4, 41)"
+  >
+    <%= user %>
+  </div>
 
   <div class="px-5">
     <div class="d-flex flex-wrap justify-content-between">
-      <h3 class="fw-bold my-5" style="font-family:Georgia, 'Times New Roman', Times, serif">Navegación de Pantallas</h3>
-      <div>
-        <button type="submit" class="btn btn-lg btn-primary my-5">Asiste</button>
-      </div>
+      <h3
+        class="fw-bold my-5"
+        style="font-family: Georgia, 'Times New Roman', Times, serif"
+      >
+        Navegación de Pantallas
+      </h3>
+      <div id="boton" data-id="<%= userId %>"></div>
     </div>
-    
+
     <div class="row">
       <div class="col-sm-6 mb-6 mb-sm-0">
         <div class="card m-2 shadow rounded border">
@@ -22,9 +30,7 @@
           />
           <a href="/doctor/turnos/dia" class="btn">
             <div class="card-body">
-              <p class="card-title text-center">
-                Listado de Turnos del día
-              </p>
+              <p class="card-title text-center">Listado de Turnos del día</p>
             </div>
           </a>
         </div>
@@ -39,9 +45,7 @@
           />
           <a href="/doctor/turnos/completo" class="btn">
             <div class="card-body">
-              <p class="card-title text-center">
-                Listado de Turnos Completo
-              </p>
+              <p class="card-title text-center">Listado de Turnos Completo</p>
             </div>
           </a>
         </div>
@@ -50,5 +54,6 @@
   </div>
 </section>
 <script src="js/pantalla_principal.js"></script>
+<script src="/js/doctor/modificar_estado.js"></script>
 
 <%- include("../partials/admin/footer_admin.ejs") -%>

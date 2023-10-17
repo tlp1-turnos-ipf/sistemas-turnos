@@ -1,15 +1,6 @@
 const tablaTurnos = document.querySelector("#listaTurnos");
 const idUser = parseInt(tablaTurnos.dataset.id);
 
-const today = new Date();
-const year = today.getFullYear();
-const month = String(today.getMonth() + 1).padStart(2, "0"); // El mes es 0-indexado, por lo que le sumamos 1 y lo formateamos
-const day = String(today.getDate()).padStart(2, "0");
-
-const formattedDate = `${year}-${month}-${day}`;
-
-console.log(formattedDate);
-
 // Función para obtener los usaurios
 const obtenerTurnos = async () => {
   const response = await fetch("http://localhost:3000/api/turno");
@@ -54,7 +45,7 @@ const mostrarTurnos = (Turnos) => {
     const usuarioPaciente = turnos.Paciente.Usuario;
     const personaPaciente = usuarioPaciente.Persona;
 
-    if (doctorUsuario.usuario_id === idUser) {
+    if (doctorUsuario.usuario_id === idUser && turnos.estado_turno === true) {
       tablaTurnos.innerHTML += `
       <tr>
           <td>${personaPaciente.nombres} ${personaPaciente.apellidos}</td>
