@@ -49,13 +49,6 @@ horariosCtrl.obtenerHorarios = async (req, res) => {
       },
     });
 
-    if (!horarios) {
-      throw {
-        status: 404,
-        message: "No se encontraron horarios",
-      };
-    }
-
     return res.status(200).json(horarios);
   } catch (error) {
     console.log(error);
@@ -91,7 +84,8 @@ horariosCtrl.obtenerHorario = async (req, res) => {
 horariosCtrl.modificarHorario = async (req, res) => {
   const { id } = req.params;
 
-  const { fecha, cantidad_turnos,horario_inicio, horario_fin, descripcion } = req.body;
+  const { fecha, cantidad_turnos, horario_inicio, horario_fin, descripcion } =
+    req.body;
 
   try {
     const fechaActualizado = await DoctorFecha.update(

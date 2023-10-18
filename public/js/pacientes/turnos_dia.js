@@ -8,7 +8,7 @@ const day = String(today.getDate()).padStart(2, "0");
 
 const formattedDate = `${year}-${month}-${day}`;
 
-// Función para obtener los usaurios
+// Función para obtener los usuarios
 const obtenerTurnos = async () => {
   const response = await fetch("http://localhost:3000/api/turno");
 
@@ -60,7 +60,7 @@ const mostrarTurnos = (Turnos) => {
     if (doctorUsuario.estado === true) {
       botonHtml = `<td><a class="btn btn-sm btn-primary" href="#">Programado</a></td>`;
     } else {
-      botonHtml = `<td><button class="btn btn-sm btn-danger">Reprogramar</button></td>`;
+      botonHtml = `<td><a href="/reprogramar/turno/${turnos.turno_id}"  class="btn btn-sm btn-danger">Reprogramar</a></td>`;
     }
 
     if (
