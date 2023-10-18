@@ -1,5 +1,7 @@
 const router = require("express").Router();
 
+const { validatePerson } = require("../models/schema/validation")
+const { validateSchema } = require("../middlewares/validar_schema")
 const { ctrlLoginUser, ctrlGetUserInfoByToken, deleteToken } = require("../controllers/controllers.auth");
 const { crearPersona } = require("../controllers/controllers.persona");
 // =====================================================

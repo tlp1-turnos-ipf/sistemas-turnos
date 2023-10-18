@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const { validateSchema } = require('./../middlewares/validar_schema');
-const { validateSpecialty } = require('./../models/validation');
+const { validateSpecialty } = require("../models/schema/validation")
+const { validateSchema } = require("../middlewares/validar_schema")
 const {
   obtenerEspecialidades,
   obtenerEspecialidadPorId,

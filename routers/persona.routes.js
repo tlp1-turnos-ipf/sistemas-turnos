@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const { validateSchema } = require('./../middlewares/validar_schema');
-const { validatePerson } = require('./../models/validation')
+const { validatePerson } = require("../models/schema/validation")
+const { validateSchema } = require("../middlewares/validar_schema")
 const { crearPersona } = require("../controllers/controllers.persona");
 
 // =====================================================
