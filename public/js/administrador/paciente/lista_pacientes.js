@@ -68,6 +68,49 @@ document.addEventListener("DOMContentLoaded", async () => {
   mostrarPacientes(usuarios);
 });
 
+
+document.addEventListener("DOMContentLoaded", async () => {
+  console.log("DOM Cargado");
+
+  const pacientes = await obtenerPacientes();
+
+  const filtroInput = document.getElementById("filtro");
+  const resultadosDiv = document.getElementById("resultados");
+
+  // Función para filtrar pacientes
+  const filtrarPacientes = (query) => {
+    query = query.toLowerCase();
+
+    const pacientesFiltrados = pacientes.filter((paciente) => {
+      const usuario = paciente.Usuario;
+      const persona = usuario.Persona;
+
+      // Filtrar por DNI o Nombre
+      return (
+        persona.dni.includes(query) ||
+        (persona.nombres + " " + persona.apellidos).toLowerCase().includes(query)
+      );
+    });
+
+    mostrarPacientes(pacientesFiltrados);
+  };
+
+  // Escuchar cambios en el campo de búsqueda
+  filtroInput.addEventListener("input", (event) => {
+    const query = event.target.value;
+    filtrarPacientes(query);
+
+    // Mostrar el número de resultados
+    resultadosDiv.textContent = `Resultados: ${tablaPacientes.rows.length - 1}`;
+  });
+
+  // Mostrar todos los pacientes al cargar la página
+  mostrarPacientes(pacientes);
+});
+
+
+
+
 /* ***************************************************************
                         Eliminar Pacientes activos
 *****************************************************************/

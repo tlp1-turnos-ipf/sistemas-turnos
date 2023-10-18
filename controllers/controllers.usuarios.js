@@ -5,8 +5,8 @@ const Usuario = require("../models/Usuario");
 const Paciente = require("../models/Paciente");
 
 // Controlador para crear nuevo usuario
-usuarioCtrl.crearUsuarioPaciente = async (req, res) => {
-  const { nombre_usuario, email, password } = req.body;
+usuarioCtrl.crearUsuario = async (req, res) => {
+  const { nombre_usuario, email, password, rol } = req.body;
 
   try {
     //Obtenemos el id de la ultima persona creada
@@ -19,7 +19,7 @@ usuarioCtrl.crearUsuarioPaciente = async (req, res) => {
       email,
       password: await bcrypt.hash(password, await bcrypt.genSalt(10)),
       persona_id: ultimoIdPersona,
-      rol: 3,
+      rol,
     });
 
     //En caso que haya errores al guardar un paciente
@@ -30,7 +30,7 @@ usuarioCtrl.crearUsuarioPaciente = async (req, res) => {
     }
 
     // Se retorna la respuesta al cliente
-    return res.status(201).json(nuevoUsuario);
+    return res.status(201).json({ status: 201 });
   } catch (error) {
     console.log(error);
     return res.status(error.status || 500).json({

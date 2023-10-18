@@ -6,27 +6,20 @@ const Usuario = require("../models/Usuario");
 const Persona = require("../models/Persona");
 const Paciente = require("../models/Paciente");
 const Especialidad = require("../models/Especialidad");
-const jwt = require('jsonwebtoken'); 
-const { userInfo } = require("os");
+const Sequelize = require("sequelize");
 
-// Controlador para obtener todos los turnos
+//Obtener todos los turnos del dia del doctor
 turnosCtrl.obtenerTurnos = async (req, res) => {
   try {
     const turnos = await Turno.findAll({
-      where: {
-        estado_turno: 1,
-      },
-
       include: [
         {
           model: DoctorFecha,
-          attributes: ["fecha"],
           include: {
             model: Doctor,
             include: [
               {
                 model: Usuario,
-                attributes: ["persona_id"],
                 include: {
                   model: Persona,
                 },
@@ -62,6 +55,61 @@ turnosCtrl.obtenerTurnos = async (req, res) => {
     console.log(error);
     return res.status(error.status || 500).json({
       message: error.message || "Error al obtener los turnos",
+    });
+  }
+};
+//Obtener todos los turnos del dia del doctor
+turnosCtrl.obtenerTurnoPorId = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const turnos = await Turno.findOne({
+      where: {
+        estado_turno: 1,
+        turno_id: id,
+      },
+      include: [
+        {
+          model: DoctorFecha,
+          include: {
+            model: Doctor,
+            include: [
+              {
+                model: Usuario,
+                include: {
+                  model: Persona,
+                },
+              },
+              {
+                model: Especialidad,
+              },
+            ],
+          },
+        },
+        {
+          model: Paciente,
+          include: {
+            model: Usuario,
+
+            include: {
+              model: Persona,
+            },
+          },
+        },
+      ],
+    });
+
+    if (!turnos) {
+      throw {
+        status: 404,
+        message: "No se encontraron turnos",
+      };
+    }
+
+    return res.status(200).json(turnos);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Error al obtener el turno",
     });
   }
 };
@@ -105,64 +153,73 @@ turnosCtrl.crearTurno = async (req, res) => {
   }
 };
 
-//Obtener todos los turnos del dia del doctor
-turnosCtrl.obtenerTurnosDelDia = async (req, res) => {
-  
+//Reprogramar Turno
+turnosCtrl.reprogramarTurno = async (req, res) => {
+  const { id } = req.params;
+  const { doctor_fecha_id } = req.body;
+
   try {
-    const turnos = await Turno.findAll({
-      where: {
-        estado_turno: true,
+    const turnoReprogramado = await Turno.update(
+      {
+        doctor_fecha_id,
       },
-
-      include: [
-        {
-          model: DoctorFecha,
-          include: {
-            model: Doctor,
-            include: [
-              {
-                model: Especialidad,
-              },
-              {
-                model: Usuario,
-                where: {
-                  usuario_id: 7
-                },
-                include: {
-                  model: Persona,
-                },
-              },
-            ],
-          },
+      {
+        where: {
+          turno_id: id,
         },
-        {
-          model: Paciente,
-          include: {
-            model: Usuario,
+      }
+    );
 
-            include: {
-              model: Persona,
-            },
-          },
-        },
-      ],
-    });
-
-    if (!turnos) {
+    if (!turnoReprogramado) {
       throw {
-        status: 404,
-        message: "No se encontraron turnos",
+        status: 400,
+        message: "No se pudo actualizar la especialidad",
       };
     }
 
-    return res.status(200).json(turnos);
+    return res.json({
+      message: "Actualizado correctamente",
+    });
   } catch (error) {
     console.log(error);
-    return res.status(error.status || 500).json({
-      message: error.message || "Error al obtener los turnos",
+    return res.status(500).json({
+      message: "Error interno del servidor",
     });
   }
 };
 
+//Reprogramar Turno
+turnosCtrl.eliminarTurno = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const turnoEliminado = await Turno.update(
+      {
+        estado_turno: false,
+      },
+      {
+        where: {
+          turno_id: id,
+        },
+      }
+    );
+
+    if (!turnoEliminado) {
+      throw {
+        status: 400,
+        message: "No se pudo eliminar",
+      };
+    }
+
+    return res.json({
+      message: "Finalizado correctamente",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Error interno del servidor",
+    });
+  }
+};
 
 module.exports = turnosCtrl;

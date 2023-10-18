@@ -1,10 +1,9 @@
 const tablaTurnos = document.querySelector("#listaTurnos");
+const idUser = parseInt(tablaTurnos.dataset.id);
 
 // Función para obtener los usaurios
 const obtenerTurnos = async () => {
-  const token = localStorage.getItem("token");
-  console.log(token);
-  const response = await fetch("http://localhost:3000/api/lista_turnos/doctor/dia");
+  const response = await fetch("http://localhost:3000/api/turno");
 
   if (response.status === 404) {
     return [];
@@ -26,7 +25,8 @@ const obtenerTurnos = async () => {
 };
 
 const mostrarTurnos = (Turnos) => {
-  if (Turnos.length === 0 || !Turnos) {
+  console.log(Turnos);
+  if (Turnos.length === 0) {
     tablaTurnos.innerHTML = `
             <tr>
                 <td colspan="5">No hay Turnos</td>
@@ -38,22 +38,25 @@ const mostrarTurnos = (Turnos) => {
     //Datos del horario y fecha
     const fecha = turnos.Doctor_Fecha;
 
+    //Datos del Doctor
+    const doctorUsuario = fecha.Doctor.Usuario;
 
     //Datos del paciente
-    const paciente = turnos.Paciente;
-    const usuarioPaciente = paciente.Usuario;
+    const usuarioPaciente = turnos.Paciente.Usuario;
     const personaPaciente = usuarioPaciente.Persona;
 
-    tablaTurnos.innerHTML += `
-                    <tr>
-                        <td>${personaPaciente.nombres} ${personaPaciente.apellidos}</td>
-                        <td>${fecha.fecha}</td>
-                        <td>
-                            <a href="/atender/paciente/${turnos.turno_id}"  class="btn btn-primary btn-sm" data-id="${turnos.turno_id}">Atender</a>
-                            <a href="/paciente/editar/${turnos.turno_id}" class="btn btn-warning btn-sm">No asistió</a>
-                        </td>
-                    </tr>
-                `;
+    if (doctorUsuario.usuario_id === idUser && turnos.estado_turno === true) {
+      tablaTurnos.innerHTML += `
+      <tr>
+          <td>${personaPaciente.nombres} ${personaPaciente.apellidos}</td>
+          <td>Turno ${fecha.descripcion}</td>
+          <td>${fecha.horario_inicio}</td>
+          <td>
+              <a href="/doctor/turno/atender/${turnos.turno_id}/:idDevolucion" class="btn btn-warning btn-sm">Atender</a>
+          </td>
+      </tr>
+  `;
+    }
   });
 };
 

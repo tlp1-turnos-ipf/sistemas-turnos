@@ -48,7 +48,7 @@ const mostrarDoctores = (Doctores) => {
     } else {
       botonesHtml = `
             <td>
-                <button onclick="eliminarDoctor(event)" class="btn btn-danger btn-sm" data-id="${usuario.usuario_id}">Eliminar</button>
+                <button onclick="eliminarRegistro(event)" class="btn btn-danger btn-sm" data-id="${usuario.usuario_id}">Eliminar</button>
                 <a href="/doctor/editar/${persona.persona_id}" class="btn btn-warning btn-sm">Editar</a>
                 <a href="/lista_horarios/${doctores.doctor_id}" class="btn btn-primary btn-sm">Horarios y Turnos</a>
             </td>
@@ -80,25 +80,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                         Eliminar doctores activos
 *****************************************************************/
 
-//Ventana Emergente para antes de eliminar un doctor
-const eliminarDoctor = (event) => {
-  Swal.fire({
-    icon: "warning",
-    title: "¿Estás seguro de eliminar el doctor?",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Sí",
-    cancelButtonText: "No",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      eliminar(event);
-    } else {
-      window.location.href = "/lista_doctores";
-    }
-  });
-};
-
 //Eliminar doctor
 const eliminar = async (event) => {
   //Obtengo el ID
@@ -117,7 +98,9 @@ const eliminar = async (event) => {
       text: data.message,
     });
 
-    window.location.reload();
+    setTimeout(() => {
+      window.location.reload();
+    }, 1500);
   } catch (error) {
     console.log(error);
     Swal.fire({

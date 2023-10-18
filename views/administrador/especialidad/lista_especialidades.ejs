@@ -1,23 +1,25 @@
 <%- include("../../partials/admin/header_administrador.ejs") -%>
 
 <section class="w-100" style="background-color: rgb(240, 240, 240)">
-  <div class="p-5 text-white" style="height: 1px; background: rgb(0, 4, 41)">
+  <div
+    class="p-5 text-white fs-5"
+    style="height: 1px; background: rgb(0, 4, 41)"
+  >
     Listado de Especialidades
   </div>
 
   <div
     class="my-3 shadow p-3 m-5 bg-body rounded border d-flex justify-content-between"
   >
-    <a href="/crear_especialidad" class="btn btn-primary text-light"
-      >Agregar Especialidad</a
-    >
+  <form id="formNuevaEspecialidad">
+    <div class="d-flex">
+      <input type="text" class="form-control" id="descripcion_especialidad" placeholder="Ej: Odontólogo" required/>
+      <button class="btn btn-primary">Agregar</button>
+    </div>
+  </form>
     <form id="buscador">
       <div class="d-flex">
-        <input
-          type="text"
-          class="form-control"
-          id="dniInput"
-        />
+        <input type="text" class="form-control" id="dniInput" />
         <button class="btn btn-secondary">Buscar</button>
       </div>
     </form>
@@ -39,6 +41,7 @@
   </div>
 </section>
 <script src="js/pantalla_principal.js"></script>
+<script src="js/administrador/especialidad/crear.js"></script>
 <script src="js/administrador/especialidad/lista_especialidades.js"></script>
 
 <%- include("../../partials/admin/footer_admin.ejs") -%>

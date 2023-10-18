@@ -1,78 +1,33 @@
 <%- include("../../partials/admin/header_administrador.ejs") -%>
 
 <section class="w-100" style="background-color: rgb(240, 240, 240)">
-  <div class="p-5 text-white" style="height: 1px; background: rgb(0, 4, 41)">
+  <div class="p-5 fs-5 text-white" style="height: 1px; background: rgb(0, 4, 41)">
     Listado de Pacientes
   </div>
 
   <div
-    class="my-3 shadow p-3 m-5 bg-body rounded border d-flex justify-content-between"
+    class="my-3 shadow p-3 m-5 bg-body rounded border d-flex flex-wrap justify-content-between"
   >
-    <a href="/crear_paciente" class="btn btn-primary text-light"
+    <a href="/crear_paciente" class="btn btn-primary text-light m-1"
       >Agregar Paciente</a
     >
 
-    <div
-      class="accordion w-50"
-      id="accordionExample"
-      style="position: absolute; top: 120px; left: 600px"
-    >
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button
-            class="accordion-button collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapseThree"
-            aria-expanded="false"
-            aria-controls="collapseThree"
-          >
-            Filtrar
-          </button>
-        </h2>
-        <div
-          id="collapseThree"
-          class="accordion-collapse collapse"
-          data-bs-parent="#accordionExample"
-        >
-          <div class="accordion-body">
-            <form id="formFiltrador" class="d-flex flex-wrap gap-1 justify-content-center">
-              <div>
-                <label for="nombre">Nombre y Apellido</label>
-                <input
-                  class="form-control"
-                  type="text"
-                  value=""
-                  id="nombre"
-                  name="nombre"
-                />
-              </div>
-              <div>
-                <label for="apellido">Discapacidad</label>
-                <input
-                  class="form-control"
-                  type="text"
-                  value=""
-                  id="apellido"
-                  name="apellido"
-                />
-              </div>
-              <div>
-                <label for="dni">DNI</label>
-                <input
-                  class="form-control"
-                  type="text"
-                  value=""
-                  id="dni"
-                  name="dni"
-                />
-              </div>
-              <button id="filtrar">Filtrar</button>
-            </form>
-          </div>
-        </div>
+    <form action="#" method="POST">
+      <div class="d-flex m-1">
+        <select name="filtro" id="filtro" class="btn btn-secondary">
+          <option value="dni">DNI</option>
+          <option value="telefono">Telefono</option>
+        </select>
+        <input
+          type="text"
+          id="valor"
+          name="valor"
+          class="form-control"
+          required
+        />
+        <button type="submit" class="btn btn-primary">Filtrar</button>
       </div>
-    </div>
+    </form>
   </div>
 
   <div class="main-table shadow m-5 bg-body rounded border">

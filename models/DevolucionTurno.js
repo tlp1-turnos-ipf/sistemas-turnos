@@ -8,8 +8,8 @@ const DevolucionTurno = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    descripion_turno: {
-      type: DataTypes.STRING,
+    descripcion_turno: {
+      type: DataTypes.STRING(1000),
       allowNull: false,
     },
     turno_id: {
@@ -26,4 +26,4 @@ const DevolucionTurno = sequelize.define(
 Turno.hasMany(DevolucionTurno, { foreignKey: "turno_id", as: "devolucion_turno" });
 DevolucionTurno.belongsTo(Turno, { foreignKey: "turno_id" });
 
-module.exports = Turno;
+module.exports = DevolucionTurno;

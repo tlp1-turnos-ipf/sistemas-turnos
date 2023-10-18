@@ -1,6 +1,8 @@
 const Ctrl = {};
 const Persona = require("../models/Persona");
 const Usuario = require("../models/Usuario");
+const Rol = require("../models/Rol");
+const Especialidad = require("../models/Especialidad");
 const Paciente = require("../models/Paciente");
 
 // Controlador para crear nuevo Persona
@@ -18,18 +20,26 @@ Ctrl.crearPersona = async (req, res) => {
 
   try {
     // Se verifica si la persona ya existe
-    const existePersona = await Persona.findOne({
-      where: {
-        dni,
-      },
-    });
+    const existePersona = await Persona.findOne({ where: { dni } });
 
     if (existePersona) {
-      throw {
-        // throw siempre debe ejecutarse dentro de un try catch
-        status: 400,
-        message: "La Persona ya existe",
-      };
+      return res.status(400).json({ message: "La persona la existe" });
+    }
+
+    const roles = await Rol.findAll();
+
+    if (!roles) {
+      return res
+        .status(400)
+        .json({ message: "Primero es necesario que cargue los roles" });
+    }
+
+    const especialidades = await Especialidad.findAll();
+
+    if (!especialidades) {
+      return res
+        .status(400)
+        .json({ message: "Primero es necesario que las especialidades" });
     }
 
     //Verifica si existe el usuario
@@ -40,11 +50,9 @@ Ctrl.crearPersona = async (req, res) => {
     });
 
     if (existeUsuario) {
-      throw {
-        // throw siempre debe ejecutarse dentro de un try catch
-        status: 400,
-        message: "Ya existe un usuario con el mismo email",
-      };
+      return res
+        .status(400)
+        .json({ message: "Ya existe un usuario con el mismo email" });
     }
 
     //Se crea a la persona
@@ -65,11 +73,11 @@ Ctrl.crearPersona = async (req, res) => {
     }
 
     // Se retorna la respuesta al cliente
-    return res.status(201).json(nuevoPersona.persona_id);
+    return res.status(201).json({ status: 201 });
   } catch (error) {
     console.log(error);
-    return res.status(error.status || 500).json({
-      message: error.message || "Error al crear la persona",
+    return res.status(500).json({
+      message: "Error Interno del servidor",
     });
   }
 };

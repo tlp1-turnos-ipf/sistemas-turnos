@@ -22,19 +22,75 @@
     </button>
 
     <aside>
-      <a href="/administrador" class="btn btn-primary">Inicio</a>
-      <a href="/lista_pacientes_completos">Lista de Pacientes</a>
-      <a href="/crear_paciente">Crear Paciente</a>
-      <a href="/lista_doctores_completo">Lista de Doctores</a>
-      <a href="/crear_doctor">Historial de turnos</a>
-      <a href="#">Cerrar Sesion</a>
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item py-3">
+          <a
+              href="/administrador"
+              class="d-flex align-items-center text-white text-decoration-none border-bottom py-2"
+            >
+              <img
+                src="/img/inicio_sesion/logo.png"
+                alt="logo.png"
+                width="70px"
+              />
+              <span class="fs-4">San Antonio</span>
+            </a>
+        </li>
+        <li class="nav-item py-1">
+          <a
+            href="/lista_pacientes_completos"
+            class="nav-link text-white"
+            aria-current="page"
+          >
+            <i class="fa fa-wheelchair mx-1" aria-hidden="true"></i>
+            Lista de Pacientes
+          </a>
+        </li>
+        <li class="nav-item py-1">
+          <a
+            href="/crear_paciente"
+            class="nav-link text-white"
+            aria-current="page"
+          >
+            <i class="fa fa-wheelchair-alt mx-1" aria-hidden="true"></i>
+            Agregar Paciente
+          </a>
+        </li>
+        <li class="nav-item py-1">
+          <a
+            href="/lista_doctores_completo"
+            class="nav-link text-white"
+            aria-current="page"
+          >
+            <i class="fa fa-user-md mx-1" aria-hidden="true"></i>
+            Lista de Doctores
+          </a>
+        </li>
+        <li class="nav-item py-1">
+          <a
+            href="/crear_doctor"
+            class="nav-link text-white"
+            aria-current="page"
+          >
+            <i class="fa fa-stethoscope mx-1" aria-hidden="true"></i>
+            Agregar Doctor
+          </a>
+        </li>
+        <li class="nav-item text-center">
+          <a
+            href="/"
+            class="text-white btn btn-primary"
+          >
+            Cerrar Sesion
+          </a>
+        </li>
+      </ul>
     </aside>
 
     <main class="container-fluid m-0 p-0">
       <div class="d-flex">
         <nav
           class="responsive"
-          id="admin"
           style="
             background: linear-gradient(
               100deg,
@@ -42,12 +98,13 @@
               70%,
               rgba(0, 0, 138, 0.9)
             );
-            display: none;
           "
+          id="admin"
         >
           <div
             class="d-flex flex-column flex-shrink-0 px-3"
-            style="width: 240px; height: 100vh"
+            style="width: 240px; height: 100vh; display: none"
+            
           >
             <a
               href="/administrador"
@@ -103,174 +160,14 @@
                 </a>
               </li>
               <li class="nav-item text-center">
-                <button
-                  id="cerrar-sesion"
+                <a
+                  href="/"
                   class="text-white btn btn-primary"
-                  aria-current="page"
                 >
                   Cerrar Sesion
-                </button>
+                </a>
               </li>
             </ul>
           </div>
         </nav>
 
-        <nav
-          class="responsive"
-          id="doctor"
-          style="
-            background: linear-gradient(
-              100deg,
-              rgba(4, 0, 61, 0.945),
-              70%,
-              rgba(0, 0, 138, 0.9)
-            );
-            display: none;
-          "
-        >
-          <div
-            class="d-flex flex-column flex-shrink-0 px-3"
-            style="width: 240px; height: 100vh"
-          >
-            <a
-              href="/doctor"
-              class="d-flex align-items-center text-white text-decoration-none border-bottom py-2"
-            >
-              <img
-                src="/img/inicio_sesion/logo.png"
-                alt="logo.png"
-                width="70px"
-              />
-              <span class="fs-4">San Antonio</span>
-            </a>
-            <hr />
-            <ul class="nav nav-pills flex-column mb-auto">
-              <li class="nav-item py-1">
-                <a
-                  href="/lista_doctores_completo"
-                  class="nav-link text-white"
-                  aria-current="page"
-                >
-                  <i class="fa fa-user-md mx-1" aria-hidden="true"></i>
-                  Lista de Doctores
-                </a>
-              </li>
-              <li class="nav-item py-1">
-                <a
-                  href="/crear_doctor"
-                  class="nav-link text-white"
-                  aria-current="page"
-                >
-                  <i class="fa fa-stethoscope mx-1" aria-hidden="true"></i>
-                  Agregar Doctor
-                </a>
-              </li>
-              <li class="nav-item text-center">
-                <button
-                  id="cerrar-sesion"
-                  class="text-white btn btn-primary"
-                  aria-current="page"
-                >
-                  Cerrar Sesion
-                </button>
-              </li>
-            </ul>
-          </div>
-        </nav>
-
-        <nav
-          class="responsive"
-          id="paciente"
-          style="
-            background: linear-gradient(
-              100deg,
-              rgba(4, 0, 61, 0.945),
-              70%,
-              rgba(0, 0, 138, 0.9)
-            );
-            display: none;
-          "
-        >
-          <div
-            class="d-flex flex-column flex-shrink-0 px-3"
-            style="width: 240px; height: 100vh"
-          >
-            <a
-              href="/administrador"
-              class="d-flex align-items-center text-white text-decoration-none border-bottom py-2"
-            >
-              <img
-                src="/img/inicio_sesion/logo.png"
-                alt="logo.png"
-                width="70px"
-              />
-              <span class="fs-4">San Antonio</span>
-            </a>
-            <hr />
-            <ul class="nav nav-pills flex-column mb-auto">
-              <li class="nav-item py-1">
-                <a
-                  href="/lista_doctores_completo"
-                  class="nav-link text-white"
-                  aria-current="page"
-                >
-                  <i class="fa fa-user-md mx-1" aria-hidden="true"></i>
-                  Lista de Doctores
-                </a>
-              </li>
-              <li class="nav-item py-1">
-                <a
-                  href="/crear_doctor"
-                  class="nav-link text-white"
-                  aria-current="page"
-                >
-                  <i class="fa fa-stethoscope mx-1" aria-hidden="true"></i>
-                  Agregar Doctor
-                </a>
-              </li>
-              <li class="nav-item text-center">
-                <button
-                  id="cerrar-sesion"
-                  class="text-white btn btn-primary"
-                  aria-current="page"
-                >
-                  Cerrar Sesion
-                </button>
-              </li>
-            </ul>
-          </div>
-        </nav>
-
-        <script>
-          // Obtiene el valor de la cookie "rol" usando JavaScript
-          const rol = document.cookie.replace(
-            /(?:(?:^|.*;\s*)rol\s*=\s*([^;]*).*$)|^.*$/,
-            "$1"
-          );
-
-          // Verifica el valor de "rol" y muestra contenido condicional
-          if (rol === "1") {
-            // El valor de "rol" es igual a 1, muestra elementos de administrador
-            document.getElementById("admin").style.display = "block";
-            document.getElementById("doctor").style.display = "none";
-            document.getElementById("paciente").style.display = "none";
-          } else if (rol === "2") {
-            // El valor de "rol" es igual a 2, muestra elementos de doctor
-            document.getElementById("admin").style.display = "none";
-            document.getElementById("paciente").style.display = "none";
-            document.getElementById("doctor").style.display = "block";
-          } else if (rol === "4") {
-            // Valor de "rol" desconocido o no especificado, oculta ambos
-            document.getElementById("admin").style.display = "none";
-            document.getElementById("paciente").style.display = "none";
-            document.getElementById("doctor").style.display = "block";
-          }
-
-          const buton = document.getElementById("cerrar-sesion");
-
-          buton.addEventListener("click", () => {
-            // Redireccionar a la página de inicio de sesión
-            window.location.href = "/login";
-          });
-        </script>
-     

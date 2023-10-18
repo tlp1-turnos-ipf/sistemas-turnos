@@ -11,6 +11,7 @@ formNuevoDoctor.addEventListener("submit", async (e) => {
   const telefono = document.querySelector("#telefono").value;
   const sexo = document.querySelector("#sexo").value;
   const especialidad = document.querySelector("#especialidad").value;
+  const rol = 4;
 
   const nombre_usuario = document.querySelector("#nombre_usuario").value;
   const email = document.querySelector("#email").value;
@@ -26,6 +27,7 @@ formNuevoDoctor.addEventListener("submit", async (e) => {
     return;
   }
 
+  // SE CREA LA PERSONA
   const responseIdPersona = await fetch(
     "http://localhost:3000/api/persona/registro",
     {
@@ -46,8 +48,20 @@ formNuevoDoctor.addEventListener("submit", async (e) => {
     }
   );
 
+  const respToJsonPersona = await responseIdPersona.json();
+
+  if (respToJsonPersona.status !== 201 && respToJsonPersona.status !== 200) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: respToJsonPersona.message,
+    });
+    return;
+  }
+
+  // SE CREA EL USUARIO
   const responseUsuario = await fetch(
-    "http://localhost:3000/api/usuario/doctor",
+    "http://localhost:3000/api/usuario",
     {
       method: "POST",
       headers: {
@@ -57,9 +71,21 @@ formNuevoDoctor.addEventListener("submit", async (e) => {
         nombre_usuario,
         email,
         password,
+        rol
       }),
     }
   );
+
+  const respToJsonUsuario = await responseUsuario.json();
+
+  if (respToJsonUsuario.status !== 201 && respToJsonUsuario.status !== 200) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: respToJsonUsuario.message,
+    });
+    return;
+  }
 
   //Crea al doctor
   const responseDoctor = await fetch("http://localhost:3000/api/doctor", {
