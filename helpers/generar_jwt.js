@@ -13,7 +13,7 @@ const generarJWT = (payload) => {
         if (err) {
           reject("No se pudo generar el JWT");
         }
-        resolve({token});
+        resolve({ token });
       }
     );
   });
