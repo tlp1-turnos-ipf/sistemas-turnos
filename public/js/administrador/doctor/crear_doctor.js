@@ -1,4 +1,5 @@
 const formNuevoDoctor = document.querySelector("#formNuevoDoctor");
+const tablaEspecialidades = document.querySelector("#especialidad");
 
 formNuevoDoctor.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -60,21 +61,18 @@ formNuevoDoctor.addEventListener("submit", async (e) => {
   }
 
   // SE CREA EL USUARIO
-  const responseUsuario = await fetch(
-    "http://localhost:3000/api/usuario",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        nombre_usuario,
-        email,
-        password,
-        rol
-      }),
-    }
-  );
+  const responseUsuario = await fetch("http://localhost:3000/api/usuario", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      nombre_usuario,
+      email,
+      password,
+      rol,
+    }),
+  });
 
   const respToJsonUsuario = await responseUsuario.json();
 
@@ -120,4 +118,48 @@ formNuevoDoctor.addEventListener("submit", async (e) => {
   setTimeout(() => {
     window.location.href = "/lista_doctores";
   }, 2000);
+});
+
+// Función para obtener las especialidades
+const obtenerEspecialidades = async () => {
+  const response = await fetch("http://localhost:3000/api/especialidad");
+
+  if (response.status === 404) {
+    return [];
+  }
+
+  if (response.status !== 200) {
+    const { message } = await response.json();
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: message,
+    });
+    return;
+  }
+
+  const data = await response.json();
+
+  return data;
+};
+
+//Mostrar especialidades
+const mostrarEspecialidades = (Especialidades) => {
+  tablaEspecialidades.innerHTML = "";
+
+  Especialidades.forEach((especialidad) => {
+    tablaEspecialidades.innerHTML += `
+            <option value="${especialidad.especialidad_id}">${especialidad.descripcion_especialidad}</option>
+                `;
+  });
+};
+
+// Programar el evento cuando se carga toda la vista
+document.addEventListener("DOMContentLoaded", async () => {
+  console.log("DOM Cargado");
+
+  const especialidades = await obtenerEspecialidades();
+
+  // Mostrar especialidades en la tabla
+  mostrarEspecialidades(especialidades);
 });
