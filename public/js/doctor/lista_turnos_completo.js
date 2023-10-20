@@ -50,9 +50,9 @@ const mostrarTurnos = (Turnos) => {
       <tr>
           <td>${personaPaciente.nombres} ${personaPaciente.apellidos}</td>
           <td>Turno ${fecha.descripcion}</td>
-          <td>${fecha.horario_inicio}</td>
+          <td>${fecha.horario_inicio} - ${fecha.horario_inicio}</td>
           <td>
-              <a href="/doctor/turno/atender/${turnos.turno_id}/:idDevolucion" class="btn btn-warning btn-sm">Atender</a>
+              <a href="/doctor/turno/atender/${turnos.turno_id}/:idDevolucion/${personaPaciente.persona_id}" class="btn btn-warning btn-sm">Atender</a>
           </td>
       </tr>
   `;
