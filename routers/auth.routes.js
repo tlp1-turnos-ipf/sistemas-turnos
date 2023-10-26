@@ -1,7 +1,5 @@
 const router = require("express").Router();
 
-const { validatePerson } = require("../models/schema/validation")
-const { validateSchema } = require("../middlewares/validar_schema")
 const { ctrlLoginUser, ctrlGetUserInfoByToken, deleteToken } = require("../controllers/controllers.auth");
 const { crearPersona } = require("../controllers/controllers.persona");
 // =====================================================
@@ -18,8 +16,8 @@ router.get("/register", (req, res) => res.render("auth/registrarse_en_linea"));
 //         Rutas para autenticar y registrar usuarios
 // =====================================================
 
-// Nuevo Registro en línea
-router.post("/api/persona/registro", validatePerson, validateSchema, crearPersona);
+// Nuevo Registro en líneadat
+router.post("/api/persona/registro", crearPersona);
 
 //Login
 router.post("/auth/login", ctrlLoginUser);

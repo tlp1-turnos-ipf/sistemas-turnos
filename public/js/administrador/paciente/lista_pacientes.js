@@ -1,6 +1,6 @@
 const tablaPacientes = document.querySelector("#listaPacientes");
 
-// Función para obtener los usaurios
+// Función para obtener los pacientes
 const obtenerPacientes = async () => {
   const response = await fetch("http://localhost:3000/api/paciente");
 
