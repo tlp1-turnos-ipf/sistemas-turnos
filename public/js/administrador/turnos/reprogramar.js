@@ -1,5 +1,6 @@
 const tablaTurnos = document.querySelector("#DatosTurno");
 const ListaHorario = document.querySelector("#ListaHorario");
+const form = document.querySelector("#form");
 
 // Función para obtener el turno
 const obtenerTurno = async () => {
@@ -145,15 +146,8 @@ const mostrarHorarios = (Horarios) => {
   Horarios.forEach((horarios) => {
     ListaHorario.innerHTML += `
   
-    <option>
-    <div class="card m-5 border-primary">
-    <div class="card-header border-primary">${horarios.fecha}</div>
-    <div class="card-body border-primary">
-      <blockquote class="blockquote mb-0 d-flex flex-wrap justify-content-around">
-        <p>${horarios.horario_inicio} - ${horarios.horario_fin} <span class="fw-bold">Turno ${horarios.descripcion}</span></p>
-      </blockquote>
-    </div>
-  </div>
+    <option value="${horarios.doctor_fecha_id}">
+    ${horarios.fecha} - Inicio Jornada: ${horarios.horario_inicio} - Fin Jornada: ${horarios.horario_fin} - ${horarios.descripcion}
     </option>
   
     `;
@@ -174,12 +168,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 //ACTUALIZAR LA REPROGRAMACION DEL TURNO
-ListaHorario.addEventListener("submit", async (e) => {
-  alert("hola");
+form.addEventListener("submit", async (e) => {
+  alert("Entró");
   e.preventDefault();
 
   // Se crea un objeto con los datos del formulario
   const doctor_fecha_id = document.querySelector("#ListaHorario").value;
+  const rol = document.querySelector("#rol");
 
   try {
     // Se envia la peticion al servidor
@@ -207,9 +202,15 @@ ListaHorario.addEventListener("submit", async (e) => {
       title: data.message,
       timer: 1500,
     });
-    setTimeout(() => {
-      window.location.href = "/doctor/turnos/dia";
-    }, 1500);
+    if (rol.dataset.id === "3") {
+      setTimeout(() => {
+        window.location.href = "/paciente/turnos/dia";
+      }, 1500);
+    } else {
+      setTimeout(() => {
+        window.location.href = "/lista_turnos";
+      }, 1500);
+    }
   } catch (error) {
     Swal.fire({
       icon: "error",

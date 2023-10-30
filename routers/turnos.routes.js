@@ -5,7 +5,7 @@ const {
   obtenerTurnos,
   obtenerTurnoPorId,
   reprogramarTurno,
-  eliminarTurno
+  eliminarTurno,
 } = require("../controllers/controllers.turnos");
 
 //Ir a la pantalla de los turnos
@@ -21,7 +21,11 @@ router.get("/crear_turno/:id", (req, res) => {
 
 //Ir a la pantalla para crear un horario
 router.get("/reprogramar/turno/:id", (req, res) => {
-  res.render("administrador/reprogramar_turno", { id: req.params.id, user: req.cookies.name });
+  res.render("administrador/reprogramar_turno", {
+    id: req.params.id,
+    user: req.cookies.name,
+    rol: req.cookies.rol,
+  });
 });
 
 // =====================================================
@@ -41,6 +45,6 @@ router.get("/api/turno", obtenerTurnos);
 router.delete("/api/turno/:id", eliminarTurno);
 
 //Reprogramar turno
-router.put("/api/turno/actualizar/:id", reprogramarTurno)
+router.put("/api/turno/actualizar/:id", reprogramarTurno);
 
 module.exports = router;

@@ -173,12 +173,12 @@ turnosCtrl.reprogramarTurno = async (req, res) => {
     if (!turnoReprogramado) {
       throw {
         status: 400,
-        message: "No se pudo actualizar la especialidad",
+        message: "No se pudo reprogramar el turno",
       };
     }
 
     return res.json({
-      message: "Actualizado correctamente",
+      message: "Reprogramado correctamente",
     });
   } catch (error) {
     console.log(error);

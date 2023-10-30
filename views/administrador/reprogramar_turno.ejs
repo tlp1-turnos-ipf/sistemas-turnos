@@ -26,20 +26,20 @@
           <img src="/img/inicio_sesion/logo.png" alt="logo.png" width="70px" />
           <span class="fs-4">Reprogramar Turno</span>
         </a>
-        <p>User: <%= user %></p>
+        <p id="rol" data-id="<%= rol %>">User: <%= user %></p>
       </div>
 
       <div class="justify-content-around">
         <div class="w-100 my-4 d-flex justify-content-center">
           <div>
-            <h3 class="text-center">Elija el nuevo horario</h3>
+            <h3 class="text-center fw-bold">Elija el nuevo horario</h3>
             <input
               type="text"
               placeholder="Ingrese una palabra clave para buscar el horario"
               class="shadow bg-body rounded border w-100 p-2 my-2"
             />
             <div class="shadow rounded border w-100 text-center">
-              <form action="" id="select">
+              <form action="" id="form">
                 <select
                   name="horario"
                   id="ListaHorario"
@@ -54,7 +54,7 @@
         </div>
         <div
           id="DatosTurno"
-          class="mx-5 d-flex justify-content-center"
+          class="mx-5 d-flex flex-wrap justify-content-center"
           data-id="<%= id %>"
         ></div>
       </div>
