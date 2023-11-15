@@ -19,13 +19,12 @@
         class="p-5 text-white font-bold d-flex justify-content-between"
         style="height: 1px; background: rgb(0, 4, 41)"
       >
-        <a
-          href="/lista_turnos"
+        <div
           class="d-flex align-items-center text-white text-decoration-none py-2"
         >
           <img src="/img/inicio_sesion/logo.png" alt="logo.png" width="70px" />
           <span class="fs-4">Reprogramar Turno</span>
-        </a>
+        </div>
         <p id="rol" data-id="<%= rol %>">User: <%= user %></p>
       </div>
 
@@ -45,6 +44,13 @@
                   id="ListaHorario"
                   class="p-2 form-select form-select-lg mb-2"
                 ></select>
+                <% if(rol==="3"){ %>
+                <a href="/paciente/turnos/dia" class="btn btn-sm btn-secondary"
+                  >Volver</a
+                >
+                <% } else { %>
+                <a href="/lista_turnos" class="btn btn-sm btn-secondary"></a>
+                <% } %>
                 <button type="submit" class="btn btn-sm btn-primary">
                   Reprogramar
                 </button>

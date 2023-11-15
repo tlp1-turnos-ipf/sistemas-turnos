@@ -1,13 +1,23 @@
 <%- include("../partials/header_paciente.ejs") -%>
 
-<section class="w-100" >
-  <div class="p-5 fw-bold fs-5 text-white" style="height: 1px; background: rgb(0, 4, 41)"><%= user %></div>
+<section class="w-100">
+  <div
+    class="p-5 fw-bold fs-5 text-white"
+    style="height: 1px; background: rgb(0, 4, 41)"
+  >
+    <%= user %>
+  </div>
 
   <div class="px-5">
     <div class="d-flex flex-wrap justify-content-between">
-      <h3 class="fw-bold my-5" style="font-family:Georgia, 'Times New Roman', Times, serif">Navegación de Pantallas</h3>
+      <h3
+        class="fw-bold my-5"
+        style="font-family: Georgia, 'Times New Roman', Times, serif"
+      >
+        Navegación de Pantallas
+      </h3>
     </div>
-    
+
     <div class="row">
       <div class="col-sm-6 mb-6 mb-sm-0">
         <div class="card m-2 shadow rounded border">
@@ -19,9 +29,7 @@
           />
           <a href="/paciente/turnos/dia" class="btn">
             <div class="card-body">
-              <p class="card-title text-center">
-                Listado de Turnos del día
-              </p>
+              <p class="card-title text-center">Listado de Turnos del día</p>
             </div>
           </a>
         </div>
@@ -36,9 +44,7 @@
           />
           <a href="/paciente/turnos/completo" class="btn">
             <div class="card-body">
-              <p class="card-title text-center">
-                Listado de Turnos Completo
-              </p>
+              <p class="card-title text-center">Listado de Turnos Completo</p>
             </div>
           </a>
         </div>
@@ -53,9 +59,22 @@
           />
           <a href="/paciente/historial" class="btn">
             <div class="card-body">
-              <p class="card-title text-center">
-                Historial de Devoluciones
-              </p>
+              <p class="card-title text-center">Historial de Devoluciones</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card m-2 shadow rounded border">
+          <img
+            src="/img/admin/doctores.png"
+            alt=""
+            width="160px"
+            style="position: absolute; top: -20px; left: -50px"
+          />
+          <a href="/paciente/turno/elegir_doctor" class="btn">
+            <div class="card-body">
+              <p class="card-title text-center">Sacar Turno</p>
             </div>
           </a>
         </div>

@@ -18,13 +18,6 @@ authCtrl.ctrlLoginUser = async (req, res) => {
       });
     }
 
-    // // Verificar si el usuario está activo
-    // if (!user.estado) {
-    //   return res.status(400).json({
-    //     message: "El usuario no está activo",
-    //   });
-    // }
-
     // Verificar la contraseña
     const passwordValido = await bcrypt.compare(password, user.password);
 
@@ -36,11 +29,13 @@ authCtrl.ctrlLoginUser = async (req, res) => {
 
     // Generar el JWT
     const token = await generarJWT({ user: user.usuario_id });
-    console.log(token)
+    console.log(token);
     const cookiesOptions = {
-      expires: new Date(Date.now() + process.env.CookiesExpireIn * 24 * 60 * 1000),
+      expires: new Date(
+        Date.now() + process.env.CookiesExpireIn * 24 * 60 * 1000
+      ),
       httpOnly: true,
-      sameSite: 'strict'
+      sameSite: "strict",
     };
 
     if (!token) {
@@ -50,9 +45,9 @@ authCtrl.ctrlLoginUser = async (req, res) => {
     }
 
     res.cookie("token", token, cookiesOptions);
-    res.cookie("id", user.usuario_id)
-    res.cookie("rol", user.rol)
-    res.cookie("name", user.nombre_usuario)
+    res.cookie("id", user.usuario_id);
+    res.cookie("rol", user.rol);
+    res.cookie("name", user.nombre_usuario);
 
     res.status(200).json(token);
   } catch (error) {
@@ -66,7 +61,7 @@ authCtrl.ctrlLoginUser = async (req, res) => {
 // es un controlador que voy a usar para validar si el token es válido.
 authCtrl.ctrlGetUserInfoByToken = async (req, res) => {
   const token = req.cookies.token;
-  console.log(token)
+  console.log(token);
 
   try {
     if (token) {

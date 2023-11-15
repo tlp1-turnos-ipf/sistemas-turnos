@@ -35,7 +35,7 @@ router.get("/reprogramar/turno/:id", (req, res) => {
 //Agregar los turnos desde los horarios
 router.post("/api/turno/:id", crearTurno);
 
-//Programar turno
+//Obtener datos para reprogramar el turno
 router.get("/api/turno/reprogramar/:id", obtenerTurnoPorId);
 
 //Obtener todos los turnos

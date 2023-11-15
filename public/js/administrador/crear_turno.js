@@ -105,12 +105,3 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Mostrar Pacientes en la tabla
   mostrarPacientes(usuarios);
 });
-
-//Buscador en tiempo real
-$(document).ready(function () {
-  $("[name='formBuscadorPaciente']").select2({
-    placeholder: "Selecciona una opción", // Texto del placeholder
-    allowClear: true, // Permite borrar la selección
-    minimumInputLength: 1, // Número mínimo de caracteres para activar la búsqueda
-  });
-});
