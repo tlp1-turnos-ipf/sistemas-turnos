@@ -19,7 +19,6 @@ router.get("/crear_turno/:id", (req, res) => {
   res.render("administrador/crear_turno", { id: doctorFechaId });
 });
 
-//Ir a la pantalla para crear un horario
 router.get("/reprogramar/turno/:id", (req, res) => {
   res.render("administrador/reprogramar_turno", {
     id: req.params.id,
@@ -29,7 +28,7 @@ router.get("/reprogramar/turno/:id", (req, res) => {
 });
 
 // =====================================================
-//         Rutas gestionar turnos
+//               Rutas gestionar turnos
 // =====================================================
 
 //Agregar los turnos desde los horarios

@@ -16,24 +16,34 @@
     >
   </div>
 
-  <div class="main-table shadow m-5 bg-body rounded border">
-    <table class="table table-striped rounded text-center">
-      <thead class="table-dark">
-        <tr>
-          <th scope="col">Fecha</th>
-          <th scope="col">Horario</th>
-          <th scope="col" colspan="2">Funciones</th>
-        </tr>
-      </thead>
-      <tbody
-        class="d-flex-reverse align-items-center justify-content-center"
-        id="listaHorarios"
-        data-id="<%= id %>"
-      ></tbody>
-    </table>
+  <div class="container px-4 py-1">
+    <form class="p-1 p-md-4" id="formNuevoTurno" data-id="<%= idDoctor %>">
+      <div class="m-2 fw-bold d-flex justify-content-center border-bottom">
+        <p class="fs-5">
+          <img src="/img/inicio_sesion/logo.png" alt="" width="30px" />Agregar
+          Turno
+        </p>
+      </div>
+
+      <div class="d-flex flex-column align-items-center">
+        <select
+          class="w-100 border p-3 text-center"
+          name="formBuscadorFecha"
+          id="fecha_id"
+        >
+          <option value="1" selected>Selecciona el Horario</option>
+        </select>
+        <hr class="my-4" />
+      </div>
+      <div class="d-flex justify-content-center">
+        <button class="btn btn-lg btn-primary mx-2" type="submit">
+          Confirmar
+        </button>
+      </div>
+    </form>
   </div>
 </section>
 <script src="/js/pantalla_principal.js"></script>
-<script src="/js/administrador/fechas/lista_horarios.js"></script>
+<script src="/js/pacientes/elegir_horario.js"></script>
 
 <%- include("../partials/admin/footer_admin.ejs") -%>

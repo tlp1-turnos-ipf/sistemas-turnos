@@ -1,5 +1,7 @@
 const router = require("express").Router();
 
+const { crearTurnoPaciente } = require("../controllers/controllers.turnos");
+
 //Ir a la pantalla principal de los pacientes
 router.get("/paciente", (req, res) => {
   res.render("paciente/index", { user: req.cookies.name });
@@ -29,7 +31,6 @@ router.get("/paciente/historial", (req, res) => {
   });
 });
 
-//Ir a la pantalla de historial de devoluciones
 router.get("/paciente/devolucion/:id", (req, res) => {
   const { id } = req.params;
   res.render("paciente/ver_devolucion", {
@@ -50,8 +51,11 @@ router.get("/paciente/turno/elegir_fecha/:idDoctor", (req, res) => {
   res.render("paciente/elegir_fecha", {
     user: req.cookies.name,
     idUser: req.cookies.id,
-    id: req.params.idDoctor,
+    idDoctor: req.params.idDoctor,
   });
 });
+
+//Agregar los turnos desde los pacientes
+router.post("/api/paciente/turno", crearTurnoPaciente);
 
 module.exports = router;

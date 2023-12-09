@@ -114,6 +114,45 @@ turnosCtrl.obtenerTurnoPorId = async (req, res) => {
   }
 };
 
+//Controlador para crear turnos desde los pacientes
+turnosCtrl.crearTurnoPaciente = async (req, res) => {
+  const { fecha_id } = req.body;
+  try {
+    const paciente_id = req.cookies.id;
+    const paciente = await Paciente.findOne({
+      where: { usuario_id: paciente_id },
+    });
+
+    const pacienteID = paciente.paciente_id;
+
+    // Consultar la DoctorFecha correspondiente al id
+    const doctorFecha = await DoctorFecha.findByPk(fecha_id);
+
+    if (doctorFecha.cantidad_turnos > 0) {
+      //Se guardan los datos en la bd
+      const nuevoTurno = await Turno.create({
+        paciente_id: pacienteID,
+        doctor_fecha_id: fecha_id,
+      });
+
+      // Reducir la cantidad de turnos en 1
+      await doctorFecha.decrement("cantidad_turnos", { by: 1 });
+
+      //En caso que haya errores al guardar un Turno
+      if (!nuevoTurno) {
+        throw {
+          message: "Error al crear el Turno",
+        };
+      }
+    }
+
+    return res.status(200).json({ mensaje: "Turno creado exitosamente" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error interno del servidor");
+  }
+};
+
 //Controlador para crear a los turnos
 turnosCtrl.crearTurno = async (req, res) => {
   const { id } = req.params;
