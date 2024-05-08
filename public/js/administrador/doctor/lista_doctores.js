@@ -40,19 +40,22 @@ const mostrarDoctores = (Doctores) => {
 
     let botonesHtml = ""; // Esta variable almacenará los botones HTML
 
-    if (usuario.estado == 0) {
-      botonesHtml = `
-        <td class="fw-bold f-primary">No disponible</td>
-      
-      `;
-    } else {
-      botonesHtml = `
+    botonesHtml = `
             <td>
-                <button onclick="eliminarRegistro(event)" class="btn btn-danger btn-sm" data-id="${usuario.usuario_id}">Eliminar</button>
+                
                 <a href="/doctor/editar/${persona.persona_id}" class="btn btn-warning btn-sm">Editar</a>
-                <a href="/lista_horarios/${doctores.doctor_id}" class="btn btn-primary btn-sm">Horarios y Turnos</a>
+                <a href="/lista_horarios/${doctores.doctor_id}" class="btn btn-primary btn-sm">Sacar Turnos</a>
             </td>
         `;
+
+    let cambiarEstadoButton = "";
+
+    if (!usuario.estado) {
+      cambiarEstadoButton = `<td><button onclick="cambiarEstado(event)" class="btn btn-secondary btn-sm" data-id="${usuario.usuario_id}">No disponible</button></td>`;
+    } else {
+      cambiarEstadoButton = `
+          <td><button onclick="eliminarRegistro(event)" class="btn btn-success btn-sm" data-id="${usuario.usuario_id}">Disponible</button></td>
+            `;
     }
 
     tablaDoctores.innerHTML += `
@@ -61,6 +64,8 @@ const mostrarDoctores = (Doctores) => {
                         <td>${persona.nombres}  ${persona.apellidos}</td>
                         <td>${especialidad.descripcion_especialidad}</td>
                         ${botonesHtml}
+                        ${cambiarEstadoButton}
+                        
                     </tr>
                 `;
   });
@@ -77,30 +82,51 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 /* ***************************************************************
-                        Eliminar doctores activos
+                        Activar Doctores
 *****************************************************************/
 
-//Eliminar doctor
-const eliminar = async (event) => {
+//Ventana Emergente para antes de activar un doctor
+const cambiarEstado = (event) => {
+  Swal.fire({
+    icon: "warning",
+    title: "¿Estás seguro de activar el doctor?",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Sí",
+    cancelButtonText: "No",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      modificarEstado(event);
+    } else {
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    }
+  });
+};
+
+//Modificar estado doctor
+const modificarEstado = async (event) => {
   //Obtengo el ID
   const id = event.target.dataset.id;
 
   try {
-    const res = await fetch(`http://localhost:3000/api/doctor/${id}`, {
-      method: "DELETE",
+    const res = await fetch(`http://localhost:3000/api/doctor/estado/${id}`, {
+      method: "PUT",
     });
 
     const data = await res.json();
 
     Swal.fire({
       icon: "success",
-      title: "Doctor eliminado",
+      title: "Me modificó el estado",
       text: data.message,
     });
 
     setTimeout(() => {
       window.location.reload();
-    }, 1500);
+    }, 2200);
   } catch (error) {
     console.log(error);
     Swal.fire({

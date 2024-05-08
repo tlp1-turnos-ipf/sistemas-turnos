@@ -3,13 +3,13 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const path = require("path");
-const cookieParser = require("cookie-parser")
+const cookieParser = require("cookie-parser");
 
 // El método config de dotenv permite leer variables de entorno desde un archivo .env
 require("dotenv").config();
 
 // Si no existe el archivo .env, el valor por defecto del puerto será 6000
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 // Se inicializa express para poder usar sus métodos
 const app = express();
@@ -18,7 +18,7 @@ const app = express();
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
-app.use(cookieParser())
+app.use(cookieParser());
 
 // Archivos estáticos utilizando la librería path que viene en NodeJS
 app.use(express.static(path.join(__dirname, "public")));

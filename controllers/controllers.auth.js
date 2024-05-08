@@ -30,13 +30,6 @@ authCtrl.ctrlLoginUser = async (req, res) => {
     // Generar el JWT
     const token = await generarJWT({ user: user.usuario_id });
     console.log(token);
-    const cookiesOptions = {
-      expires: new Date(
-        Date.now() + process.env.CookiesExpireIn * 24 * 60 * 1000
-      ),
-      httpOnly: true,
-      sameSite: "strict",
-    };
 
     if (!token) {
       return res.status(400).json({
@@ -44,7 +37,7 @@ authCtrl.ctrlLoginUser = async (req, res) => {
       });
     }
 
-    res.cookie("token", token, cookiesOptions);
+    res.cookie("token", token);
     res.cookie("id", user.usuario_id);
     res.cookie("rol", user.rol);
     res.cookie("name", user.nombre_usuario);

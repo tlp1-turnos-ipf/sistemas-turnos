@@ -5,7 +5,7 @@ const generarJWT = (payload) => {
     // Se firma el token
     jwt.sign(
       payload,
-      process.env.SECRET_KEY,
+      "ññññññ",
       {
         expiresIn: "5h",
       },
@@ -13,7 +13,7 @@ const generarJWT = (payload) => {
         if (err) {
           reject("No se pudo generar el JWT");
         }
-        resolve({token});
+        resolve({ token });
       }
     );
   });

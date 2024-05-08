@@ -41,10 +41,10 @@ const mostrarDoctores = (Doctores) => {
     let botonesHtml = ""; // Esta variable almacenará los botones HTML
 
     if (!usuario.estado) {
-      botonesHtml = `<td><button onclick="cambiarEstado(event)" class="btn btn-secondary btn-sm" data-id="${usuario.usuario_id}">Desactivado</button></td>`;
+      botonesHtml = `<td><button onclick="cambiarEstado(event)" class="btn btn-secondary btn-sm" data-id="${usuario.usuario_id}">No disponible</button></td>`;
     } else {
       botonesHtml = `
-      <td><button onclick="eliminarRegistro(event)" class="btn btn-success btn-sm" data-id="${usuario.usuario_id}">Activado</button></td>
+      <td><button onclick="eliminarRegistro(event)" class="btn btn-success btn-sm" data-id="${usuario.usuario_id}">Disponible</button></td>
         `;
     }
 
